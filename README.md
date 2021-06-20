@@ -1,4 +1,4 @@
-# score_keeper
+# Score Keeper App
 
 ## Project setup
 ```
