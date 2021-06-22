@@ -11,17 +11,17 @@
 
     <q-drawer
       bordered
-      dark
       overlay
       behavior="mobile"
       v-model="drawer"
+      :dark="stateSettings.getDarkMode"
       :width="200"
     >
       <q-scroll-area class="fit">
         <q-list>
 
           <template v-for="(menuItem, index) in menuList">
-            <q-item :key="index" clickable :active="menuItem.label === 'Outbox'" v-ripple>
+            <q-item :key="index" @click="menuItem.onClick" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon :name="menuItem.icon"></q-icon>
               </q-item-section>
@@ -41,29 +41,35 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
+import { stateSettings } from '@/store/index'
 
 @Component
 export default class MenuDrawer extends Vue {
 
+  stateSettings = stateSettings
+
   drawer: boolean = false
   menuList = [
     {
-      icon: 'dark_mode',
-      label: 'Toggle Theme',
-      separator: true
-    },
-    {
       icon: 'groups',
       label: 'Adjust Teams',
+      onClick: () => console.log("Adjust Teams clicked!"),
       separator: true
     },
     {
       icon: 'restart_alt',
-      iconColor: 'primary',
-      label: 'Reset',
+      // iconColor: 'secondary',
+      label: 'Reset Score',
+      onClick: () => console.log("Reset Score clicked!"),
       separator: true
-    }
+    },
+    {
+      icon: 'dark_mode',
+      label: 'Toggle Theme',
+      onClick: () => stateSettings.action_setDarkMode(),
+      separator: true
+    },
   ]
 
 }
