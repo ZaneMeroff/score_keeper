@@ -3,8 +3,6 @@
   <div class="home">
 
     <HelloWorld msg="Score Keeper App 📎"/>
-    <div v-ripple>Click Me</div>
-    <q-btn>test button</q-btn>
 
   </div>
   
