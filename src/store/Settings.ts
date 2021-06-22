@@ -16,7 +16,7 @@ export default class Settings extends VuexModule {
   }
 
   @Action
-  action_setDarkMode() {
+  toggleDarkMode() {
     this.setDarkMode()
   }
 }
