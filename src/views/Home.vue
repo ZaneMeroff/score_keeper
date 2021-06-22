@@ -1,21 +1,23 @@
 <template>
 
-  <div class="home">
+  <score-counter />
 
-    <HelloWorld msg="Score Keeper App 📎"/>
-
-  </div>
-  
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
 
-export default {
-  name: 'Home',
+import { Component, Vue } from 'vue-property-decorator';
+import ScoreCounter from '@/components/ScoreCounter.vue'
+
+@Component({
   components: {
-    HelloWorld
+    'score-counter' : ScoreCounter,
   }
+})
+export default class Home extends Vue {
+
 }
+
 </script>
+
+<style></style>
