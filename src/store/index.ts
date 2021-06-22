@@ -4,7 +4,7 @@ import Settings from './Settings'
 
 Vue.use(Vuex)
 
-const store: any = new Vuex.Store({
+export const store: any = new Vuex.Store({
   // strict: process.env.DEV === 'true',
   state: {},
   modules: {},
