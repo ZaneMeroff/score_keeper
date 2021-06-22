@@ -2,7 +2,7 @@
 
   <div>
 
-    <h1>{{ msg }}</h1>
+    <!-- content here -->
 
   </div>
 
