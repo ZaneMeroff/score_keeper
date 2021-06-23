@@ -52,9 +52,15 @@ export default class MenuDrawer extends Vue {
   drawer: boolean = false
   menuList = [
     {
-      icon: 'groups',
-      label: 'Adjust Teams',
+      icon: 'group_add',
+      label: 'Number of Teams',
       onClick: () => console.log("Adjust Teams clicked!"),
+      separator: true
+    },
+    {
+      icon: 'groups',
+      label: 'Teams or Players',
+      onClick: () => console.log("Teams or Players clicked!"),
       separator: true
     },
     {

@@ -2,35 +2,27 @@
 
   <q-card class="q-card">
 
-    <!-- name input -->
-    <q-card-section>
-      <div>name input</div><q-btn>edit</q-btn>
-    </q-card-section>
+    <!-- name input w/ edit btn -->
+    <name-input />
 
-    <!-- number counter -->
-    <q-card-section>
-
-      <!-- display number -->
-      <q-card-section>
-        <p>5</p>
-      </q-card-section>
-
-      <!-- +/- buttons -->
-      <q-card-section>
-        <q-btn>+</q-btn>
-        <q-btn>-</q-btn>
-      </q-card-section>
-
-    </q-card-section>
+    <!-- number selector with +/- btns -->
+    <num-selector />
 
   </q-card>
 
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
+import NameInput from './NameInput.vue'
+import NumSelector from './NumSelector.vue'
 
-@Component
+@Component({
+  components: {
+    'name-input': NameInput,
+    'num-selector': NumSelector,
+  }
+})
 export default class ScoreCounter extends Vue {
   
 }
@@ -40,7 +32,7 @@ export default class ScoreCounter extends Vue {
 
   .q-card {
     height: 200px;
-    margin: 50px;
+    margin: 80px;
     width: 200px;
   }
 
