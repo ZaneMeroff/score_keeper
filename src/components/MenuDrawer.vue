@@ -46,12 +46,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateSettings } from '@/store/index'
+import { stateSettings, statePlayers } from '@/store/index'
 
 @Component
 export default class MenuDrawer extends Vue {
 
   stateSettings = stateSettings
+  statePlayers = statePlayers
 
   drawer: boolean = false
   menuList = [
@@ -71,7 +72,7 @@ export default class MenuDrawer extends Vue {
       icon: 'restart_alt',
       // iconColor: 'secondary',
       label: 'Reset Score',
-      onClick: () => console.log("Reset Score clicked!"),
+      onClick: () => statePlayers.action_zeroScores(),
       separator: true
     },
     {

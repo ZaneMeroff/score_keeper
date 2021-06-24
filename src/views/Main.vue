@@ -4,7 +4,7 @@
     <score-counter 
       v-for="(player, index) in statePlayers.getPlayerData" 
       :key="index"
-      :playerData="player" 
+      :playerId="player.id" 
     />
   </section>
 
@@ -26,10 +26,9 @@ import ScoreCounter from '@/components/ScoreCounter.vue'
     'score-counter' : ScoreCounter,
   }
 })
-export default class Home extends Vue {
+export default class Main extends Vue {
 
   statePlayers = statePlayers
-
 }
 
 </script>
@@ -37,9 +36,14 @@ export default class Home extends Vue {
 <style>
 
   section {
-    border: 1px solid #151515;
     background-color: #151515;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
     height: 100vh;
+    justify-content: flex-start;
+    padding: 55px 10px 10px 10px;
+    width: 100%;
   }
 
 </style>

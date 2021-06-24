@@ -41,4 +41,20 @@ export default class Players extends VuexModule {
     action_setPlayerScore(payload: { id: string, score: number }) {
       this.setPlayerScore(payload)
     }
+
+    // ------------------------------------------
+    //        zero scores for all players
+    // ------------------------------------------
+
+    @Mutation
+    zeroScores() {
+      for (const player in this.playerData) {
+        this.playerData[player].score = 0
+      }
+    }
+
+    @Action
+    action_zeroScores() {
+      this.zeroScores()
+    }
 }

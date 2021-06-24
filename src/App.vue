@@ -1,6 +1,6 @@
 <template>
 
-  <q-layout view="hHh Lpr lff" container style="height: 100vh" class="shadow-2">
+  <q-layout view="hHh Lpr lff" container style="height: 100vh">
     <menu-drawer />
     <router-view />
   </q-layout>

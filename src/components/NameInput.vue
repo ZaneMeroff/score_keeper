@@ -1,7 +1,7 @@
 <template>
 
   <q-item-section class="q-item-section">
-    <q-item>{{ name }}</q-item>
+    <q-item>{{ statePlayers.getPlayerData[playerId].name }}</q-item>
     <q-btn flat class="q-btn row">
       <q-icon name="edit"></q-icon>
       <q-icon name="delete"></q-icon>
@@ -15,11 +15,15 @@
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
+// Vuex
+import { statePlayers } from '@/store/index'
+
 @Component
 export default class NameInput extends Vue {
 
-  @Prop() private name!: string
+  @Prop() private playerId!: string
 
+  statePlayers = statePlayers
 }
 </script>
 

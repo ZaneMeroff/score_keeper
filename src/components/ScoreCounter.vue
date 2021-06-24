@@ -3,10 +3,10 @@
   <q-card class="q-card">
 
     <!-- name input w/ edit & delete btn -->
-    <name-input :name="playerData.name" />
+    <name-input :playerId="playerId" />
 
     <!-- number selector with +/- btns -->
-    <num-selector :playerId="playerData.id" />
+    <num-selector :playerId="playerId" />
 
   </q-card>
 
@@ -21,9 +21,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import NameInput from './NameInput.vue'
 import NumSelector from './NumSelector.vue'
 
-// Types
-import { Player } from '@/types/players'
-
 @Component({
   components: {
     'name-input': NameInput,
@@ -32,8 +29,7 @@ import { Player } from '@/types/players'
 })
 export default class ScoreCounter extends Vue {
   
-  @Prop() private playerData!: Player
-  
+  @Prop() private playerId!: string
 }
 </script>
 
@@ -41,7 +37,7 @@ export default class ScoreCounter extends Vue {
 
   .q-card {
     height: 200px;
-    margin: 80px;
+    margin: 20px;
     width: 200px;
   }
 
