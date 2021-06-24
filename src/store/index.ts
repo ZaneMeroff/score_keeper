@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Settings from './Settings'
+import Scores from './Scores'
 
 Vue.use(Vuex)
 
@@ -11,22 +12,7 @@ export const store: any = new Vuex.Store({
   // plugins: [vuexLocal.plugin]
 })
 
-export const stateSettings = new Settings({ store, name: 'Settings' });
-
-// export default new Vuex.Store({
-//   state: {
-//     darkMode: true
-//   },
-//   mutations: {
-//     setDarkMode (state) {
-//       state.darkMode = !state.darkMode
-//     }
-//   },
-//   actions: {
-
-//   },
-//   modules: {
-//   }
-// })
+export const stateSettings = new Settings({ store, name: 'Settings' })
+export const stateScores= new Settings({ store, name: 'Scores' })
 
 

@@ -1,6 +1,8 @@
 <template>
 
-  <score-counter />
+  <section>
+    <score-counter />
+  </section>
 
 </template>
 
@@ -20,4 +22,12 @@ export default class Home extends Vue {
 
 </script>
 
-<style></style>
+<style>
+
+  section {
+    border: 1px solid #151515;
+    background-color: #151515;
+    height: 100vh;
+  }
+
+</style>

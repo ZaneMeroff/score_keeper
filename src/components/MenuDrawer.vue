@@ -2,7 +2,7 @@
 
   <div>
 
-    <q-header elevated class="bg-black">
+    <q-header elevated class="q-header">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu"></q-btn>
         <q-toolbar-title>Score Keeper</q-toolbar-title>
@@ -82,4 +82,10 @@ export default class MenuDrawer extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+  .q-header {
+    background-color: #004eff;
+  }
+
+</style>
