@@ -2,7 +2,7 @@
 
   <div>
 
-    <q-header elevated class="bg-black">
+    <q-header elevated class="q-header">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu"></q-btn>
         <q-toolbar-title>Score Keeper</q-toolbar-title>
@@ -41,27 +41,38 @@
 </template>
 
 <script lang="ts">
+
+// Decorators
 import { Component, Vue } from 'vue-property-decorator'
-import { stateSettings } from '@/store/index'
+
+// Vuex
+import { stateSettings, statePlayers } from '@/store/index'
 
 @Component
 export default class MenuDrawer extends Vue {
 
   stateSettings = stateSettings
+  statePlayers = statePlayers
 
   drawer: boolean = false
   menuList = [
     {
-      icon: 'groups',
-      label: 'Adjust Teams',
+      icon: 'group_add',
+      label: 'Number of Teams',
       onClick: () => console.log("Adjust Teams clicked!"),
+      separator: true
+    },
+    {
+      icon: 'groups',
+      label: 'Teams or Players',
+      onClick: () => console.log("Teams or Players clicked!"),
       separator: true
     },
     {
       icon: 'restart_alt',
       // iconColor: 'secondary',
       label: 'Reset Score',
-      onClick: () => console.log("Reset Score clicked!"),
+      onClick: () => statePlayers.action_zeroScores(),
       separator: true
     },
     {
@@ -76,4 +87,10 @@ export default class MenuDrawer extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+  .q-header {
+    background-color: #004eff;
+  }
+
+</style>

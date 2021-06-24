@@ -1,4 +1,5 @@
 // Decorators
+import Vue from 'vue'
 import { Action, Module, Mutation, VuexModule } from 'vuex-class-modules'
 
 @Module
