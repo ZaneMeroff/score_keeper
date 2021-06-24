@@ -1,14 +1,24 @@
 <template>
 
   <section>
-    <score-counter />
+    <score-counter 
+      v-for="(player, index) in statePlayers.getPlayerData" 
+      :key="index"
+      :playerData="player" 
+    />
   </section>
 
 </template>
 
 <script lang="ts">
 
-import { Component, Vue } from 'vue-property-decorator';
+// Decorators
+import { Component, Vue } from 'vue-property-decorator'
+
+// Vuex
+import { statePlayers } from '@/store/index'
+
+// Components
 import ScoreCounter from '@/components/ScoreCounter.vue'
 
 @Component({
@@ -17,6 +27,8 @@ import ScoreCounter from '@/components/ScoreCounter.vue'
   }
 })
 export default class Home extends Vue {
+
+  statePlayers = statePlayers
 
 }
 

@@ -42,8 +42,10 @@
 
 <script lang="ts">
 
-// Vue & Vuex
+// Decorators
 import { Component, Vue } from 'vue-property-decorator'
+
+// Vuex
 import { stateSettings } from '@/store/index'
 
 @Component

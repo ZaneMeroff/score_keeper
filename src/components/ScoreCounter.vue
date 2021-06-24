@@ -2,20 +2,28 @@
 
   <q-card class="q-card">
 
-    <!-- name input w/ edit btn -->
-    <name-input />
+    <!-- name input w/ edit & delete btn -->
+    <name-input :name="playerData.name" />
 
     <!-- number selector with +/- btns -->
-    <num-selector />
+    <!-- score must be converted to string for q-carousel -->
+    <num-selector :score="playerData.score.toString()" />
 
   </q-card>
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+
+// Decorators
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+// Components
 import NameInput from './NameInput.vue'
 import NumSelector from './NumSelector.vue'
+
+// Types
+import { Player } from '@/types/players'
 
 @Component({
   components: {
@@ -24,6 +32,8 @@ import NumSelector from './NumSelector.vue'
   }
 })
 export default class ScoreCounter extends Vue {
+  
+  @Prop() private playerData!: Player
   
 }
 </script>

@@ -9,8 +9,10 @@
 
 <script lang="ts">
 
-// Vue & Vuex
+// Decorators
 import { Component, Vue } from 'vue-property-decorator'
+
+// Vuex
 import { statePlayers } from '@/store/index'
 
 // Components

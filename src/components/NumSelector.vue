@@ -10,7 +10,7 @@
       transition-prev="slide-down"
       class="rounded-borders transparent"
       height="auto"
-      v-model="currentSlide"
+      v-model="score"
     >
 
       <q-carousel-slide v-for="n in slideRange" :key="n" :name="n">
@@ -30,11 +30,13 @@
 
 <script lang="ts">
 
-// Vue
-import { Component, Vue } from 'vue-property-decorator'
+// Decorators
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NumSelector extends Vue {
+
+  @Prop() private score!: string
   
   currentSlide: string = '1'
   slideRange: string[] = []
@@ -47,7 +49,7 @@ export default class NumSelector extends Vue {
   }
 
   setSlideRange() {
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 0; i <= 100; i++) {
       this.slideRange.push(i.toString())
     }
   }

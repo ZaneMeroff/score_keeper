@@ -1,20 +1,25 @@
 <template>
 
   <q-item-section class="q-item-section">
-    <q-item>team 1</q-item>
-    <q-btn flat class="q-btn">
+    <q-item>{{ name }}</q-item>
+    <q-btn flat class="q-btn row">
       <q-icon name="edit"></q-icon>
+      <q-icon name="delete"></q-icon>
     </q-btn>
   </q-item-section>
 
 </template>
 
 <script lang="ts">
+
+// Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NameInput extends Vue {
-  
+
+  @Prop() private name!: string
+
 }
 </script>
 
