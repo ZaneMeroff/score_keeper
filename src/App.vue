@@ -33,16 +33,16 @@ export default class App extends Vue {
   onAppStart(numOfPlayers: number) {
     // create playerData item(s) on app start
     for (let i = 1; i <= numOfPlayers; i++) {
-      statePlayers.action_setPlayerData({
+      statePlayers.action_createPlayer({
         id: uuidv4(),
+        name: `Player ${i}`,
         score: 0,
-        name: `Player ${i}`
       })
     }
   }
 
   mounted() {
-    this.onAppStart(2)
+    this.onAppStart(3)
   }
 }
 </script>

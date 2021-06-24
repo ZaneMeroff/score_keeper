@@ -6,8 +6,7 @@
     <name-input :name="playerData.name" />
 
     <!-- number selector with +/- btns -->
-    <!-- score must be converted to string for q-carousel -->
-    <num-selector :score="playerData.score.toString()" />
+    <num-selector :playerId="playerData.id" />
 
   </q-card>
 

@@ -10,7 +10,7 @@
       transition-prev="slide-down"
       class="rounded-borders transparent"
       height="auto"
-      v-model="score"
+      v-model="currentSlide"
     >
 
       <q-carousel-slide v-for="n in slideRange" :key="n" :name="n">
@@ -20,8 +20,17 @@
     </q-carousel>  
 
     <q-item-section>
-      <q-btn @click="updateCounter('plus')" class="q-btn"><q-icon name="add"></q-icon></q-btn>
-      <q-btn @click="updateCounter('minus')" class="q-btn"><q-icon name="remove"></q-icon></q-btn>
+      <!-- (+) button -->
+      <q-btn 
+        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })" 
+        class="q-btn"
+      ><q-icon name="add"></q-icon>
+      </q-btn>
+      <!-- (-) button -->
+      <q-btn 
+        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
+        class="q-btn"
+      ><q-icon name="remove"></q-icon></q-btn>
     </q-item-section>
 
   </q-item-section>
@@ -33,23 +42,24 @@
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+// Vuex
+import { statePlayers } from '@/store/index'
+
 @Component
 export default class NumSelector extends Vue {
 
-  @Prop() private score!: string
-  
-  currentSlide: string = '1'
+  @Prop() private playerId!: string
+
+  statePlayers = statePlayers
+
   slideRange: string[] = []
 
-  updateCounter(increment: 'plus' | 'minus') {
-    let current = parseInt(this.currentSlide)
-    if (increment === 'plus') current++
-    else if (increment === 'minus') current--
-    this.currentSlide = current.toString()
+  get currentSlide() {
+    return statePlayers.getPlayerData[this.playerId].score.toString()
   }
 
   setSlideRange() {
-    for (let i = 0; i <= 100; i++) {
+    for (let i = -100; i <= 100; i++) {
       this.slideRange.push(i.toString())
     }
   }

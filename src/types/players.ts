@@ -1,7 +1,7 @@
 export type Player = {
   id: string
   name: string
-  currentScore: number
+  score: number
 }
 
 export type PlayerData = {

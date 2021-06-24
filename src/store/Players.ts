@@ -14,14 +14,31 @@ export default class Players extends VuexModule {
       return this.playerData
     }
 
+    // ------------------------------------------
+    //              create player
+    // ------------------------------------------
+
     @Mutation
-    setPlayerData(payload: { id: string, score: number, name?: string }) {
-      // create or update score data based on id
+    createPlayer(payload: Player) {
       Vue.set(this.playerData, payload.id, payload)
     }
 
     @Action
-    action_setPlayerData(payload: { id: string, score: number, name?: string }) {
-      this.setPlayerData(payload)
+    action_createPlayer(payload: Player) {
+      this.createPlayer(payload)
+    }
+
+    // ------------------------------------------
+    //         modify target player score
+    // ------------------------------------------
+
+    @Mutation
+    setPlayerScore(payload: { id: string, score: number }) {
+      this.playerData[payload.id].score = payload.score
+    }
+
+    @Action
+    action_setPlayerScore(payload: { id: string, score: number }) {
+      this.setPlayerScore(payload)
     }
 }
