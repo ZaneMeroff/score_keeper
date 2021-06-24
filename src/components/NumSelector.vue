@@ -29,7 +29,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+
+// Vue
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NumSelector extends Vue {

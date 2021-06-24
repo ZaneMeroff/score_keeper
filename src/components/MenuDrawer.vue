@@ -41,6 +41,8 @@
 </template>
 
 <script lang="ts">
+
+// Vue & Vuex
 import { Component, Vue } from 'vue-property-decorator'
 import { stateSettings } from '@/store/index'
 

@@ -9,8 +9,15 @@
 
 <script lang="ts">
 
-import { Component, Vue } from 'vue-property-decorator';
+// Vue & Vuex
+import { Component, Vue } from 'vue-property-decorator'
+import { statePlayers } from '@/store/index'
+
+// Components
 import MenuDrawer from '@/components/MenuDrawer.vue'
+
+// Utils
+import { v4 as uuidv4 } from 'uuid'
 
 @Component({
   components: {
@@ -19,8 +26,23 @@ import MenuDrawer from '@/components/MenuDrawer.vue'
 })
 export default class App extends Vue {
 
-}
+  statePlayers = statePlayers
 
+  onAppStart(numOfPlayers: number) {
+    // create playerData item(s) on app start
+    for (let i = 1; i <= numOfPlayers; i++) {
+      statePlayers.action_setPlayerData({
+        id: uuidv4(),
+        score: 0,
+        name: `Player ${i}`
+      })
+    }
+  }
+
+  mounted() {
+    this.onAppStart(2)
+  }
+}
 </script>
 
 <style></style>

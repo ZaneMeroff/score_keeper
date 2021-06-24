@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Settings from './Settings'
-import Scores from './Scores'
+import Players from './Players'
 
 Vue.use(Vuex)
 
@@ -13,6 +13,6 @@ export const store: any = new Vuex.Store({
 })
 
 export const stateSettings = new Settings({ store, name: 'Settings' })
-export const stateScores= new Settings({ store, name: 'Scores' })
+export const statePlayers= new Players({ store, name: 'Players' })
 
 
