@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/uuid": "^8.3.0",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
+    "uuid": "^3.4.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
