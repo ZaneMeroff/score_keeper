@@ -43,6 +43,20 @@ export default class Players extends VuexModule {
     }
 
     // ------------------------------------------
+    //         modify target player name
+    // ------------------------------------------
+
+    @Mutation
+    setPlayerName(payload: { id: string, name: string }) {
+      this.playerData[payload.id].name = payload.name
+    }
+
+    @Action
+    action_setPlayerName(payload: { id: string, name: string }) {
+      this.setPlayerName(payload)
+    }
+
+    // ------------------------------------------
     //        zero scores for all players
     // ------------------------------------------
 
