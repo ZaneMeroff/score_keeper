@@ -7,27 +7,42 @@
       <q-item>{{ statePlayers.getPlayerData[playerId].name }}</q-item>
     
       <q-btn-group outline class="flex flex-center" spread>
-        
         <!-- edit button -->
-        <q-btn flat class="q-btn">
+        <q-btn flat class="q-btn" @click="() => showConfirmEdit = true">
           <q-icon name="edit"></q-icon>
         </q-btn>
-        
         <!-- delete button -->
         <q-btn flat class="q-btn" @click="() => showConfirmDelete = true">
           <q-icon name="delete"></q-icon>
         </q-btn>
-
-    </q-btn-group>
+      </q-btn-group>
 
     </q-item-section>
+
+    <!-- edit player name modal -->
+    <confirm-dialog 
+      :showModal="showConfirmEdit"
+      :text1="'Edit Name'"
+      :playerName="getName"
+      :showTextInput="true"
+      :btn1Label="'SAVE'"
+      :btn1Action="() => {
+        statePlayers.action_setPlayerName({ id: playerId, name: pendingName })
+        showConfirmEdit = false
+      }"
+      :btn2Label="'CANCEL'"
+      :btn2Action="() => showConfirmEdit = false"
+      @nameChange="updatePendingName"
+    />
 
     <!-- confirm delete modal -->
     <confirm-dialog 
       :showModal="showConfirmDelete"
       :text1="`Delete ${statePlayers.getPlayerData[playerId].name}?`"
-      :btn1="() => statePlayers.action_deletePlayer(playerId)"
-      :btn2="() => showConfirmDelete = false"
+      :btn1Label="'YES'"
+      :btn1Action="() => statePlayers.action_deletePlayer(playerId)"
+      :btn2Label="'NO'"
+      :btn2Action="() => showConfirmDelete = false"
     />
 
   </div>
@@ -57,6 +72,17 @@ export default class NameInput extends Vue {
   statePlayers = statePlayers
   
   showConfirmDelete: boolean = false
+  showConfirmEdit: boolean = false
+
+  pendingName: string = ''
+
+  get getName() {
+    return statePlayers.getPlayerData[this.playerId].name
+  }
+
+  updatePendingName(name: string) {
+    this.pendingName = name
+  }
 }
 </script>
 

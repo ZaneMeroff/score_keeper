@@ -1,35 +1,46 @@
 <template>
 
- <q-dialog dark v-model="showModal" persistent>
-    <q-card class="dialog-card">
+ <q-dialog :dark="true" v-model="showModal" persistent>
+    <q-card class="q-card">
 
       <!-- Header -->
       <q-card-section>
         <div class="q-mb-md">
+          <!-- line 1 text -->
           <div class="text" v-if="text1">{{ text1 }}</div>
-          <div class="text q-mt-md" v-if="text2">{{ text2 }}</div>
+          <!-- line 2 text (optional) -->
+          <div class="text q-mt-sm" v-if="text2">{{ text2 }}</div>
+          <!-- text input (player name) -->
+          <q-input 
+            v-if="showTextInput" 
+            v-model="textInput" 
+            class="q-input" 
+            maxlength="20"
+            :dark="true" 
+            :rules="[ val => !!val || '* Required' ]"
+            @input="onTextInputChange"
+          />
         </div>
 
-        <q-btn-group outline class="flex flex-center" spread>
+        <q-btn-group outline class="flex flex-center">
           <!-- button 1 (yes) -->
           <q-btn
             flat
-            size="md"
-            icon="fas fa-check"
-            @click="btn1"
+            class="q-btn"
             color="green"
-            label="YES"
-            class="hover-positive"
+            size="md"
+            :disable="btn1Disabled"
+            :label="btn1Label"
+            @click="showTextInput ? handleBtn1() : btn1Action()"
           />
           <!-- button 2 (no) -->
           <q-btn
             flat
-            size="md"
-            icon="fas fa-times"
-            @click="btn2"
+            class="q-btn"
             color="red"
-            label="NO"
-            class="hover-negative"
+            size="md"
+            :label="btn2Label"
+            @click="btn2Action"
           />
         </q-btn-group>
       </q-card-section>
@@ -40,18 +51,52 @@
 
 <script lang="ts">
 
+// Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ConfirmDialog extends Vue {
   
   @Prop(Boolean) private showModal!: boolean
+  @Prop(Boolean) private showTextInput?: boolean
+  @Prop(String) private playerName?: string
   
   @Prop(String) private text1!: string
   @Prop(String) private text2?: string
-  @Prop() private btn1!: any
-  @Prop() private btn2!: any
+
+  @Prop(String) private btn1Label!: string
+  @Prop(String) private btn2Label!: string
+
+  @Prop() private btn1Action!: any
+  @Prop() private btn2Action!: any
+
+  textInput?: string = this.playerName 
+  btn1Disabled: boolean = false
+
+  handleBtn1() {
+    this.$emit('nameChange', this.textInput)
+    this.btn1Action()
+  }
+
+  onTextInputChange() {
+    if (this.textInput!.length) this.btn1Disabled = false
+    else this.btn1Disabled = true
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+  .q-card {
+    background-color: #1e1e1e;
+  }
+
+  .q-btn {
+    width: 100px;
+  }
+
+  .text {
+    color: #FFF;
+    text-align: center;
+  }
+</style>
