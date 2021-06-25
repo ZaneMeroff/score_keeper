@@ -67,10 +67,10 @@ export default class ConfirmDialog extends Vue {
   @Prop(String) private btn1Label!: string
   @Prop(String) private btn2Label!: string
 
-  @Prop() private btn1Action!: any
-  @Prop() private btn2Action!: any
+  @Prop(Function) private btn1Action!: Function
+  @Prop(Function) private btn2Action!: Function
 
-  textInput?: string = this.playerName 
+  textInput?: string = ''
   btn1Disabled: boolean = false
 
   handleBtn1() {
@@ -81,6 +81,10 @@ export default class ConfirmDialog extends Vue {
   onTextInputChange() {
     if (this.textInput!.length) this.btn1Disabled = false
     else this.btn1Disabled = true
+  }
+
+  mounted() {
+    if (this.playerName) this.textInput = this.playerName 
   }
 }
 </script>
