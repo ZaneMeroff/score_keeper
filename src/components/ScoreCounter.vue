@@ -29,7 +29,7 @@ import NumSelector from './NumSelector.vue'
 })
 export default class ScoreCounter extends Vue {
   
-  @Prop() private playerId!: string
+  @Prop(String) private playerId!: string
 }
 </script>
 

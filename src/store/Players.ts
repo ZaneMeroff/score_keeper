@@ -29,6 +29,20 @@ export default class Players extends VuexModule {
     }
 
     // ------------------------------------------
+    //            delete target player
+    // ------------------------------------------
+
+    @Mutation
+    deletePlayer(id: string) {
+      Vue.delete(this.playerData, id)
+    }
+
+    @Action
+    action_deletePlayer(id: string) {
+      this.deletePlayer(id)
+    }
+
+    // ------------------------------------------
     //         modify target player score
     // ------------------------------------------
 
