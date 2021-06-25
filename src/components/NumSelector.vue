@@ -48,7 +48,7 @@ import { statePlayers } from '@/store/index'
 @Component
 export default class NumSelector extends Vue {
 
-  @Prop() private playerId!: string
+  @Prop(String) private playerId!: string
 
   statePlayers = statePlayers
 
