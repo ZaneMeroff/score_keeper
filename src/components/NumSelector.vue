@@ -2,36 +2,38 @@
 
   <q-item-section class="component-perimeter">
 
+    <q-btn 
+      flat 
+      class="q-ml-md"
+      @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
+    ><q-icon name="remove_circle_outline"></q-icon></q-btn>
+
     <q-carousel
       animated
       padding
       swipeable
-      transition-next="slide-up"
-      transition-prev="slide-down"
-      class="rounded-borders transparent"
+      transition-next="slide-left"
+      transition-prev="slide-right"
+      class="rounded-borders transparent q-carousel"
       height="auto"
       v-model="currentSlide"
+      style="border: 1px solid yellow"
     >
-
-      <q-carousel-slide v-for="n in slideRange" :key="n" :name="n">
-        <q-item>{{ n }}</q-item>                                   
+      <q-carousel-slide 
+        v-for="n in slideRange" 
+        class="q-carousel-slide" 
+        :key="n" 
+        :name="n"
+      ><q-item class="q-item">{{ n }}</q-item>                                   
       </q-carousel-slide>
 
     </q-carousel>  
 
-    <q-item-section>
-      <!-- (+) button -->
-      <q-btn 
-        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })" 
-        class="q-btn"
-      ><q-icon name="add"></q-icon>
-      </q-btn>
-      <!-- (-) button -->
-      <q-btn 
-        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
-        class="q-btn"
-      ><q-icon name="remove"></q-icon></q-btn>
-    </q-item-section>
+    <q-btn 
+      flat 
+      class="q-ml-md"
+      @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })"
+    ><q-icon name="add_circle_outline"></q-icon></q-btn>
 
   </q-item-section>
 
@@ -73,24 +75,30 @@ export default class NumSelector extends Vue {
 <style scoped>
 
   .component-perimeter {
-    height: 80px; 
-    width: 80px
+    height: 60px; 
+    width: 100%;
+    border: 1px solid red;
+
+    display: flex;
+    align-items: center;
+    /* ^ use q classes */
   }
 
-  .q-item-section {
-    border: 1px solid red;
-    height: 80px; 
-    text-align: center; 
-    width: 80px; 
+  .q-carousel {
+    display: flex;
+    justify-content: center;
+    /* ^ use q classes */
+
+    width: 40%;
+  }
+
+  .q-carousel-slide {
+    padding: 0px; 
   }
 
   .q-item {
-    font-size: 30px
-  }
-
-  .q-btn {
-    height: 40px; 
-    width: 40px
+    font-size: 40px;
+    padding: 0px;
   }
 
 </style>
