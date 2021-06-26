@@ -2,12 +2,12 @@
 
   <q-item-section class="component-perimeter">
 
-    <q-item>
+    <q-item class="q-item">
    
       <q-btn 
         flat 
         class="q-mr-sm"
-        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
+        @click="statePlayers.getPlayerData[playerId].score > stateSettings.getMinScore ? statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 }) : null"
       ><q-icon name="remove_circle_outline"></q-icon></q-btn>
 
       <q-carousel
@@ -25,7 +25,7 @@
           class="q-carousel-slide" 
           :key="n" 
           :name="n"
-        ><q-item class="q-item">{{ n }}</q-item>                                   
+        ><q-item class="score-display">{{ n }}</q-item>                                   
         </q-carousel-slide>
 
       </q-carousel>  
@@ -33,7 +33,7 @@
       <q-btn 
         flat
         class="q-ml-sm" 
-        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })"
+        @click="statePlayers.getPlayerData[playerId].score < stateSettings.getMaxScore ? statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 }) : null"
       ><q-icon name="add_circle_outline"></q-icon></q-btn>
 
     </q-item>
@@ -48,7 +48,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { statePlayers } from '@/store/index'
+import { statePlayers, stateSettings } from '@/store/index'
 
 @Component
 export default class NumSelector extends Vue {
@@ -56,6 +56,7 @@ export default class NumSelector extends Vue {
   @Prop(String) private playerId!: string
 
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   slideRange: string[] = []
 
@@ -67,6 +68,11 @@ export default class NumSelector extends Vue {
     for (let i = -100; i <= 100; i++) {
       this.slideRange.push(i.toString())
     }
+    // **************************************
+    // **************************************
+    //    ^ connect min/max to store
+    // **************************************
+    // **************************************
   }
 
   mounted() {
@@ -78,11 +84,10 @@ export default class NumSelector extends Vue {
 <style scoped>
 
   .component-perimeter {
+    align-items: center;
+    display: flex;
     height: 60px; 
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .q-carousel {
@@ -93,9 +98,17 @@ export default class NumSelector extends Vue {
     padding: 0px; 
   }
 
-  .q-item {
+  .score-display {
     font-size: 40px;
     padding: 0px;
+  }
+
+  .q-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: auto;
   }
 
 </style>

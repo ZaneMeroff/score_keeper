@@ -2,8 +2,8 @@
 
   <transition
     appear
-    enter-active-class="animated animate__zoomIn"
-    leave-active-class="animated animate__backOutDown"
+    enter-active-class="animated animate__slideInLeft"
+    leave-active-class="animated animate__slideOutRight"
   >
     <q-card class="q-card">
 
@@ -15,11 +15,10 @@
 
       <q-slider
         v-model="statePlayers.getPlayerData[playerId].score"
-        dark
-        :min="0"
-        :max="10"
-        :step="1"
         color="light-green"
+        :min="stateSettings.getMinScore"
+        :max="stateSettings.getMaxScore"
+        :step="1"
       ></q-slider>
 
     </q-card>
@@ -33,7 +32,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { statePlayers } from '@/store/index'
+import { statePlayers, stateSettings } from '@/store/index'
 
 // Components
 import NameInput from './NameInput.vue'
@@ -50,6 +49,7 @@ export default class ScoreCounter extends Vue {
   @Prop(String) private playerId!: string
 
   statePlayers = statePlayers
+  stateSettings = stateSettings
 }
 </script>
 

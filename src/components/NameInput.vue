@@ -4,7 +4,7 @@
 
     <q-item-section class="q-item-section">
     
-      <q-item>{{ statePlayers.getPlayerData[playerId].name }}</q-item>
+      <p class="player-name">{{ statePlayers.getPlayerData[playerId].name }}</p>
     
       <q-btn-group outline class="flex flex-center" spread>
         <!-- edit button -->
@@ -98,6 +98,11 @@ export default class NameInput extends Vue {
   .q-btn {
     height: 40px;
     width: 40px;
+  }
+
+  .player-name {
+    font-size: 16px;
+    padding: 10px 0px 0px 0px;
   }
 
 </style> 
