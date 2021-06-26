@@ -39,7 +39,7 @@ export default class Main extends Vue {
     display: flex !important;
     flex-direction: column;
     height: 100vh;
-    padding: 55px 20px 10px 20px;
+    padding: 60px 20px 10px 20px;
     width: 100%;
   }
 

@@ -86,7 +86,7 @@ export default class NumSelector extends Vue {
   .component-perimeter {
     align-items: center;
     display: flex;
-    height: 60px; 
+    height: 50px; 
     width: 100%;
   }
 
@@ -105,10 +105,7 @@ export default class NumSelector extends Vue {
 
   .q-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-    width: auto;
   }
 
 </style>

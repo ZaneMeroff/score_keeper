@@ -13,13 +13,15 @@
       <!-- score display with +/- btns -->
       <num-selector :playerId="playerId" />
 
-      <q-slider
-        v-model="statePlayers.getPlayerData[playerId].score"
-        color="light-green"
-        :min="stateSettings.getMinScore"
-        :max="stateSettings.getMaxScore"
-        :step="1"
-      ></q-slider>
+      <div class="q-px-lg">
+        <q-slider
+          v-model="statePlayers.getPlayerData[playerId].score"
+          color="light-green"
+          :min="stateSettings.getMinScore"
+          :max="stateSettings.getMaxScore"
+          :step="1"
+        ></q-slider>
+      </div>
 
     </q-card>
   </transition>
@@ -56,11 +58,10 @@ export default class ScoreCounter extends Vue {
 <style scoped>
 
   .q-card {
-    height: 150px;
-    margin: 20px 0px;
-    width: 100%;
     background-color: #0089ff;
-    padding: 0px 20px 20px 20px;
+    height: auto;
+    margin: 12px 0px;
+    width: 100%;
   }
 
 </style>
