@@ -1,14 +1,30 @@
 <template>
 
-  <q-card class="q-card">
+  <transition
+    appear
+    enter-active-class="animated animate__slideInLeft"
+    leave-active-class="animated animate__slideOutRight"
+  >
+    <q-card class="q-card">
 
-    <!-- name input w/ edit & delete btn -->
-    <name-input :playerId="playerId" />
+      <!-- name input with edit & delete btns -->
+      <name-input :playerId="playerId" />
 
-    <!-- number selector with +/- btns -->
-    <num-selector :playerId="playerId" />
+      <!-- score display with +/- btns -->
+      <num-selector :playerId="playerId" />
 
-  </q-card>
+      <div class="q-px-lg">
+        <q-slider
+          v-model="statePlayers.getPlayerData[playerId].score"
+          color="light-green"
+          :min="stateSettings.getMinScore"
+          :max="stateSettings.getMaxScore"
+          :step="1"
+        ></q-slider>
+      </div>
+
+    </q-card>
+  </transition>
 
 </template>
 
@@ -16,6 +32,9 @@
 
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator'
+
+// Vuex
+import { statePlayers, stateSettings } from '@/store/index'
 
 // Components
 import NameInput from './NameInput.vue'
@@ -30,15 +49,19 @@ import NumSelector from './NumSelector.vue'
 export default class ScoreCounter extends Vue {
   
   @Prop(String) private playerId!: string
+
+  statePlayers = statePlayers
+  stateSettings = stateSettings
 }
 </script>
 
 <style scoped>
 
   .q-card {
-    height: 200px;
-    margin: 20px;
-    width: 200px;
+    background-color: #0089ff;
+    height: auto;
+    margin: 12px 0px;
+    width: 100%;
   }
 
 </style>

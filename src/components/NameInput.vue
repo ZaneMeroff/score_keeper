@@ -3,20 +3,18 @@
   <div>
 
     <q-item-section class="q-item-section">
-    
-      <q-item>{{ statePlayers.getPlayerData[playerId].name }}</q-item>
-    
-      <q-btn-group outline class="flex flex-center" spread>
-        <!-- edit button -->
-        <q-btn flat class="q-btn" @click="() => showConfirmEdit = true">
+      <div class="flex">
+      <!-- edit btn -->
+        <q-btn flat @click="() => showConfirmEdit = true">
           <q-icon name="edit"></q-icon>
         </q-btn>
-        <!-- delete button -->
-        <q-btn flat class="q-btn" @click="() => showConfirmDelete = true">
-          <q-icon name="delete"></q-icon>
-        </q-btn>
-      </q-btn-group>
-
+      <!-- player name -->
+        <p class="player-name">{{ statePlayers.getPlayerData[playerId].name }}</p>
+      </div>
+      <!-- delete btn -->
+      <q-btn flat @click="() => showConfirmDelete = true">
+        <q-icon name="delete"></q-icon>
+      </q-btn>
     </q-item-section>
 
     <!-- edit player name modal -->
@@ -95,9 +93,10 @@ export default class NameInput extends Vue {
     width: 100%;
   }
 
-  .q-btn {
-    height: 40px;
-    width: 40px;
+  .player-name {
+    font-size: 16px;
+    padding-top: 5px;
+    margin: 0px;
   }
 
 </style> 

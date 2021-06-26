@@ -58,14 +58,14 @@ export default class MenuDrawer extends Vue {
   menuList = [
     {
       icon: 'group_add',
-      label: 'Number of Teams',
+      label: 'Adjust Players',
       onClick: () => console.log("Adjust Teams clicked!"),
       separator: true
     },
     {
-      icon: 'groups',
-      label: 'Teams or Players',
-      onClick: () => console.log("Teams or Players clicked!"),
+      icon: 'sports_score',
+      label: 'Min/Max Score',
+      onClick: () => console.log("Min/Max Score clicked!"),
       separator: true
     },
     {
@@ -92,5 +92,5 @@ export default class MenuDrawer extends Vue {
   .q-header {
     background-color: #004eff;
   }
-
+  
 </style>
