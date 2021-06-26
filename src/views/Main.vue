@@ -30,7 +30,6 @@ export default class Main extends Vue {
 
   statePlayers = statePlayers
 }
-
 </script>
 
 <style>
@@ -38,11 +37,9 @@ export default class Main extends Vue {
   section {
     background-color: #151515;
     display: flex !important;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     height: 100vh;
-    justify-content: flex-start;
-    padding: 55px 10px 10px 10px;
+    padding: 55px 20px 10px 20px;
     width: 100%;
   }
 

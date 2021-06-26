@@ -7,31 +7,20 @@
   >
     <q-card class="q-card">
 
-      <!-- name input w/ edit & delete btn -->
+      <!-- name input with edit & delete btns -->
       <name-input :playerId="playerId" />
 
-        <div class="flex justify-center">
-          <!-- <q-btn flat class="q-mr-md"><q-icon name="remove_circle_outline"></q-icon></q-btn> -->
-          <!-- <p style="font-size: 40px; text-align: center; margin: 0px">{{ value }}</p> -->
-          <num-selector :playerId="playerId" />
-          <!-- <q-btn flat class="q-ml-md"><q-icon name="add_circle_outline"></q-icon></q-btn> -->
-        </div>
+      <!-- score display with +/- btns -->
+      <num-selector :playerId="playerId" />
 
-        <q-slider
-          v-model="value"
-          :min="0"
-          :max="10"
-          :step="1"
-          dark
-          color="light-green"
-        ></q-slider>
-
-      <!-- ***********************************- -->
-      <!-- ***********************************- -->
-      <!-- number selector with +/- btns -->
-      <!-- <num-selector :playerId="playerId" /> -->
-      <!-- ***********************************- -->
-      <!-- ***********************************- -->
+      <q-slider
+        v-model="statePlayers.getPlayerData[playerId].score"
+        dark
+        :min="0"
+        :max="10"
+        :step="1"
+        color="light-green"
+      ></q-slider>
 
     </q-card>
   </transition>
@@ -42,6 +31,9 @@
 
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator'
+
+// Vuex
+import { statePlayers } from '@/store/index'
 
 // Components
 import NameInput from './NameInput.vue'
@@ -57,7 +49,7 @@ export default class ScoreCounter extends Vue {
   
   @Prop(String) private playerId!: string
 
-  value = 0
+  statePlayers = statePlayers
 }
 </script>
 
@@ -65,7 +57,7 @@ export default class ScoreCounter extends Vue {
 
   .q-card {
     height: 150px;
-    margin: 20px;
+    margin: 20px 0px;
     width: 100%;
     background-color: #0089ff;
     padding: 0px 20px 20px 20px;

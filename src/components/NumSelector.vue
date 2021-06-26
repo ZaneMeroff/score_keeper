@@ -2,38 +2,41 @@
 
   <q-item-section class="component-perimeter">
 
-    <q-btn 
-      flat 
-      class="q-ml-md"
-      @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
-    ><q-icon name="remove_circle_outline"></q-icon></q-btn>
+    <q-item>
+   
+      <q-btn 
+        flat 
+        class="q-mr-sm"
+        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score - 1 })"
+      ><q-icon name="remove_circle_outline"></q-icon></q-btn>
 
-    <q-carousel
-      animated
-      padding
-      swipeable
-      transition-next="slide-left"
-      transition-prev="slide-right"
-      class="rounded-borders transparent q-carousel"
-      height="auto"
-      v-model="currentSlide"
-      style="border: 1px solid yellow"
-    >
-      <q-carousel-slide 
-        v-for="n in slideRange" 
-        class="q-carousel-slide" 
-        :key="n" 
-        :name="n"
-      ><q-item class="q-item">{{ n }}</q-item>                                   
-      </q-carousel-slide>
+      <q-carousel
+        animated
+        padding
+        swipeable
+        transition-next="slide-left"
+        transition-prev="slide-right"
+        class="rounded-borders transparent q-carousel flex justify-center"
+        height="auto"
+        v-model="currentSlide"
+      >
+        <q-carousel-slide 
+          v-for="n in slideRange" 
+          class="q-carousel-slide" 
+          :key="n" 
+          :name="n"
+        ><q-item class="q-item">{{ n }}</q-item>                                   
+        </q-carousel-slide>
 
-    </q-carousel>  
+      </q-carousel>  
 
-    <q-btn 
-      flat 
-      class="q-ml-md"
-      @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })"
-    ><q-icon name="add_circle_outline"></q-icon></q-btn>
+      <q-btn 
+        flat
+        class="q-ml-sm" 
+        @click="statePlayers.action_setPlayerScore({ id: playerId, score: statePlayers.getPlayerData[playerId].score + 1 })"
+      ><q-icon name="add_circle_outline"></q-icon></q-btn>
+
+    </q-item>
 
   </q-item-section>
 
@@ -77,19 +80,13 @@ export default class NumSelector extends Vue {
   .component-perimeter {
     height: 60px; 
     width: 100%;
-    border: 1px solid red;
-
     display: flex;
     align-items: center;
-    /* ^ use q classes */
+    justify-content: space-between;
   }
 
   .q-carousel {
-    display: flex;
-    justify-content: center;
-    /* ^ use q classes */
-
-    width: 40%;
+    width: auto;
   }
 
   .q-carousel-slide {
