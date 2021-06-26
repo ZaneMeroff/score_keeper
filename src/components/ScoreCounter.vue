@@ -1,14 +1,17 @@
 <template>
 
-  <q-card class="q-card">
-
-    <!-- name input w/ edit & delete btn -->
-    <name-input :playerId="playerId" />
-
-    <!-- number selector with +/- btns -->
-    <num-selector :playerId="playerId" />
-
-  </q-card>
+  <transition
+    appear
+    enter-active-class="animated animate__zoomIn"
+    leave-active-class="animated animate__backOutDown"
+  >
+    <q-card class="q-card">
+      <!-- name input w/ edit & delete btn -->
+      <name-input :playerId="playerId" />
+      <!-- number selector with +/- btns -->
+      <num-selector :playerId="playerId" />
+    </q-card>
+  </transition>
 
 </template>
 
@@ -39,6 +42,7 @@ export default class ScoreCounter extends Vue {
     height: 200px;
     margin: 20px;
     width: 200px;
+    background-color: white;
   }
 
 </style>
