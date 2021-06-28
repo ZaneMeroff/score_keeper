@@ -9,6 +9,7 @@ export default class Settings extends VuexModule {
   minScore: number = 0
   maxScore: number = 10
   showScoreLimitsModal: boolean = false
+  numSelectorRangeSlides: string[] = []
   // showMenuDrawer: boolean = false
 
   get getDarkMode() {
@@ -25,6 +26,10 @@ export default class Settings extends VuexModule {
 
   get getShowScoreLimitsModal() {
     return this.showScoreLimitsModal
+  }
+
+  get getNumSelectorRangeSlides() {
+    return this.numSelectorRangeSlides
   }
 
   // get getShowMenuDrawer() {
@@ -58,10 +63,11 @@ export default class Settings extends VuexModule {
   @Action
   action_setScoreLimits(payload: { min: number, max: number }) {
     this.setScoreLimits(payload)
+    this.action_setNumSelectorRangeSlides()
   }
 
   // ------------------------------------------
-  //       score limit modal visibility
+  //        score limit modal visibility
   // ------------------------------------------
   
   @Mutation
@@ -72,6 +78,25 @@ export default class Settings extends VuexModule {
   @Action
   action_setScoreLimitModalVisibility(show: boolean) {
     this.setScoreLimitModalVisibility(show)
+  }
+
+  // ------------------------------------------
+  //      set score slides for NumSelector
+  // ------------------------------------------
+  
+  @Mutation
+  setNumSelectorRangeSlides() {
+    // clear existing slides array
+    this.numSelectorRangeSlides.splice(0)
+    // create new slides based on min/max limits
+    for (let i = this.minScore; i <= this.maxScore; i++) {
+      this.numSelectorRangeSlides.push(i.toString())
+    }
+  }
+
+  @Action
+  action_setNumSelectorRangeSlides() {
+    this.setNumSelectorRangeSlides()
   }
 
   // ------------------------------------------
