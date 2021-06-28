@@ -12,7 +12,7 @@
         <p class="player-name">{{ statePlayers.getPlayerData[playerId].name }}</p>
       </div>
       <!-- delete btn -->
-      <q-btn flat @click="() => showConfirmDelete = true">
+      <q-btn flat @click="() => showDeleteModal = true">
         <q-icon name="delete"></q-icon>
       </q-btn>
     </q-item-section>
@@ -25,13 +25,10 @@
     />
 
     <!-- confirm delete modal -->
-    <confirm-dialog 
-      :showModal="showConfirmDelete"
-      :text1="`Delete ${statePlayers.getPlayerData[playerId].name}?`"
-      :btn1Label="'YES'"
-      :btn1Action="() => statePlayers.action_deletePlayer(playerId)"
-      :btn2Label="'NO'"
-      :btn2Action="() => showConfirmDelete = false"
+    <delete-player 
+      :showModal="showDeleteModal"
+      :playerId="playerId"
+      @close="() => showDeleteModal = false"
     />
 
   </div>
@@ -47,12 +44,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { statePlayers } from '@/store/index'
 
 // Components
-import ConfirmDialog from './ConfirmDialog.vue'
+import DeletePlayer from './modals/DeletePlayer.vue'
 import PlayerName from './modals/PlayerName.vue'
 
 @Component({
   components: {
-    'confirm-dialog': ConfirmDialog,
+    'delete-player': DeletePlayer,
     'player-name': PlayerName
   }
 })
@@ -62,12 +59,11 @@ export default class NameInput extends Vue {
 
   statePlayers = statePlayers
   
-  showConfirmDelete: boolean = false
-
+  showDeleteModal: boolean = false
   showNameModal: boolean = false
 
   get getName() {
-    return statePlayers.getPlayerData[this.playerId].name
+    return this.statePlayers.getPlayerData[this.playerId].name
   }
 }
 </script>
