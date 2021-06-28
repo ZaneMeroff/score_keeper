@@ -34,25 +34,8 @@
       </q-scroll-area>
     </q-drawer>
 
-    <!-- score limits modal -->
-    <confirm-dialog 
+    <score-limits 
       :showModal="stateSettings.getShowScoreLimitsModal"
-      :text1="'Score Limits'"
-      :inputType="'scoreLimits'"
-      :currentScoreMin="stateSettings.getMinScore"
-      :currentScoreMax="stateSettings.getMaxScore"
-      :btn1Label="'SAVE'"
-      :btn1Action="handleSaveScoreLimits"
-      :btn2Label="'CANCEL'"
-      :btn2Action="() => stateSettings.action_setScoreLimitModalVisibility(false)"
-      @scoreLimitChange="updatePendingScoreLimits"
-      @error="() => showErrorDialog = true"
-    />
-
-    <error-dialog 
-      :showModal="showErrorDialog"
-      :text="'Min Score must be less than Max Score'"
-      @close="() => showErrorDialog = false"
     />
 
   </div>
@@ -68,13 +51,11 @@ import { Component, Vue } from 'vue-property-decorator'
 import { stateSettings, statePlayers } from '@/store/index'
 
 // Components
-import ConfirmDialog from './ConfirmDialog.vue'
-import ErrorDialog from './ErrorDialog.vue'
+import ScoreLimits from './modals/ScoreLimits.vue'
 
 @Component({
   components: {
-    'confirm-dialog': ConfirmDialog,
-    'error-dialog': ErrorDialog,
+    'score-limits': ScoreLimits
   }
 })
 export default class MenuDrawer extends Vue {
@@ -83,9 +64,6 @@ export default class MenuDrawer extends Vue {
   statePlayers = statePlayers
 
   drawer: boolean = false
-  pendingMin: number = 0
-  pendingMax: number = 0
-  showErrorDialog: boolean = false
 
   // create typed for menuList item !!!
   menuList = [
@@ -118,23 +96,6 @@ export default class MenuDrawer extends Vue {
       separator: true
     },
   ]
-
-  handleSaveScoreLimits() {
-    // check in any players have a score outside of the new score limits
-    // if so, reset all player scores to zero
-    for (const player in statePlayers.getPlayerData) {
-      let score = statePlayers.getPlayerData[player].score
-      if (score > this.pendingMax || score < this.pendingMin) statePlayers.zeroScores()
-    }
-    // set new score limits and close modal
-    this.stateSettings.action_setScoreLimits({ min: this.pendingMin, max: this.pendingMax })
-    this.stateSettings.action_setScoreLimitModalVisibility(false)
-  }
-
-  updatePendingScoreLimits(payload: { min: string, max: string }) {
-    this.pendingMin = parseInt(payload.min)
-    this.pendingMax = parseInt(payload.max)
-  }
 }
 </script>
 

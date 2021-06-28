@@ -22,29 +22,6 @@
             @input="onTextInputChange"
           />
 
-          <div v-if="inputType === 'scoreLimits'">
-            <!-- min score number input -->
-            <div class="min-max-text q-mt-lg">min</div>
-            <q-input  
-              v-model="scoreMin" 
-              v-model.number="scoreMin" 
-              style="font-size: 16px"
-              type="number"
-              :dark="true" 
-              :rules="[ val => !!val || '* Required' ]"
-            />
-            <!-- max score number input -->
-            <div class="min-max-text">max</div>
-            <q-input 
-              v-model="scoreMax" 
-              v-model.number="scoreMax" 
-              style="font-size: 16px"
-              type="number"
-              :dark="true" 
-              :rules="[ val => !!val || '* Required' ]"
-            />
-          </div>
-
         </div>
 
         <q-btn-group flat class="q-btn-group">
@@ -56,7 +33,7 @@
             size="md"
             :disable="btn1Disabled"
             :label="btn1Label"
-            @click="inputType === 'name' ? handleNameInputBtn1() : inputType === 'scoreLimits' ? handleScoreLimitBtn1() : btn1Action()"
+            @click="inputType === 'name' ? handleNameInputBtn1() : btn1Action()"
           />
           <!-- button 2 (no) -->
           <q-btn
@@ -85,8 +62,6 @@ export default class ConfirmDialog extends Vue {
   @Prop(Boolean) private showModal!: boolean
   @Prop(String) private inputType?: string
   @Prop(String) private playerName?: string
-  @Prop(Number) private currentScoreMin?: number
-  @Prop(Number) private currentScoreMax?: number
   
   @Prop(String) private text1!: string
   @Prop(String) private text2?: string
@@ -98,22 +73,11 @@ export default class ConfirmDialog extends Vue {
   @Prop(Function) private btn2Action!: Function
 
   textInput?: string = ''
-  scoreMin?: number = 0
-  scoreMax?: number = 0
   btn1Disabled: boolean = false
 
   handleNameInputBtn1() {
     this.$emit('nameChange', this.textInput)
     this.btn1Action()
-  }
-
-  handleScoreLimitBtn1() {
-    if (this.scoreMin! < this.scoreMax!) {
-      this.$emit('scoreLimitChange', { min: this.scoreMin, max: this.scoreMax })
-      this.btn1Action()
-    } else {
-      this.$emit('error')
-    }
   }
 
   onTextInputChange() {
@@ -123,8 +87,6 @@ export default class ConfirmDialog extends Vue {
 
   mounted() {
     if (this.playerName) this.textInput = this.playerName 
-    if (this.currentScoreMin) this.scoreMin = this.currentScoreMin
-    if (this.currentScoreMax) this.scoreMax = this.currentScoreMax
   }
 }
 </script>
@@ -150,7 +112,7 @@ export default class ConfirmDialog extends Vue {
     text-align: center;
   }
 
-  .min-max-text {
+  /* .min-max-text {
     color: #979797;
-  }
+  } */
 </style>
