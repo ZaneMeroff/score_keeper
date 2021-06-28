@@ -25,10 +25,14 @@
     />
 
     <!-- confirm delete modal -->
-    <delete-player 
+    <confirm 
       :showModal="showDeleteModal"
-      :playerId="playerId"
-      @close="() => showDeleteModal = false"
+      :text="`Delete ${getName}?`"
+      :onYes="() => {
+        statePlayers.action_deletePlayer(playerId)
+        showDeleteModal = false
+      }"
+      :onNo="() => showDeleteModal = false"
     />
 
   </div>
@@ -44,12 +48,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { statePlayers } from '@/store/index'
 
 // Components
-import DeletePlayer from './modals/DeletePlayer.vue'
+import Confirm from './modals/Confirm.vue'
 import PlayerName from './modals/PlayerName.vue'
 
 @Component({
   components: {
-    'delete-player': DeletePlayer,
+    'confirm': Confirm,
     'player-name': PlayerName
   }
 })

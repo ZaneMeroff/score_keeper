@@ -69,8 +69,8 @@ export default class MenuDrawer extends Vue {
   menuList = [
     {
       icon: 'group_add',
-      label: 'Adjust Players',
-      onClick: () => console.log("Adjust Teams clicked!"),
+      label: 'Add Players',
+      onClick: () => console.log("Add Players clicked!"),
       separator: true
     },
     {
@@ -86,6 +86,13 @@ export default class MenuDrawer extends Vue {
       // iconColor: 'secondary',
       label: 'Reset Score',
       onClick: () => this.statePlayers.action_zeroScores(),
+      separator: true
+    },
+    {
+      icon: 'delete',
+      // iconColor: 'secondary',
+      label: 'Delete All Players',
+      onClick: () => console.log("Delete All Players clicked!"),
       separator: true
     },
     {

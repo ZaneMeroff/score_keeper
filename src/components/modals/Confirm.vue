@@ -5,7 +5,7 @@
 
       <q-card-section>
         <!-- header -->
-        <div class="text q-mb-sm">{{ `Delete ${getName}?` }}</div>
+        <div class="text q-mb-sm">{{ text }}</div>
 
         <q-separator color="blue" class="q-mb-lg" inset></q-separator>
           
@@ -17,7 +17,7 @@
             color="green"
             size="md"
             :label="'yes'"
-            @click="handleYesBtn"
+            @click="onYes"
           />
           <!-- no button -->
           <q-btn
@@ -26,7 +26,7 @@
             color="red"
             size="md"
             :label="'no'"
-            @click="handleNoBtn"
+            @click="onNo"
           />
         </q-btn-group>
       </q-card-section>
@@ -40,29 +40,13 @@
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-// Vuex
-import { statePlayers } from '@/store/index'
-
 @Component
-export default class DeletePlayer extends Vue {
+export default class Confirm extends Vue {
   
-  @Prop(String) private playerId!: string
+  @Prop(Function) private onYes!: Function
+  @Prop(Function) private onNo!: Function
   @Prop(Boolean) private showModal!: boolean
-
-  statePlayers = statePlayers
-
-  get getName() {
-    return this.statePlayers.getPlayerData[this.playerId].name
-  }
-
-  handleYesBtn() {
-    this.statePlayers.action_deletePlayer(this.playerId)
-    this.$emit('close')
-  }
-
-  handleNoBtn() {
-    this.$emit('close')
-  }
+  @Prop(String) private text!: string 
 }
 </script>
 
@@ -86,4 +70,5 @@ export default class DeletePlayer extends Vue {
     font-size: 16px;
     text-align: center;
   }
+
 </style>
