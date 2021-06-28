@@ -1,7 +1,7 @@
 <template>
 
   <section>
-    <score-counter 
+    <player-card 
       v-for="(player, index) in statePlayers.getPlayerData" 
       :key="index"
       :playerId="player.id" 
@@ -19,11 +19,11 @@ import { Component, Vue } from 'vue-property-decorator'
 import { statePlayers } from '@/store/index'
 
 // Components
-import ScoreCounter from '@/components/ScoreCounter.vue'
+import PlayerCard from '@/components/PlayerCard.vue'
 
 @Component({
   components: {
-    'score-counter' : ScoreCounter,
+    'player-card' : PlayerCard,
   }
 })
 export default class Main extends Vue {
