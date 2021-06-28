@@ -89,15 +89,16 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateSettings, statePlayers } from '@/store/index'
+import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 @Component
 export default class ScoreLimits extends Vue {
 
   @Prop(Boolean) private showModal!: boolean
 
-  stateSettings = stateSettings
+  stateModals = stateModals
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   scoreMin: number = 0
   scoreMax: number = 0
@@ -115,7 +116,7 @@ export default class ScoreLimits extends Vue {
       }
       // set new score limits and close modal
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })
-      this.stateSettings.action_setScoreLimitModalVisibility(false)
+      this.stateModals.action_setScoreLimitModalVisibility(false)
     } else {
       this.showError = true
     }
@@ -132,7 +133,7 @@ export default class ScoreLimits extends Vue {
   }
 
   handleCancelBtn() {
-    stateSettings.action_setScoreLimitModalVisibility(false)
+    this.stateModals.action_setScoreLimitModalVisibility(false)
   }
 
   mounted() {

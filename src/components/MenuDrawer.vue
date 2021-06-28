@@ -34,8 +34,31 @@
       </q-scroll-area>
     </q-drawer>
 
+    <!-- score limits modal -->
     <score-limits 
-      :showModal="stateSettings.getShowScoreLimitsModal"
+      :showModal="stateModals.getShowScoreLimitsModal"
+    />
+
+    <!-- reset score confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowResetScoreConfirmModal"
+      :text="'Reset all scores to zero?'"
+      :onYes="() => {
+        statePlayers.action_zeroScores()
+        stateModals.action_setResetScoreConfirmModalVisibility(false)
+      }"
+      :onNo="() => stateModals.action_setResetScoreConfirmModalVisibility(false)"
+    />
+
+    <!-- delete players confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowDeletePlayersConfirmModal"
+      :text="'Delete all players?'"
+      :onYes="() => {
+        // do the thing here...
+        stateModals.action_setDeletePlayersConfirmModalVisibility(false)
+      }"
+      :onNo="() => stateModals.action_setDeletePlayersConfirmModalVisibility(false)"
     />
 
   </div>
@@ -48,20 +71,23 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateSettings, statePlayers } from '@/store/index'
+import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 // Components
+import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
 @Component({
   components: {
+    'confirm': Confirm,
     'score-limits': ScoreLimits
   }
 })
 export default class MenuDrawer extends Vue {
 
-  stateSettings = stateSettings
+  stateModals = stateModals
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   drawer: boolean = false
 
@@ -77,7 +103,7 @@ export default class MenuDrawer extends Vue {
       icon: 'sports_score',
       label: 'Score Limits',
       onClick: () => {
-        this.stateSettings.action_setScoreLimitModalVisibility(true)
+        this.stateModals.action_setScoreLimitModalVisibility(true)
       },
       separator: true
     },
@@ -85,14 +111,18 @@ export default class MenuDrawer extends Vue {
       icon: 'restart_alt',
       // iconColor: 'secondary',
       label: 'Reset Score',
-      onClick: () => this.statePlayers.action_zeroScores(),
+      onClick: () => {
+        this.stateModals.action_setResetScoreConfirmModalVisibility(true)
+      },
       separator: true
     },
     {
       icon: 'delete',
       // iconColor: 'secondary',
-      label: 'Delete All Players',
-      onClick: () => console.log("Delete All Players clicked!"),
+      label: 'Delete Players',
+      onClick: () => {
+        this.stateModals.action_setDeletePlayersConfirmModalVisibility(true)
+      },
       separator: true
     },
     {

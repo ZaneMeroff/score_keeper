@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Settings from './Settings'
+import Modals from './Modals'
 import Players from './Players'
+import Settings from './Settings'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export const store: any = new Vuex.Store({
   // plugins: [vuexLocal.plugin]
 })
 
-export const stateSettings = new Settings({ store, name: 'Settings' })
+export const stateModals= new Modals({ store, name: 'Modals' })
 export const statePlayers= new Players({ store, name: 'Players' })
+export const stateSettings = new Settings({ store, name: 'Settings' })
 
 

@@ -1,5 +1,4 @@
 // Decorators
-import Vue from 'vue'
 import { Action, Module, Mutation, VuexModule } from 'vuex-class-modules'
 
 @Module
@@ -8,7 +7,6 @@ export default class Settings extends VuexModule {
   darkMode: boolean = true
   minScore: number = 0
   maxScore: number = 10
-  showScoreLimitsModal: boolean = false
   numSelectorRangeSlides: string[] = []
   // showMenuDrawer: boolean = false
 
@@ -22,10 +20,6 @@ export default class Settings extends VuexModule {
 
   get getMaxScore() {
     return this.maxScore
-  }
-
-  get getShowScoreLimitsModal() {
-    return this.showScoreLimitsModal
   }
 
   get getNumSelectorRangeSlides() {
@@ -64,20 +58,6 @@ export default class Settings extends VuexModule {
   action_setScoreLimits(payload: { min: number, max: number }) {
     this.setScoreLimits(payload)
     this.action_setNumSelectorRangeSlides()
-  }
-
-  // ------------------------------------------
-  //        score limit modal visibility
-  // ------------------------------------------
-  
-  @Mutation
-  setScoreLimitModalVisibility(show: boolean) {
-    this.showScoreLimitsModal = show
-  }
-
-  @Action
-  action_setScoreLimitModalVisibility(show: boolean) {
-    this.setScoreLimitModalVisibility(show)
   }
 
   // ------------------------------------------

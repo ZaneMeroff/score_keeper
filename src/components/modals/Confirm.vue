@@ -5,9 +5,7 @@
 
       <q-card-section>
         <!-- header -->
-        <div class="text q-mb-sm">{{ text }}</div>
-
-        <q-separator color="blue" class="q-mb-lg" inset></q-separator>
+        <div class="text q-mb-lg">{{ text }}</div>
           
         <q-btn-group flat class="q-btn-group">
           <!-- yes button -->
