@@ -3,26 +3,28 @@
  <q-dialog :dark="true" v-model="showModal" persistent>
     <q-card class="q-card">
 
-      <!-- Header -->
       <q-card-section>
         <div class="q-mb-md">
+
           <!-- line 1 text -->
           <div class="text" v-if="text1">{{ text1 }}</div>
           <!-- line 2 text (optional) -->
           <div class="text q-mt-sm" v-if="text2">{{ text2 }}</div>
-          <!-- text input (player name) -->
+          
+          <!-- player name text input -->
           <q-input 
-            v-if="showTextInput" 
+            v-if="inputType === 'name'" 
             v-model="textInput" 
-            class="q-input" 
             maxlength="20"
+            style="font-size: 16px"
             :dark="true" 
             :rules="[ val => !!val || '* Required' ]"
             @input="onTextInputChange"
           />
+
         </div>
 
-        <q-btn-group outline class="flex flex-center">
+        <q-btn-group flat class="q-btn-group">
           <!-- button 1 (yes) -->
           <q-btn
             flat
@@ -31,7 +33,7 @@
             size="md"
             :disable="btn1Disabled"
             :label="btn1Label"
-            @click="showTextInput ? handleBtn1() : btn1Action()"
+            @click="inputType === 'name' ? handleNameInputBtn1() : btn1Action()"
           />
           <!-- button 2 (no) -->
           <q-btn
@@ -58,7 +60,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class ConfirmDialog extends Vue {
   
   @Prop(Boolean) private showModal!: boolean
-  @Prop(Boolean) private showTextInput?: boolean
+  @Prop(String) private inputType?: string
   @Prop(String) private playerName?: string
   
   @Prop(String) private text1!: string
@@ -73,7 +75,7 @@ export default class ConfirmDialog extends Vue {
   textInput?: string = ''
   btn1Disabled: boolean = false
 
-  handleBtn1() {
+  handleNameInputBtn1() {
     this.$emit('nameChange', this.textInput)
     this.btn1Action()
   }
@@ -93,14 +95,24 @@ export default class ConfirmDialog extends Vue {
 
   .q-card {
     background-color: #1e1e1e;
+    width: 300px;
+  }
+
+  .q-btn-group {
+    display: inline !important;
   }
 
   .q-btn {
-    width: 100px;
+    width: 50%;
   }
 
   .text {
     color: #FFF;
+    font-size: 16px;
     text-align: center;
   }
+
+  /* .min-max-text {
+    color: #979797;
+  } */
 </style>

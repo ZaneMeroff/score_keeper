@@ -22,7 +22,7 @@
       :showModal="showConfirmEdit"
       :text1="'Edit Name'"
       :playerName="getName"
-      :showTextInput="true"
+      :inputType="'name'"
       :btn1Label="'SAVE'"
       :btn1Action="() => {
         statePlayers.action_setPlayerName({ id: playerId, name: pendingName })
@@ -71,7 +71,7 @@ export default class NameInput extends Vue {
   
   showConfirmDelete: boolean = false
   showConfirmEdit: boolean = false
-
+  
   pendingName: string = ''
 
   get getName() {

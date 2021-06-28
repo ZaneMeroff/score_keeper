@@ -21,12 +21,12 @@
         v-model="currentSlide"
       >
         <q-carousel-slide 
-          v-for="n in slideRange" 
+          v-for="n in stateSettings.getNumSelectorRangeSlides" 
           class="q-carousel-slide" 
           :key="n" 
           :name="n"
         ><q-item class="score-display">{{ n }}</q-item>                                   
-        </q-carousel-slide>
+      </q-carousel-slide>
 
       </q-carousel>  
 
@@ -62,21 +62,6 @@ export default class NumSelector extends Vue {
 
   get currentSlide() {
     return statePlayers.getPlayerData[this.playerId].score.toString()
-  }
-
-  setSlideRange() {
-    for (let i = -100; i <= 100; i++) {
-      this.slideRange.push(i.toString())
-    }
-    // **************************************
-    // **************************************
-    //    ^ connect min/max to store
-    // **************************************
-    // **************************************
-  }
-
-  mounted() {
-    this.setSlideRange()
   }
 }
 </script>

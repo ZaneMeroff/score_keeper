@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { statePlayers } from '@/store/index'
+import { statePlayers, stateSettings } from '@/store/index'
 
 // Components
 import MenuDrawer from '@/components/MenuDrawer.vue'
@@ -29,6 +29,7 @@ import { v4 as uuidv4 } from 'uuid'
 export default class App extends Vue {
 
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   onAppStart(numOfPlayers: number) {
     // create playerData item(s) on app start
@@ -43,6 +44,7 @@ export default class App extends Vue {
 
   mounted() {
     this.onAppStart(3)
+    this.stateSettings.action_setNumSelectorRangeSlides()
   }
 }
 </script>

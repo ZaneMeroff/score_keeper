@@ -25,9 +25,7 @@
               <q-item-section avatar>
                 <q-icon :name="menuItem.icon"></q-icon>
               </q-item-section>
-              <q-item-section>
-                {{ menuItem.label }}
-              </q-item-section>
+              <q-item-section>{{ menuItem.label }}</q-item-section>
             </q-item>
             <q-separator :key="'sep' + index" v-if="menuItem.separator"></q-separator>
           </template>
@@ -35,6 +33,10 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
+
+    <score-limits 
+      :showModal="stateSettings.getShowScoreLimitsModal"
+    />
 
   </div>
 
@@ -48,13 +50,22 @@ import { Component, Vue } from 'vue-property-decorator'
 // Vuex
 import { stateSettings, statePlayers } from '@/store/index'
 
-@Component
+// Components
+import ScoreLimits from './modals/ScoreLimits.vue'
+
+@Component({
+  components: {
+    'score-limits': ScoreLimits
+  }
+})
 export default class MenuDrawer extends Vue {
 
   stateSettings = stateSettings
   statePlayers = statePlayers
 
   drawer: boolean = false
+
+  // create typed for menuList item !!!
   menuList = [
     {
       icon: 'group_add',
@@ -64,26 +75,27 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'sports_score',
-      label: 'Min/Max Score',
-      onClick: () => console.log("Min/Max Score clicked!"),
+      label: 'Score Limits',
+      onClick: () => {
+        this.stateSettings.action_setScoreLimitModalVisibility(true)
+      },
       separator: true
     },
     {
       icon: 'restart_alt',
       // iconColor: 'secondary',
       label: 'Reset Score',
-      onClick: () => statePlayers.action_zeroScores(),
+      onClick: () => this.statePlayers.action_zeroScores(),
       separator: true
     },
     {
       icon: stateSettings.getDarkMode ? 'dark_mode' : 'light_mode',
       // ^ not working!
       label: 'Toggle Theme',
-      onClick: () => stateSettings.toggleDarkMode(),
+      onClick: () => this.stateSettings.action_setDarkMode(),
       separator: true
     },
   ]
-
 }
 </script>
 
