@@ -5,7 +5,7 @@
     <q-item-section class="q-item-section">
       <div class="flex">
       <!-- edit btn -->
-        <q-btn flat @click="() => showConfirmEdit = true">
+        <q-btn flat @click="() => showNameModal = true">
           <q-icon name="edit"></q-icon>
         </q-btn>
       <!-- player name -->
@@ -18,19 +18,10 @@
     </q-item-section>
 
     <!-- edit player name modal -->
-    <confirm-dialog 
-      :showModal="showConfirmEdit"
-      :text1="'Edit Name'"
-      :playerName="getName"
-      :inputType="'name'"
-      :btn1Label="'SAVE'"
-      :btn1Action="() => {
-        statePlayers.action_setPlayerName({ id: playerId, name: pendingName })
-        showConfirmEdit = false
-      }"
-      :btn2Label="'CANCEL'"
-      :btn2Action="() => showConfirmEdit = false"
-      @nameChange="updatePendingName"
+    <player-name 
+      :showModal="showNameModal"
+      :playerId="playerId"
+      @close="() => showNameModal = false"
     />
 
     <!-- confirm delete modal -->
@@ -57,10 +48,12 @@ import { statePlayers } from '@/store/index'
 
 // Components
 import ConfirmDialog from './ConfirmDialog.vue'
+import PlayerName from './modals/PlayerName.vue'
 
 @Component({
   components: {
     'confirm-dialog': ConfirmDialog,
+    'player-name': PlayerName
   }
 })
 export default class NameInput extends Vue {
@@ -70,16 +63,11 @@ export default class NameInput extends Vue {
   statePlayers = statePlayers
   
   showConfirmDelete: boolean = false
-  showConfirmEdit: boolean = false
-  
-  pendingName: string = ''
+
+  showNameModal: boolean = false
 
   get getName() {
     return statePlayers.getPlayerData[this.playerId].name
-  }
-
-  updatePendingName(name: string) {
-    this.pendingName = name
   }
 }
 </script>
