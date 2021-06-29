@@ -2,8 +2,11 @@
 import Vue from 'vue'
 import { Action, Module, Mutation, VuexModule } from 'vuex-class-modules'
 
+// Utils
+import { v4 as uuidv4 } from 'uuid'
+
 // Types
-import { Player, PlayerData } from '@/types/players'
+import { PlayerData } from '@/types/players'
 
 @Module
 export default class Players extends VuexModule {
@@ -19,13 +22,23 @@ export default class Players extends VuexModule {
     // ------------------------------------------
 
     @Mutation
-    createPlayer(payload: Player) {
-      Vue.set(this.playerData, payload.id, payload)
+    createPlayers(num: number) {
+      if (Math.sign(num) === 1) {
+        for (let i = 1; i <= num; i++) {
+          const id = uuidv4()
+          const player = {
+            id: id,
+            name: `Player ${Object.keys(this.playerData).length + 1}`,
+            score: 0,
+          }
+          Vue.set(this.playerData, id, player)
+        }
+      }
     }
 
     @Action
-    action_createPlayer(payload: Player) {
-      this.createPlayer(payload)
+    action_createPlayers(num: number) {
+      this.createPlayers(num)
     }
 
     // ------------------------------------------
