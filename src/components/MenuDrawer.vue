@@ -34,8 +34,31 @@
       </q-scroll-area>
     </q-drawer>
 
+    <!-- score limits modal -->
     <score-limits 
-      :showModal="stateSettings.getShowScoreLimitsModal"
+      :showModal="stateModals.getShowScoreLimitsModal"
+    />
+
+    <!-- reset score confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowResetScoreModal"
+      :text="'Reset all scores to zero?'"
+      :onYes="() => {
+        statePlayers.action_zeroScores()
+        stateModals.action_resetScoreModalVisibility(false)
+      }"
+      :onNo="() => stateModals.action_resetScoreModalVisibility(false)"
+    />
+
+    <!-- delete players confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowDeletePlayersModal"
+      :text="'Delete all players?'"
+      :onYes="() => {
+        statePlayers.action_deleteAllPlayers()
+        stateModals.action_deletePlayersModalVisibility(false)
+      }"
+      :onNo="() => stateModals.action_deletePlayersModalVisibility(false)"
     />
 
   </div>
@@ -48,20 +71,23 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateSettings, statePlayers } from '@/store/index'
+import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 // Components
+import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
 @Component({
   components: {
+    'confirm': Confirm,
     'score-limits': ScoreLimits
   }
 })
 export default class MenuDrawer extends Vue {
 
-  stateSettings = stateSettings
+  stateModals = stateModals
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   drawer: boolean = false
 
@@ -69,15 +95,15 @@ export default class MenuDrawer extends Vue {
   menuList = [
     {
       icon: 'group_add',
-      label: 'Adjust Players',
-      onClick: () => console.log("Adjust Teams clicked!"),
+      label: 'Add Players',
+      onClick: () => console.log("Add Players clicked!"),
       separator: true
     },
     {
       icon: 'sports_score',
       label: 'Score Limits',
       onClick: () => {
-        this.stateSettings.action_setScoreLimitModalVisibility(true)
+        this.stateModals.action_scoreLimitModalVisibility(true)
       },
       separator: true
     },
@@ -85,7 +111,18 @@ export default class MenuDrawer extends Vue {
       icon: 'restart_alt',
       // iconColor: 'secondary',
       label: 'Reset Score',
-      onClick: () => this.statePlayers.action_zeroScores(),
+      onClick: () => {
+        this.stateModals.action_resetScoreModalVisibility(true)
+      },
+      separator: true
+    },
+    {
+      icon: 'delete',
+      // iconColor: 'secondary',
+      label: 'Delete Players',
+      onClick: () => {
+        this.stateModals.action_deletePlayersModalVisibility(true)
+      },
       separator: true
     },
     {

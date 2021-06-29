@@ -5,42 +5,34 @@
     <q-item-section class="q-item-section">
       <div class="flex">
       <!-- edit btn -->
-        <q-btn flat @click="() => showConfirmEdit = true">
+        <q-btn flat @click="() => showNameModal = true">
           <q-icon name="edit"></q-icon>
         </q-btn>
       <!-- player name -->
         <p class="player-name">{{ statePlayers.getPlayerData[playerId].name }}</p>
       </div>
       <!-- delete btn -->
-      <q-btn flat @click="() => showConfirmDelete = true">
+      <q-btn flat @click="() => showDeleteModal = true">
         <q-icon name="delete"></q-icon>
       </q-btn>
     </q-item-section>
 
     <!-- edit player name modal -->
-    <confirm-dialog 
-      :showModal="showConfirmEdit"
-      :text1="'Edit Name'"
-      :playerName="getName"
-      :inputType="'name'"
-      :btn1Label="'SAVE'"
-      :btn1Action="() => {
-        statePlayers.action_setPlayerName({ id: playerId, name: pendingName })
-        showConfirmEdit = false
-      }"
-      :btn2Label="'CANCEL'"
-      :btn2Action="() => showConfirmEdit = false"
-      @nameChange="updatePendingName"
+    <player-name 
+      :showModal="showNameModal"
+      :playerId="playerId"
+      @close="() => showNameModal = false"
     />
 
     <!-- confirm delete modal -->
-    <confirm-dialog 
-      :showModal="showConfirmDelete"
-      :text1="`Delete ${statePlayers.getPlayerData[playerId].name}?`"
-      :btn1Label="'YES'"
-      :btn1Action="() => statePlayers.action_deletePlayer(playerId)"
-      :btn2Label="'NO'"
-      :btn2Action="() => showConfirmDelete = false"
+    <confirm 
+      :showModal="showDeleteModal"
+      :text="`Delete ${getName}?`"
+      :onYes="() => {
+        statePlayers.action_deletePlayer(playerId)
+        showDeleteModal = false
+      }"
+      :onNo="() => showDeleteModal = false"
     />
 
   </div>
@@ -56,11 +48,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { statePlayers } from '@/store/index'
 
 // Components
-import ConfirmDialog from './ConfirmDialog.vue'
+import Confirm from './modals/Confirm.vue'
+import PlayerName from './modals/PlayerName.vue'
 
 @Component({
   components: {
-    'confirm-dialog': ConfirmDialog,
+    'confirm': Confirm,
+    'player-name': PlayerName
   }
 })
 export default class NameInput extends Vue {
@@ -69,17 +63,11 @@ export default class NameInput extends Vue {
 
   statePlayers = statePlayers
   
-  showConfirmDelete: boolean = false
-  showConfirmEdit: boolean = false
-  
-  pendingName: string = ''
+  showDeleteModal: boolean = false
+  showNameModal: boolean = false
 
   get getName() {
-    return statePlayers.getPlayerData[this.playerId].name
-  }
-
-  updatePendingName(name: string) {
-    this.pendingName = name
+    return this.statePlayers.getPlayerData[this.playerId].name
   }
 }
 </script>

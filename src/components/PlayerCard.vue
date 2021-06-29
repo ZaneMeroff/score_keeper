@@ -46,7 +46,7 @@ import NumSelector from './NumSelector.vue'
     'num-selector': NumSelector,
   }
 })
-export default class ScoreCounter extends Vue {
+export default class PlayerCard extends Vue {
   
   @Prop(String) private playerId!: string
 

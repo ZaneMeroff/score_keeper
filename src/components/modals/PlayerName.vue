@@ -1,0 +1,111 @@
+<template>
+
+ <q-dialog :dark="true" v-model="showModal" persistent>
+    <q-card class="q-card">
+
+      <q-card-section>
+        <div class="q-mb-md">
+
+          <!-- header -->
+          <div class="text q-mb-sm">Edit Name</div>
+          <q-separator color="blue" class="q-mb-lg" inset></q-separator>
+          
+          <!-- text input -->
+          <q-input 
+            v-model="name" 
+            maxlength="20"
+            style="font-size: 16px"
+            :dark="true" 
+            :rules="[ val => !!val || '* Required' ]"
+            @input="onInputChange"
+          />
+        </div>
+
+        <q-btn-group flat class="q-btn-group">
+          <!-- button 1 (yes) -->
+          <q-btn
+            flat
+            class="q-btn"
+            color="green"
+            size="md"
+            :disable="disabled"
+            :label="'save'"
+            @click="handleSaveBtn"
+          />
+          <!-- button 2 (no) -->
+          <q-btn
+            flat
+            class="q-btn"
+            color="red"
+            size="md"
+            :label="'cancel'"
+            @click="handleCancelBtn"
+          />
+        </q-btn-group>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+
+</template>
+
+<script lang="ts">
+
+// Decorators
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+// Vuex
+import { statePlayers } from '@/store/index'
+
+@Component
+export default class PlayerName extends Vue {
+  
+  @Prop(Boolean) private showModal!: boolean
+  @Prop(String) private playerId!: string
+
+  statePlayers = statePlayers
+
+  name: string = ''
+  disabled: boolean = false
+
+  handleSaveBtn() {
+    statePlayers.action_setPlayerName({ id: this.playerId, name: this.name })
+    this.$emit('close')
+  }
+
+  handleCancelBtn() {
+    this.$emit('close')
+  }
+
+  onInputChange() {
+    if (this.name.length) this.disabled = false
+    else this.disabled = true
+  }
+
+  mounted() {
+    this.name = statePlayers.getPlayerData[this.playerId].name
+  }
+}
+</script>
+
+<style scoped>
+
+  .q-card {
+    background-color: #1e1e1e;
+    width: 300px;
+  }
+
+  .q-btn-group {
+    display: inline !important;
+  }
+
+  .q-btn {
+    width: 50%;
+  }
+
+  .text {
+    color: #FFF;
+    font-size: 16px;
+    text-align: center;
+  }
+
+</style>
