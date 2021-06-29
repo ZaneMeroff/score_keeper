@@ -39,6 +39,7 @@ export default class Main extends Vue {
     display: flex !important;
     flex-direction: column;
     height: 100vh;
+    overflow-y: scroll;
     padding: 60px 20px 10px 20px;
     width: 100%;
   }

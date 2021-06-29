@@ -5,7 +5,7 @@
     enter-active-class="animated animate__slideInLeft"
     leave-active-class="animated animate__slideOutRight"
   >
-    <q-card class="q-card">
+    <q-card class="q-card" :style="`background-color: ${statePlayers.getPlayerData[playerId].color}`">
 
       <!-- name input with edit & delete btns -->
       <name-input :playerId="playerId" />
@@ -58,7 +58,7 @@ export default class PlayerCard extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #0089ff;
+    /* background-color: #0089ff; */
     height: auto;
     margin: 12px 0px;
     width: 100%;

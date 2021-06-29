@@ -69,10 +69,12 @@ export default class PlayerName extends Vue {
 
   handleSaveBtn() {
     statePlayers.action_setPlayerName({ id: this.playerId, name: this.name })
+    this.setDefault()
     this.$emit('close')
   }
 
   handleCancelBtn() {
+    this.setDefault()
     this.$emit('close')
   }
 
@@ -81,8 +83,12 @@ export default class PlayerName extends Vue {
     else this.disabled = true
   }
 
-  mounted() {
+  setDefault() {
     this.name = statePlayers.getPlayerData[this.playerId].name
+  }
+
+  mounted() {
+    this.setDefault()
   }
 }
 </script>

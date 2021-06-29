@@ -61,11 +61,12 @@
       <q-card class="q-card">
         <q-card-section>
           <div class="q-mb-md">
-          <!-- header -->
-            <q-item-section avatar class="q-item-section">
-              <q-icon color="red" name="error_outline"></q-icon>
-            </q-item-section>
-            <div class="text">Min Score must be less than Max Score</div>
+            <!-- header -->
+            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Score Rules</div>
+            <q-separator color="blue" inset></q-separator>
+            <!-- rule text -->
+            <div class="text q-my-md" style="letter-spacing: 0.5px">• Min Score cannot be greater than 0</div>
+            <div class="text">• Max Score must be a positive number</div>
           </div>
           <!-- ok button -->
           <q-btn
@@ -107,7 +108,7 @@ export default class ScoreLimits extends Vue {
   disabled: boolean = false
 
   handleSaveBtn() {
-    if (this.validateInputs()) {
+    if (this.validateRules()) {
       // check in any players have a score outside of the new score limits
       // if so, reset all player scores to zero
       for (const player in statePlayers.getPlayerData) {
@@ -122,8 +123,8 @@ export default class ScoreLimits extends Vue {
     }
   }
 
-  validateInputs() {
-    if (this.scoreMin >= this.scoreMax) return false
+  validateRules() {
+    if (this.scoreMin > 0 || this.scoreMax < 1) return false
     else return true
   }
 
@@ -133,12 +134,17 @@ export default class ScoreLimits extends Vue {
   }
 
   handleCancelBtn() {
+    this.setDefaults()
     this.stateModals.action_scoreLimitModalVisibility(false)
   }
 
-  mounted() {
+  setDefaults() {
     this.scoreMin = this.stateSettings.getMinScore
     this.scoreMax = this.stateSettings.getMaxScore
+  }
+
+  mounted() {
+    this.setDefaults()
   }
 }
 </script>
