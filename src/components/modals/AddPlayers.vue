@@ -7,8 +7,8 @@
         <q-card-section>
 
           <!-- header -->
-          <div class="text q-mb-sm">Edit Number of Players</div>
-          <q-separator color="blue" inset></q-separator>
+          <div class="text q-mb-sm">Add Players</div>
+          <q-separator color="blue" class="q-mb-xl" inset></q-separator>
           
           <!-- number of players input -->
           <q-input  
@@ -21,13 +21,13 @@
           />
           
           <q-btn-group flat class="q-btn-group">
-            <!-- save button -->
+            <!-- add button -->
             <q-btn
               flat
               class="q-btn"
               color="green"
               size="md"
-              :label="'save'"
+              :label="'add'"
               :disable="disabled"
               @click="handleSaveBtn"
             />
@@ -45,32 +45,6 @@
       </q-card>
     </q-dialog>
 
-    <!-- error dialog -->
-    <q-dialog :dark="true" v-model="showError" persistent>
-      <q-card class="q-card">
-        <q-card-section>
-          <div class="q-mb-md">
-            
-          <!-- header -->
-            <q-item-section avatar class="q-item-section">
-              <q-icon color="red" name="error_outline"></q-icon>
-            </q-item-section>
-            <div class="text">ERROR ERROR ERROR</div>
-          </div>
-
-          <!-- ok button -->
-          <q-btn
-            flat
-            color="green"
-            size="md"
-            style="width: 100%"
-            :label="'ok'"
-            @click="showError = false"
-          />
-        </q-card-section>
-      </q-card>
-    </q-dialog>
-
   </div>
 </template>
 <script lang="ts">
@@ -79,28 +53,31 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateModals, statePlayers, stateSettings } from '@/store/index'
+import { stateModals, statePlayers } from '@/store/index'
 
 @Component
 export default class AddPlayers extends Vue {
   
   @Prop(Boolean) private showModal!: boolean
   
-  showError: boolean = false
   disabled: boolean = false
-  numOfPlayers: number = 0
+  numOfPlayers: number = 1
   
+  stateModals = stateModals
+  statePlayers = statePlayers
+
   handleSaveBtn() {
-    this.$emit('close')
+    this.statePlayers.action_createPlayers(this.numOfPlayers)
+    this.stateModals.action_addPlayersModalVisibility(false)
   }
   
   handleCancelBtn() {
-    this.$emit('close')
+    this.stateModals.action_addPlayersModalVisibility(false)
   }
   
   onInputChange() {
-    if (!this.numOfPlayers.toString()) this.disabled = true
-    else this.disabled = false
+    if (this.numOfPlayers >= 1) this.disabled = false
+    else this.disabled = true
   }
 }
 </script>

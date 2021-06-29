@@ -39,6 +39,11 @@
       :showModal="stateModals.getShowScoreLimitsModal"
     />
 
+    <!-- add players modal -->
+    <add-players
+      :showModal="stateModals.getShowAddPlayersModal"
+    />
+
     <!-- reset score confirm modal -->
     <confirm
       :showModal="stateModals.getShowResetScoreModal"
@@ -74,11 +79,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 // Components
+import AddPlayers from './modals/AddPlayers.vue'
 import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
 @Component({
   components: {
+    'add-players': AddPlayers,
     'confirm': Confirm,
     'score-limits': ScoreLimits
   }
@@ -96,7 +103,9 @@ export default class MenuDrawer extends Vue {
     {
       icon: 'group_add',
       label: 'Add Players',
-      onClick: () => console.log("Add Players clicked!"),
+      onClick: () => {
+        this.stateModals.action_addPlayersModalVisibility(true)
+      },
       separator: true
     },
     {

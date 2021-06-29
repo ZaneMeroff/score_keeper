@@ -9,7 +9,7 @@ export default class Modals extends VuexModule {
   resetScoreModal: boolean = false
   scoreLimitsModal: boolean = false
 
-  get getAddPlayersModal() {
+  get getShowAddPlayersModal() {
     return this.addPlayersModal
   }
 
