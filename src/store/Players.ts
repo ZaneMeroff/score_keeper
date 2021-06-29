@@ -12,6 +12,12 @@ import { PlayerData } from '@/types/players'
 export default class Players extends VuexModule {
 
     playerData: PlayerData = {}
+    currentColorIndex: number = 0
+    colors: string[] = [
+      '#ff3021', // red
+      '#0143ff', // blue
+      '#fff700', // yellow
+    ]
 
     get getPlayerData() {
       return this.playerData
@@ -23,14 +29,20 @@ export default class Players extends VuexModule {
 
     @Mutation
     createPlayers(num: number) {
+      // only accept numbers that are non-zero and positive
       if (Math.sign(num) === 1) {
         for (let i = 1; i <= num; i++) {
+          // reset currentColorIndex if it's on the last item in color array
+          if (this.currentColorIndex >= this.colors.length) this.currentColorIndex = 0
           const id = uuidv4()
           const player = {
             id: id,
             name: `Player ${Object.keys(this.playerData).length + 1}`,
             score: 0,
+            color: this.colors[this.currentColorIndex]
           }
+          // increment color index
+          this.currentColorIndex++
           Vue.set(this.playerData, id, player)
         }
       }
@@ -40,7 +52,7 @@ export default class Players extends VuexModule {
     action_createPlayers(num: number) {
       this.createPlayers(num)
     }
-
+    
     // ------------------------------------------
     //            delete target player
     // ------------------------------------------

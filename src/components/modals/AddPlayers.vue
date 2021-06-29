@@ -68,16 +68,22 @@ export default class AddPlayers extends Vue {
 
   handleSaveBtn() {
     this.statePlayers.action_createPlayers(this.numOfPlayers)
+    this.setDefault()
     this.stateModals.action_addPlayersModalVisibility(false)
   }
   
   handleCancelBtn() {
+    this.setDefault()
     this.stateModals.action_addPlayersModalVisibility(false)
   }
   
   onInputChange() {
     if (this.numOfPlayers >= 1) this.disabled = false
     else this.disabled = true
+  }
+
+  setDefault() {
+    this.numOfPlayers = 1
   }
 }
 </script>

@@ -119,7 +119,7 @@ export default class MenuDrawer extends Vue {
     {
       icon: 'restart_alt',
       // iconColor: 'secondary',
-      label: 'Reset Score',
+      label: 'Zero Scores',
       onClick: () => {
         this.stateModals.action_resetScoreModalVisibility(true)
       },
