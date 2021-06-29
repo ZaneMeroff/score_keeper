@@ -4,20 +4,20 @@ import { Action, Module, Mutation, VuexModule } from 'vuex-class-modules'
 @Module
 export default class Modals extends VuexModule {
 
-  showDeletePlayersConfirmModal: boolean = false
-  showResetScoreConfirmModal: boolean = false
-  showScoreLimitsModal: boolean = false
+  deletePlayersModal: boolean = false
+  resetScoreModal: boolean = false
+  scoreLimitsModal: boolean = false
 
-  get getShowDeletePlayersConfirmModal() {
-    return this.showDeletePlayersConfirmModal
+  get getShowDeletePlayersModal() {
+    return this.deletePlayersModal
   }
 
-  get getShowResetScoreConfirmModal() {
-    return this.showResetScoreConfirmModal
+  get getShowResetScoreModal() {
+    return this.resetScoreModal
   }
 
   get getShowScoreLimitsModal() {
-    return this.showScoreLimitsModal
+    return this.scoreLimitsModal
   }
 
   // ------------------------------------------
@@ -25,13 +25,13 @@ export default class Modals extends VuexModule {
   // ------------------------------------------
   
   @Mutation
-  setDeletePlayersConfirmModalVisibility(show: boolean) {
-    this.showDeletePlayersConfirmModal = show
+  deletePlayersModalVisibility(show: boolean) {
+    this.deletePlayersModal = show
   }
 
   @Action
-  action_setDeletePlayersConfirmModalVisibility(show: boolean) {
-    this.setDeletePlayersConfirmModalVisibility(show)
+  action_deletePlayersModalVisibility(show: boolean) {
+    this.deletePlayersModalVisibility(show)
   }
 
   // ------------------------------------------
@@ -39,13 +39,13 @@ export default class Modals extends VuexModule {
   // ------------------------------------------
   
   @Mutation
-  setResetScoreConfirmModalVisibility(show: boolean) {
-    this.showResetScoreConfirmModal = show
+  resetScoreModalVisibility(show: boolean) {
+    this.resetScoreModal = show
   }
 
   @Action
-  action_setResetScoreConfirmModalVisibility(show: boolean) {
-    this.setResetScoreConfirmModalVisibility(show)
+  action_resetScoreModalVisibility(show: boolean) {
+    this.resetScoreModalVisibility(show)
   }
 
   // ------------------------------------------
@@ -53,12 +53,12 @@ export default class Modals extends VuexModule {
   // ------------------------------------------
   
   @Mutation
-  setScoreLimitModalVisibility(show: boolean) {
-    this.showScoreLimitsModal = show
+  scoreLimitModalVisibility(show: boolean) {
+    this.scoreLimitsModal = show
   }
 
   @Action
-  action_setScoreLimitModalVisibility(show: boolean) {
-    this.setScoreLimitModalVisibility(show)
+  action_scoreLimitModalVisibility(show: boolean) {
+    this.scoreLimitModalVisibility(show)
   }
 }

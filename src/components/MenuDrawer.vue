@@ -41,24 +41,24 @@
 
     <!-- reset score confirm modal -->
     <confirm
-      :showModal="stateModals.getShowResetScoreConfirmModal"
+      :showModal="stateModals.getShowResetScoreModal"
       :text="'Reset all scores to zero?'"
       :onYes="() => {
         statePlayers.action_zeroScores()
-        stateModals.action_setResetScoreConfirmModalVisibility(false)
+        stateModals.action_resetScoreModalVisibility(false)
       }"
-      :onNo="() => stateModals.action_setResetScoreConfirmModalVisibility(false)"
+      :onNo="() => stateModals.action_resetScoreModalVisibility(false)"
     />
 
     <!-- delete players confirm modal -->
     <confirm
-      :showModal="stateModals.getShowDeletePlayersConfirmModal"
+      :showModal="stateModals.getShowDeletePlayersModal"
       :text="'Delete all players?'"
       :onYes="() => {
-        // do the thing here...
-        stateModals.action_setDeletePlayersConfirmModalVisibility(false)
+        statePlayers.action_deleteAllPlayers()
+        stateModals.action_deletePlayersModalVisibility(false)
       }"
-      :onNo="() => stateModals.action_setDeletePlayersConfirmModalVisibility(false)"
+      :onNo="() => stateModals.action_deletePlayersModalVisibility(false)"
     />
 
   </div>
@@ -103,7 +103,7 @@ export default class MenuDrawer extends Vue {
       icon: 'sports_score',
       label: 'Score Limits',
       onClick: () => {
-        this.stateModals.action_setScoreLimitModalVisibility(true)
+        this.stateModals.action_scoreLimitModalVisibility(true)
       },
       separator: true
     },
@@ -112,7 +112,7 @@ export default class MenuDrawer extends Vue {
       // iconColor: 'secondary',
       label: 'Reset Score',
       onClick: () => {
-        this.stateModals.action_setResetScoreConfirmModalVisibility(true)
+        this.stateModals.action_resetScoreModalVisibility(true)
       },
       separator: true
     },
@@ -121,7 +121,7 @@ export default class MenuDrawer extends Vue {
       // iconColor: 'secondary',
       label: 'Delete Players',
       onClick: () => {
-        this.stateModals.action_setDeletePlayersConfirmModalVisibility(true)
+        this.stateModals.action_deletePlayersModalVisibility(true)
       },
       separator: true
     },

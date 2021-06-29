@@ -43,6 +43,22 @@ export default class Players extends VuexModule {
     }
 
     // ------------------------------------------
+    //            delete all players
+    // ------------------------------------------
+
+    @Mutation
+    deleteAllPlayers() {
+      for (const player in this.playerData) {
+        Vue.delete(this.playerData, player)
+      }
+    }
+
+    @Action
+    action_deleteAllPlayers() {
+      this.deleteAllPlayers()
+    }
+
+    // ------------------------------------------
     //         modify target player score
     // ------------------------------------------
 
