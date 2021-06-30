@@ -16,7 +16,7 @@
       <div class="q-px-lg">
         <q-slider
           v-model="statePlayers.getPlayerData[playerId].score"
-          color="light-green"
+          color="black"
           :min="stateSettings.getMinScore"
           :max="stateSettings.getMaxScore"
           :step="1"

@@ -148,7 +148,7 @@ export default class MenuDrawer extends Vue {
 <style scoped>
 
   .q-header {
-    background-color: #004eff;
+    background-color: #000000;
   }
   
 </style>

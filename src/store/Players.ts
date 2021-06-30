@@ -14,9 +14,13 @@ export default class Players extends VuexModule {
     playerData: PlayerData = {}
     currentColorIndex: number = 0
     colors: string[] = [
-      '#ff3021', // red
-      '#0143ff', // blue
-      '#fff700', // yellow
+      '#FFAE5F', // orange
+      '#47EDA0', // green
+      '#AE7FF8', // purple
+      '#E3ED47', // yellow
+      '#38C6D0', // blue
+      '#FFA48E', // peach
+      '#E55AC7', // pink
     ]
 
     get getPlayerData() {
