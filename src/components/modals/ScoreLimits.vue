@@ -65,8 +65,8 @@
             <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Score Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-md" style="letter-spacing: 0.5px">• Min Score cannot be greater than 0</div>
-            <div class="text">• Max Score must be a positive number</div>
+            <div class="text q-my-md">Min Score must be -500 to 0</div>
+            <div class="text">Max Score must be 1 to 500</div>
           </div>
           <!-- ok button -->
           <q-btn
@@ -124,7 +124,7 @@ export default class ScoreLimits extends Vue {
   }
 
   validateRules() {
-    if (this.scoreMin > 0 || this.scoreMax < 1) return false
+    if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
     else return true
   }
 
