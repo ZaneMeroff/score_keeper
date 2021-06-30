@@ -6,6 +6,15 @@ import { Quasar } from 'quasar'
 
 Vue.use(Quasar, {
   config: {},
+  components: [ 
+    'QDialog',
+    'QCard',
+    'QCardSection',
+    'QSeparator',
+    'QInput',
+    'QBtnGroup',
+    'QBtn'
+  ],
   plugins: {
   }
  })
