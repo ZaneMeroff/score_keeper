@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddPlayers snapshots should render with default html 1`] = `
+<div>
+  <q-dialog
+    dark="true"
+    persistent=""
+  >
+    <q-card
+      class="q-card"
+      style="width: 300px;"
+    >
+      <q-card-section>
+        <div
+          class="text q-mb-sm"
+        >
+          Add Players
+        </div>
+         
+        <q-separator
+          class="q-mb-xl"
+          color="blue"
+          inset=""
+        />
+         
+        <q-input
+          dark="true"
+          rules="function (val) { return !!val.toString() || '* Required'; }"
+          style="font-size: 16px;"
+          type="number"
+        />
+         
+        <q-btn-group
+          class="q-btn-group"
+          flat=""
+        >
+          <q-btn
+            class="q-btn"
+            color="green"
+            flat=""
+            label="add"
+            size="md"
+          />
+           
+          <q-btn
+            class="q-btn"
+            color="red"
+            flat=""
+            label="cancel"
+            size="md"
+          />
+        </q-btn-group>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+   
+  <q-dialog
+    dark="true"
+    persistent=""
+  >
+    <q-card
+      class="q-card"
+    >
+      <q-card-section>
+        <div
+          class="q-mb-md"
+        >
+          <div
+            class="text q-mb-sm"
+          >
+            <q-icon
+              color="red"
+              name="error"
+            />
+             Player Rules
+          </div>
+           
+          <q-separator
+            color="blue"
+            inset=""
+          />
+           
+          <div
+            class="text q-my-lg"
+          >
+            Total players cannot exceed 50
+          </div>
+        </div>
+         
+        <q-btn
+          color="green"
+          flat=""
+          label="ok"
+          size="md"
+          style="width: 100%;"
+        />
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+</div>
+`;

@@ -142,8 +142,8 @@ export default class AddPlayers extends Vue {
   }
 
   .q-item-section {
-    display: flex;
     align-items: center;
+    display: flex;
     padding: 10px 0px 20px 0px;
   }
 
