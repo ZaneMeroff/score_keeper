@@ -56,6 +56,7 @@ describe('AddPlayers', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
         const newValue = true
+
         component.setData({ disabled: newValue })
 
         expect(component.vm.$data.disabled).toEqual(newValue)
@@ -75,6 +76,7 @@ describe('AddPlayers', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
         const newValue = 5
+
         component.setData({ numOfPlayers: newValue })
 
         expect(component.vm.$data.numOfPlayers).toEqual(newValue)
@@ -94,6 +96,7 @@ describe('AddPlayers', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
         const newValue = true
+
         component.setData({ showError: newValue })
 
         expect(component.vm.$data.showError).toEqual(newValue)
@@ -112,15 +115,14 @@ describe('AddPlayers', () => {
 
     describe('handleCancelBtn', () => {
       
-      it.only('should call setDefault', () => {
+      it('should call setDefault', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
-        // const spy = jest.spyOn(component.vm, 'setDefault')
+        const spy = jest.spyOn(component.vm, 'setDefault')
 
-        // console.log(component.vm)
         component.vm.handleCancelBtn()
 
-        // expect(component.vm.setDefault).toHaveBeenCalledTimes(1)
+        expect(spy).toHaveBeenCalledTimes(1)
       })
 
       it('should call action_addPlayersModalVisibility(false)', () => {
