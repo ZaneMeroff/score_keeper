@@ -6,12 +6,12 @@ import Quasar, * as All from 'quasar'
 import { store } from '@/store/index'
 import Vue, { ComponentOptions, VueConstructor } from 'vue';
 
-// --------- Vuex setup ------------
+// --------- Vuex & Quasar setup ------------
 
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// ---------------------------------
+// ------------------------------------------
 
 describe('AddPlayers', () => {
 
