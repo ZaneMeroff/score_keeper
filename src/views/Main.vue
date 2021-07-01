@@ -35,7 +35,7 @@ export default class Main extends Vue {
 <style>
 
   section {
-    background-color: #151515;
+    background-color: #3E3E3E;
     display: flex !important;
     flex-direction: column;
     height: 100vh;

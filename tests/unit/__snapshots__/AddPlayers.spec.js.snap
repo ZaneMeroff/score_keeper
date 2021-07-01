@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddPlayers snapshots should render with default html 1`] = `
+<div>
+  <q-dialog-stub
+    dark="true"
+    persistent="true"
+    position="standard"
+  >
+    <q-card-stub
+      class="q-card"
+      style="width: 300px;"
+      tag="div"
+    >
+      <q-card-section-stub
+        tag="div"
+      >
+        <div
+          class="text q-mb-sm"
+        >
+          Add Players
+        </div>
+         
+        <q-separator-stub
+          class="q-mb-xl"
+          color="blue"
+          inset="true"
+        />
+         
+        <q-input-stub
+          dark="true"
+          rules="[Function]"
+          style="font-size: 16px;"
+          type="number"
+          value="1"
+        />
+         
+        <q-btn-group-stub
+          class="q-btn-group"
+          flat="true"
+        >
+          <q-btn-stub
+            align="center"
+            class="q-btn"
+            color="green"
+            flat="true"
+            label="add"
+            ripple="true"
+            size="md"
+          />
+           
+          <q-btn-stub
+            align="center"
+            class="q-btn"
+            color="red"
+            flat="true"
+            label="cancel"
+            ripple="true"
+            size="md"
+          />
+        </q-btn-group-stub>
+      </q-card-section-stub>
+    </q-card-stub>
+  </q-dialog-stub>
+   
+  <q-dialog-stub
+    dark="true"
+    persistent="true"
+    position="standard"
+  >
+    <q-card-stub
+      class="q-card"
+      tag="div"
+    >
+      <q-card-section-stub
+        tag="div"
+      >
+        <div
+          class="q-mb-md"
+        >
+          <div
+            class="text q-mb-sm"
+          >
+            <q-icon-stub
+              color="red"
+              name="error"
+              tag="i"
+            />
+             Player Rules
+          </div>
+           
+          <q-separator-stub
+            color="blue"
+            inset="true"
+          />
+           
+          <div
+            class="text q-my-lg"
+          >
+            Total players cannot exceed 50
+          </div>
+        </div>
+         
+        <q-btn-stub
+          align="center"
+          color="green"
+          flat="true"
+          label="ok"
+          ripple="true"
+          size="md"
+          style="width: 100%;"
+        />
+      </q-card-section-stub>
+    </q-card-stub>
+  </q-dialog-stub>
+</div>
+`;

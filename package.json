@@ -42,6 +42,10 @@
     "not dead"
   ],
   "jest": {
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
+    "verbose": true,
+    "moduleNameMapper": {
+      "quasar": "quasar/dist/quasar.umd.min.js"
+    }
   }
 }

@@ -16,7 +16,7 @@
       <div class="q-px-lg">
         <q-slider
           v-model="statePlayers.getPlayerData[playerId].score"
-          color="light-green"
+          color="black"
           :min="stateSettings.getMinScore"
           :max="stateSettings.getMaxScore"
           :step="1"
@@ -58,7 +58,6 @@ export default class PlayerCard extends Vue {
 <style scoped>
 
   .q-card {
-    /* background-color: #0089ff; */
     height: auto;
     margin: 12px 0px;
     width: 100%;

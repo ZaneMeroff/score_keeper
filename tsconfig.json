@@ -34,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "tests/unit/Confirm.spec.js"  ],
   "exclude": [
     "node_modules"
   ]

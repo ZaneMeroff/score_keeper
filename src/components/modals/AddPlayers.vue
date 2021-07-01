@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <!-- score limits modal -->
+    <!-- add players modal -->
     <q-dialog :dark="true" v-model="showModal" persistent>
       <q-card class="q-card" style="width: 300px">
         <q-card-section>
@@ -45,6 +45,30 @@
       </q-card>
     </q-dialog>
 
+    <!-- error dialog -->
+    <q-dialog :dark="true" v-model="showError" persistent>
+      <q-card class="q-card">
+        <q-card-section>
+          <div class="q-mb-md">
+            <!-- header -->
+            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Player Rules</div>
+            <q-separator color="blue" inset></q-separator>
+            <!-- rule text -->
+            <div class="text q-my-lg">Total players cannot exceed 50</div>
+          </div>
+          <!-- ok button -->
+          <q-btn
+            flat
+            color="green"
+            size="md"
+            style="width: 100%"
+            :label="'ok'"
+            @click="showError = false"
+          />
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
   </div>
 </template>
 <script lang="ts">
@@ -62,19 +86,29 @@ export default class AddPlayers extends Vue {
   
   disabled: boolean = false
   numOfPlayers: number = 1
+  showError: boolean = false
   
   stateModals = stateModals
   statePlayers = statePlayers
 
   handleSaveBtn() {
-    this.statePlayers.action_createPlayers(this.numOfPlayers)
-    this.setDefault()
-    this.stateModals.action_addPlayersModalVisibility(false)
+    if (this.validateRules()) {
+      this.statePlayers.action_createPlayers(this.numOfPlayers)
+      this.setDefault()
+      this.stateModals.action_addPlayersModalVisibility(false)
+    } else {
+      this.showError = true
+    }
   }
   
   handleCancelBtn() {
     this.setDefault()
     this.stateModals.action_addPlayersModalVisibility(false)
+  }
+
+  validateRules() {
+    if (Object.keys(this.statePlayers.getPlayerData).length + this.numOfPlayers > 50) return false
+    else return true
   }
   
   onInputChange() {
@@ -108,8 +142,8 @@ export default class AddPlayers extends Vue {
   }
 
   .q-item-section {
-    display: flex;
     align-items: center;
+    display: flex;
     padding: 10px 0px 20px 0px;
   }
 
