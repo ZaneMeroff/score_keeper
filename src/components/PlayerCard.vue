@@ -58,7 +58,6 @@ export default class PlayerCard extends Vue {
 <style scoped>
 
   .q-card {
-    /* background-color: #0089ff; */
     height: auto;
     margin: 12px 0px;
     width: 100%;
