@@ -10,10 +10,6 @@ import Vue, { ComponentOptions, VueConstructor } from 'vue';
 
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
-// const state = {
-//   fakeState: 'testString'
-// }
-// const vuexStore = new Vuex.Store(store)
 
 // ---------------------------------
 
@@ -108,8 +104,22 @@ describe('AddPlayers', () => {
   
     describe('handleSaveBtn', () => {
       
-      it('should...', () => {
+      it('should call the correct functions if validateRules returns true', () => {
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+        // ************************************************
+      })
 
+      it('should set showError to true if validateRules returns false', () => {
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+        // ************************************************
       })
     })
 
@@ -125,29 +135,72 @@ describe('AddPlayers', () => {
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
-      it('should call action_addPlayersModalVisibility(false)', () => {
-
+      it.only('should call action_addPlayersModalVisibility(false)', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        component.vm.handleCancelBtn()
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+        // ************************************************
       })
     })
 
     describe('validateRules', () => {
       
-      it('should...', () => {
+      it('should return false if total players is > 50', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
 
+        component.setData({ numOfPlayers: 51 })
+        expect(component.vm.$data.numOfPlayers).toEqual(51)
+        expect(component.vm.validateRules()).toEqual(false)
+      })
+
+      it('should return true if total players is <= 50', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+
+        component.setData({ numOfPlayers: 49 })
+        expect(component.vm.$data.numOfPlayers).toEqual(49)
+        expect(component.vm.validateRules()).toEqual(true)
       })
     })
 
     describe('onInputChange', () => {
       
-      it('should...', () => {
+      it('should set disabled to false if numOfPlayers >= 1', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
 
+        expect(component.vm.$data.numOfPlayers).toEqual(1)
+        component.vm.setDefault()
+        expect(component.vm.$data.disabled).toEqual(false)
+      })
+
+      it('should set disabled to true if numOfPlayers < 1', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+
+        component.setData({ numOfPlayers: -1 })
+        expect(component.vm.$data.numOfPlayers).toEqual(-1)
+        component.vm.onInputChange()
+        expect(component.vm.$data.disabled).toEqual(true)
       })
     })
 
     describe('setDefault', () => {
       
-      it('should...', () => {
-
+      it('should set numOfPlayers back to 1', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        
+        component.setData({ numOfPlayers: 5 })
+        expect(component.vm.$data.numOfPlayers).toEqual(5)
+        component.vm.setDefault()
+        expect(component.vm.$data.numOfPlayers).toEqual(1)
       })
     })
   })
