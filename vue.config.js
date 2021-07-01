@@ -7,5 +7,6 @@ module.exports = {
   },
   transpileDependencies: [
     'quasar'
-  ]
+  ],
+  publicPath: '/score_keeper/'
 }
