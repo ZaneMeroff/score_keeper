@@ -14,7 +14,7 @@ This is the most recent project I’ve created to showcase the evolution of my p
 `<screenshots will go here>`
 
 ### Jest Testing Suite
-The project contains `____ unit tests` across all `____` components making unit testing coverage nearly 100%. I’ve written unit tests covering all elements of each Vue component with happy/sad paths as necessary for: data, methods, props, watch, computed, lifecycle hooks, events/user interactions, routes, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
+The project contains `____ unit tests` across all 8 components making unit testing coverage nearly 100%. I’ve written unit tests covering all elements of each Vue component with happy/sad paths as necessary for: data, methods, props, watch, computed, lifecycle hooks, events/user interactions, routes, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
 
 ### Directions for Use
 
