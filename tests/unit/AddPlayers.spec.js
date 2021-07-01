@@ -1,15 +1,15 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import { store } from "@/store/index"
 import AddPlayers from '@/components/modals/AddPlayers.vue'
-import Vuex from "vuex"
-import { Quasar, QDialog, QCard, QCardSection, QSeparator, QInput, QBtnGroup, QBtn } from 'quasar'
+import Vuex from 'vuex'
+import Quasar, * as All from 'quasar'
+
+import { store } from '@/store/index'
 import Vue, { ComponentOptions, VueConstructor } from 'vue';
 
 // --------- Vuex setup ------------
 
 const localVue = createLocalVue()
-localVue.use(Vuex, Quasar, { components: { QDialog, QCard, QCardSection, QSeparator, QInput, QBtnGroup, QBtn } })
-
+localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 // const state = {
 //   fakeState: 'testString'
 // }
