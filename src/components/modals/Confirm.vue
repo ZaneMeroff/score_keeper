@@ -1,11 +1,11 @@
 <template>
 
- <q-dialog :dark="true" v-model="showModal" persistent>
-    <q-card class="q-card">
+ <q-dialog v-model="showModal" persistent>
+    <q-card class="q-card" :dark="stateSettings.getDarkMode">
 
       <q-card-section>
         <!-- header -->
-        <div class="text q-mb-lg">{{ text }}</div>
+        <div class="text q-mb-lg" :style="stateSettings.getDarkModeText">{{ text }}</div>
           
         <q-btn-group flat class="q-btn-group">
           <!-- yes button -->
@@ -38,6 +38,9 @@
 // Decorators
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
+// Vuex
+import { stateSettings } from '@/store/index'
+
 @Component
 export default class Confirm extends Vue {
   
@@ -45,13 +48,14 @@ export default class Confirm extends Vue {
   @Prop(Function) private onNo!: Function
   @Prop(Boolean) private showModal!: boolean
   @Prop(String) private text!: string 
+
+  stateSettings = stateSettings
 }
 </script>
 
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
     width: 300px;
   }
 

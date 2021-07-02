@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@quasar/icongenie": "^2.4.0",
     "@types/uuid": "^8.3.0",
     "core-js": "^3.6.5",
+    "localforage": "^1.9.0",
     "quasar": "^1.0.0",
     "uuid": "^3.4.0",
     "vue": "^2.6.11",
@@ -18,7 +20,8 @@
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
-    "vuex-class-modules": "^1.3.0"
+    "vuex-class-modules": "^1.3.0",
+    "vuex-persist": "^3.1.3"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

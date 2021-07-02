@@ -2,12 +2,12 @@
   <div>
 
     <!-- add players modal -->
-    <q-dialog :dark="true" v-model="showModal" persistent>
-      <q-card class="q-card" style="width: 300px">
+    <q-dialog v-model="showModal" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
 
           <!-- header -->
-          <div class="text q-mb-sm">Add Players</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkModeText">Add Players</div>
           <q-separator color="blue" class="q-mb-xl" inset></q-separator>
           
           <!-- number of players input -->
@@ -15,7 +15,7 @@
             v-model.number="numOfPlayers" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode" 
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -46,15 +46,15 @@
     </q-dialog>
 
     <!-- error dialog -->
-    <q-dialog :dark="true" v-model="showError" persistent>
-      <q-card class="q-card">
+    <q-dialog v-model="showError" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Player Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkModeText"><q-icon color="red" name="error"></q-icon> Player Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-lg">Total players cannot exceed 50</div>
+            <div class="text q-my-lg" :style="stateSettings.getDarkModeText">Total players cannot exceed 50</div>
           </div>
           <!-- ok button -->
           <q-btn
@@ -77,7 +77,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateModals, statePlayers } from '@/store/index'
+import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 @Component
 export default class AddPlayers extends Vue {
@@ -90,12 +90,14 @@ export default class AddPlayers extends Vue {
   
   stateModals = stateModals
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   handleSaveBtn() {
     if (this.validateRules()) {
       this.statePlayers.action_createPlayers(this.numOfPlayers)
       this.setDefault()
       this.stateModals.action_addPlayersModalVisibility(false)
+      this.$emit('close')
     } else {
       this.showError = true
     }
@@ -104,6 +106,7 @@ export default class AddPlayers extends Vue {
   handleCancelBtn() {
     this.setDefault()
     this.stateModals.action_addPlayersModalVisibility(false)
+    this.$emit('close')
   }
 
   validateRules() {
@@ -124,7 +127,7 @@ export default class AddPlayers extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
+    width: 300px;
   }
 
   .text {

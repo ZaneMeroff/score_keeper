@@ -77,6 +77,7 @@ export default class Players extends VuexModule {
 
     @Mutation
     deleteAllPlayers() {
+      this.currentColorIndex = 0
       for (const player in this.playerData) {
         Vue.delete(this.playerData, player)
       }

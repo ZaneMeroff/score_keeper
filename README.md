@@ -5,7 +5,7 @@ an app to keep score for any game (project still under construction)
 http://zanemeroff.github.io/score_keeper (unavailable at this time)
 
 ### Introduction
-Welcome to Score Keeper, a mobile friendly single page web application created to keep track of scores for any kind of game. The app gives a user the ability to set score boundaries and customize player/team names with a colorful and easy to use UI/UX. 
+Welcome to Score Keeper, a mobile friendly single page web application created to keep track of scores for any kind of game. The app gives a user the ability to set score boundaries, customize player/team names, and toggle light/dark mode with a colorful and easy to use UI/UX. 
 
 ### Why Did I Build This?
 This is the most recent project I’ve created to showcase the evolution of my programming skills. The app features clean, reusable, strictly typed code and components built with methods leveraging the single responsibility principle. The app uses a global Vuex store and the Quasar component library. Jest is used in conjunction with Vue Test Utils to create a robust and thorough unit testing suite.
@@ -39,17 +39,23 @@ Select the *Zero Scores* button from the menu drawer. This will permanently rese
 `Delete All Players`<br>
 Select the *Delete Players* button from the menu drawer. This will permanently delete all players from the app.
 
+`Toggle Light/Dark Mode`<br>
+Select the *Toggle Theme* button from the menu drawer. Default is dark mode.
+
+`Clear All Saved Data`<br>
+Select the *Clear Data* button from the menu drawer. This will reset all app data saved in local storage.
+
 ### Technologies Used
 - Vue.js
 - Vuex
 - Quasar
+- LocalForage
 - Vue Test Utils
 - Jest
 - JavaScript
 - TypeScript
 - HTML
 - CSS
-- SASS
 
 ### How to run app on a local machine with NPM
 1. shut down any live servers you currently have running (`control` + `c`)

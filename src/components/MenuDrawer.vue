@@ -2,10 +2,10 @@
 
   <div>
 
-    <q-header elevated class="q-header">
+    <q-header elevated :style="stateSettings.getDarkMode ? 'background-color: #000' : 'background-color: #FFF'">
       <q-toolbar>
-        <q-btn flat @click="drawer = !drawer" round dense icon="menu"></q-btn>
-        <q-toolbar-title>Score Keeper</q-toolbar-title>
+        <q-btn flat :style="stateSettings.getDarkModeText" @click="drawer = !drawer" round dense icon="menu"></q-btn>
+        <q-toolbar-title :style="stateSettings.getDarkModeText">Score Keeper</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -37,11 +37,13 @@
     <!-- score limits modal -->
     <score-limits 
       :showModal="stateModals.getShowScoreLimitsModal"
+      @close="drawer = false"
     />
 
     <!-- add players modal -->
     <add-players
       :showModal="stateModals.getShowAddPlayersModal"
+      @close="drawer = false"
     />
 
     <!-- reset score confirm modal -->
@@ -51,8 +53,12 @@
       :onYes="() => {
         statePlayers.action_zeroScores()
         stateModals.action_resetScoreModalVisibility(false)
+        drawer = false
       }"
-      :onNo="() => stateModals.action_resetScoreModalVisibility(false)"
+      :onNo="() => {
+        stateModals.action_resetScoreModalVisibility(false)
+        drawer = false
+      }"
     />
 
     <!-- delete players confirm modal -->
@@ -62,8 +68,25 @@
       :onYes="() => {
         statePlayers.action_deleteAllPlayers()
         stateModals.action_deletePlayersModalVisibility(false)
+        drawer = false
       }"
-      :onNo="() => stateModals.action_deletePlayersModalVisibility(false)"
+      :onNo="() => {
+        stateModals.action_deletePlayersModalVisibility(false)
+        drawer = false
+      }"
+    />
+
+    <!-- clear data confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowClearDataModal"
+      :text="'Clear all app data?'"
+      :onYes="() => {handleClearData()
+        drawer = false
+      }"
+      :onNo="() => {
+        stateModals.action_clearDataModalVisibility(false)
+        drawer = false
+      }"
     />
 
   </div>
@@ -83,6 +106,12 @@ import AddPlayers from './modals/AddPlayers.vue'
 import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
+// Types
+import { MenuItem } from '@/types/menu'
+
+// Utils
+import localforage from 'localforage'
+
 @Component({
   components: {
     'add-players': AddPlayers,
@@ -95,11 +124,16 @@ export default class MenuDrawer extends Vue {
   stateModals = stateModals
   statePlayers = statePlayers
   stateSettings = stateSettings
-
+  
   drawer: boolean = false
 
-  // create typed for menuList item !!!
-  menuList = [
+  async handleClearData() {
+    await localforage.clear()
+      .then(() => stateModals.action_clearDataModalVisibility(false))
+      .catch(err => window.alert(`Whoops, an error occured: ${err}`))
+  }
+
+  menuList: MenuItem[] = [
     {
       icon: 'group_add',
       label: 'Add Players',
@@ -118,7 +152,6 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'restart_alt',
-      // iconColor: 'secondary',
       label: 'Zero Scores',
       onClick: () => {
         this.stateModals.action_resetScoreModalVisibility(true)
@@ -127,28 +160,28 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'delete',
-      // iconColor: 'secondary',
       label: 'Delete Players',
       onClick: () => {
         this.stateModals.action_deletePlayersModalVisibility(true)
       },
       separator: true
     },
-    // {
-    //   icon: stateSettings.getDarkMode ? 'dark_mode' : 'light_mode',
-    //   // ^ not working!
-    //   label: 'Toggle Theme',
-    //   onClick: () => this.stateSettings.action_setDarkMode(),
-    //   separator: true
-    // },
+    {
+      icon: 'dark_mode',
+      label: 'Toggle Theme',
+      onClick: () => {
+        this.stateSettings.action_setDarkMode()
+      },
+      separator: true
+    },
+    {
+      icon: 'phonelink_erase',
+      label: 'Clear Data',
+      onClick: () => {
+        this.stateModals.action_clearDataModalVisibility(true)
+      },
+      separator: true
+    },
   ]
 }
 </script>
-
-<style scoped>
-
-  .q-header {
-    background-color: #000000;
-  }
-  
-</style>

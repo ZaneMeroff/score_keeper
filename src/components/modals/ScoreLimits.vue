@@ -2,12 +2,12 @@
   <div>
     
     <!-- score limits modal -->
-    <q-dialog :dark="true" v-model="showModal" persistent>
-      <q-card class="q-card" style="width: 300px">
+    <q-dialog v-model="showModal" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
 
         <q-card-section>
           <!-- header -->
-          <div class="text q-mb-sm">Score Limits</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkModeText">Score Limits</div>
 
           <q-separator color="blue" inset></q-separator>
 
@@ -17,7 +17,7 @@
             v-model.number="scoreMin" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode"
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -27,7 +27,7 @@
             v-model.number="scoreMax" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode" 
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -57,16 +57,16 @@
     </q-dialog>
 
     <!-- error dialog -->
-    <q-dialog :dark="true" v-model="showError" persistent>
-      <q-card class="q-card">
+    <q-dialog v-model="showError" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Score Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkModeText"><q-icon color="red" name="error"></q-icon> Score Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-md">Min Score must be -500 to 0</div>
-            <div class="text">Max Score must be 1 to 500</div>
+            <div class="text q-my-md" :style="stateSettings.getDarkModeText">Min Score must be -500 to 0</div>
+            <div class="text" :style="stateSettings.getDarkModeText">Max Score must be 1 to 500</div>
           </div>
           <!-- ok button -->
           <q-btn
@@ -118,6 +118,7 @@ export default class ScoreLimits extends Vue {
       // set new score limits and close modal
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })
       this.stateModals.action_scoreLimitModalVisibility(false)
+      this.$emit('close')
     } else {
       this.showError = true
     }
@@ -136,6 +137,7 @@ export default class ScoreLimits extends Vue {
   handleCancelBtn() {
     this.setDefaults()
     this.stateModals.action_scoreLimitModalVisibility(false)
+    this.$emit('close')
   }
 
   setDefaults() {
@@ -152,7 +154,7 @@ export default class ScoreLimits extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
+    width: 300px;
   }
 
   .text {

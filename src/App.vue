@@ -18,6 +18,9 @@ import { statePlayers, stateSettings } from '@/store/index'
 // Components
 import MenuDrawer from '@/components/MenuDrawer.vue'
 
+// Utils
+import localforage from 'localforage'
+
 @Component({
   components: {
     'menu-drawer' : MenuDrawer,
@@ -28,13 +31,23 @@ export default class App extends Vue {
   statePlayers = statePlayers
   stateSettings = stateSettings
 
-  mounted() {
-    // create 2 players on start by default
-    this.statePlayers.action_createPlayers(2)
+  async mounted() {
+    // check for stored localforage keys
+    await localforage.length()
+      .then(keys => {
+        // if no keys exist, create 2 default players
+        if (!keys) this.statePlayers.action_createPlayers(2)
+      })
     // create q-carousel slides for the default score limits (0-10)
     this.stateSettings.action_setNumSelectorRangeSlides()
   }
 }
 </script>
 
-<style></style>
+<style>
+
+  * {
+    font-family: 'Poppins';
+  }
+
+</style>
