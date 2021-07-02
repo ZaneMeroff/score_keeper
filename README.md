@@ -5,10 +5,10 @@ an app to keep score for any game
 http://zanemeroff.github.io/score_keeper
 
 ### Introduction
-Welcome to Score Keeper, a mobile friendly single page web application created to keep track of scores for any kind of game. The app gives a user the ability to set score boundaries, customize player/team names, and toggle light/dark mode with a colorful and easy to use UI/UX. 
+Welcome to Score Keeper, a mobile SPA (single page web application) created to keep track of scores for any kind of game. The app has many features including the ability to set score boundaries, customize player/team names, toggle light/dark mode, and save app data to localstorage.
 
 ### Why Did I Build This?
-This is the most recent project I’ve created to showcase the evolution of my programming skills. The app features clean, reusable, strictly typed code and components built with methods leveraging the single responsibility principle. The app uses a global Vuex store and the Quasar component library. Jest is used in conjunction with Vue Test Utils to create a robust and thorough unit testing suite.
+This is the most recent project I’ve created to showcase my solo programming skills. The app features clean, reusable, strictly typed code and components built with methods leveraging the single responsibility principle. The app uses a global Vuex store and the Quasar component library. Jest is used in conjunction with Vue Test Utils to create a robust and thorough unit testing suite.
 
 ### Screenshots
 ![screenshots](https://user-images.githubusercontent.com/53405028/124308856-1b1c9e80-db27-11eb-8eb6-8f49073d581c.png)
@@ -50,6 +50,8 @@ Select the *Clear Data* button from the menu drawer. This will reset all app dat
 - Vuex
 - Quasar
 - LocalForage
+- Vue Property Decorator
+- Vue Class Components
 - Vue Test Utils
 - Jest
 - JavaScript
