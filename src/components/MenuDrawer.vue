@@ -2,10 +2,10 @@
 
   <div>
 
-    <q-header elevated class="q-header">
+    <q-header elevated :style="stateSettings.getDarkMode ? 'background-color: #000' : 'background-color: #FFF'">
       <q-toolbar>
-        <q-btn flat @click="drawer = !drawer" round dense icon="menu"></q-btn>
-        <q-toolbar-title>Score Keeper</q-toolbar-title>
+        <q-btn flat :color="stateSettings.getDarkMode ? 'white' : 'black'" @click="drawer = !drawer" round dense icon="menu"></q-btn>
+        <q-toolbar-title :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Score Keeper</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -134,21 +134,13 @@ export default class MenuDrawer extends Vue {
       },
       separator: true
     },
-    // {
-    //   icon: stateSettings.getDarkMode ? 'dark_mode' : 'light_mode',
-    //   // ^ not working!
-    //   label: 'Toggle Theme',
-    //   onClick: () => this.stateSettings.action_setDarkMode(),
-    //   separator: true
-    // },
+    {
+      icon: stateSettings.getDarkMode ? 'dark_mode' : 'light_mode',
+      // ^ not working!
+      label: 'Toggle Theme',
+      onClick: () => this.stateSettings.action_setDarkMode(),
+      separator: true
+    },
   ]
 }
 </script>
-
-<style scoped>
-
-  .q-header {
-    background-color: #000000;
-  }
-  
-</style>

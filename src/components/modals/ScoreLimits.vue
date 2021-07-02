@@ -2,12 +2,12 @@
   <div>
     
     <!-- score limits modal -->
-    <q-dialog :dark="true" v-model="showModal" persistent>
-      <q-card class="q-card" style="width: 300px">
+    <q-dialog v-model="showModal" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
 
         <q-card-section>
           <!-- header -->
-          <div class="text q-mb-sm">Score Limits</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Score Limits</div>
 
           <q-separator color="blue" inset></q-separator>
 
@@ -17,7 +17,7 @@
             v-model.number="scoreMin" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode"
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -27,7 +27,7 @@
             v-model.number="scoreMax" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode" 
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -152,7 +152,7 @@ export default class ScoreLimits extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
+    width: 300px;
   }
 
   .text {

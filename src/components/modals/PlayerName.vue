@@ -1,13 +1,13 @@
 <template>
 
- <q-dialog :dark="true" v-model="showModal" persistent>
-    <q-card class="q-card">
+ <q-dialog v-model="showModal" persistent>
+    <q-card class="q-card" :dark="stateSettings.getDarkMode">
 
       <q-card-section>
         <div class="q-mb-md">
 
           <!-- header -->
-          <div class="text q-mb-sm">Edit Name</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Edit Name</div>
           <q-separator color="blue" class="q-mb-lg" inset></q-separator>
           
           <!-- text input -->
@@ -15,7 +15,7 @@
             v-model="name" 
             maxlength="20"
             style="font-size: 16px"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode"
             :rules="[ val => !!val || '* Required' ]"
             @input="onInputChange"
           />
@@ -54,7 +54,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 // Vuex
-import { statePlayers } from '@/store/index'
+import { statePlayers, stateSettings } from '@/store/index'
 
 @Component
 export default class PlayerName extends Vue {
@@ -63,6 +63,7 @@ export default class PlayerName extends Vue {
   @Prop(String) private playerId!: string
 
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   name: string = ''
   disabled: boolean = false
@@ -96,7 +97,6 @@ export default class PlayerName extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
     width: 300px;
   }
 
@@ -109,7 +109,6 @@ export default class PlayerName extends Vue {
   }
 
   .text {
-    color: #FFF;
     font-size: 16px;
     text-align: center;
   }

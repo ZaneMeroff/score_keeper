@@ -1,6 +1,6 @@
 <template>
 
-  <section>
+  <section :style="stateSettings.getDarkMode ? 'background-color: #3E3E3E' : 'background-color: #CACACA'">
     <div v-if="Object.keys(statePlayers.getPlayerData).length">
       <player-card 
         v-for="(player, index) in statePlayers.getPlayerData" 
@@ -22,7 +22,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { statePlayers } from '@/store/index'
+import { statePlayers, stateSettings } from '@/store/index'
 
 // Components
 import PlayerCard from '@/components/PlayerCard.vue'
@@ -35,13 +35,13 @@ import PlayerCard from '@/components/PlayerCard.vue'
 export default class Main extends Vue {
 
   statePlayers = statePlayers
+  stateSettings = stateSettings
 }
 </script>
 
 <style>
 
   section {
-    background-color: #3E3E3E;
     display: flex !important;
     flex-direction: column;
     height: 100vh;

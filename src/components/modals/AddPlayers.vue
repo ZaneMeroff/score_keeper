@@ -2,12 +2,12 @@
   <div>
 
     <!-- add players modal -->
-    <q-dialog :dark="true" v-model="showModal" persistent>
-      <q-card class="q-card" style="width: 300px">
+    <q-dialog v-model="showModal" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
 
           <!-- header -->
-          <div class="text q-mb-sm">Add Players</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Add Players</div>
           <q-separator color="blue" class="q-mb-xl" inset></q-separator>
           
           <!-- number of players input -->
@@ -15,7 +15,7 @@
             v-model.number="numOfPlayers" 
             style="font-size: 16px"
             type="number"
-            :dark="true" 
+            :dark="stateSettings.getDarkMode" 
             :rules="[ val => !!val.toString() || '* Required' ]"
             @input="onInputChange"
           />
@@ -77,7 +77,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 // Vuex
-import { stateModals, statePlayers } from '@/store/index'
+import { stateModals, statePlayers, stateSettings } from '@/store/index'
 
 @Component
 export default class AddPlayers extends Vue {
@@ -90,6 +90,7 @@ export default class AddPlayers extends Vue {
   
   stateModals = stateModals
   statePlayers = statePlayers
+  stateSettings = stateSettings
 
   handleSaveBtn() {
     if (this.validateRules()) {
@@ -124,7 +125,7 @@ export default class AddPlayers extends Vue {
 <style scoped>
 
   .q-card {
-    background-color: #1e1e1e;
+    width: 300px;
   }
 
   .text {
