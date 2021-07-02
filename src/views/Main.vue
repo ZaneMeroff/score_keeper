@@ -1,11 +1,17 @@
 <template>
 
   <section>
-    <player-card 
-      v-for="(player, index) in statePlayers.getPlayerData" 
-      :key="index"
-      :playerId="player.id" 
-    />
+    <div v-if="Object.keys(statePlayers.getPlayerData).length">
+      <player-card 
+        v-for="(player, index) in statePlayers.getPlayerData" 
+        :key="index"
+        :playerId="player.id" 
+      />
+    </div>
+    <div v-else class="error-wrapper">
+      <p class="error-text">Players List is Empty</p>
+      <p class="error-text">Select 'Add Players' from the App Menu</p>
+    </div>
   </section>
 
 </template>
@@ -42,6 +48,16 @@ export default class Main extends Vue {
     overflow-y: scroll;
     padding: 60px 20px 10px 20px;
     width: 100%;
+  }
+
+  .error-text {
+    color: #FFF;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .error-wrapper {
+    margin-top: 50px;
   }
 
 </style>
