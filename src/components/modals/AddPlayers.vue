@@ -97,6 +97,7 @@ export default class AddPlayers extends Vue {
       this.statePlayers.action_createPlayers(this.numOfPlayers)
       this.setDefault()
       this.stateModals.action_addPlayersModalVisibility(false)
+      this.$emit('close')
     } else {
       this.showError = true
     }
@@ -105,6 +106,7 @@ export default class AddPlayers extends Vue {
   handleCancelBtn() {
     this.setDefault()
     this.stateModals.action_addPlayersModalVisibility(false)
+    this.$emit('close')
   }
 
   validateRules() {

@@ -37,11 +37,13 @@
     <!-- score limits modal -->
     <score-limits 
       :showModal="stateModals.getShowScoreLimitsModal"
+      @close="drawer = false"
     />
 
     <!-- add players modal -->
     <add-players
       :showModal="stateModals.getShowAddPlayersModal"
+      @close="drawer = false"
     />
 
     <!-- reset score confirm modal -->
@@ -51,8 +53,12 @@
       :onYes="() => {
         statePlayers.action_zeroScores()
         stateModals.action_resetScoreModalVisibility(false)
+        drawer = false
       }"
-      :onNo="() => stateModals.action_resetScoreModalVisibility(false)"
+      :onNo="() => {
+        stateModals.action_resetScoreModalVisibility(false)
+        drawer = false
+      }"
     />
 
     <!-- delete players confirm modal -->
@@ -62,16 +68,25 @@
       :onYes="() => {
         statePlayers.action_deleteAllPlayers()
         stateModals.action_deletePlayersModalVisibility(false)
+        drawer = false
       }"
-      :onNo="() => stateModals.action_deletePlayersModalVisibility(false)"
+      :onNo="() => {
+        stateModals.action_deletePlayersModalVisibility(false)
+        drawer = false
+      }"
     />
 
     <!-- clear data confirm modal -->
     <confirm
       :showModal="stateModals.getShowClearDataModal"
       :text="'Clear all app data?'"
-      :onYes="() => handleClearData()"
-      :onNo="() => stateModals.action_clearDataModalVisibility(false)"
+      :onYes="() => {handleClearData()
+        drawer = false
+      }"
+      :onNo="() => {
+        stateModals.action_clearDataModalVisibility(false)
+        drawer = false
+      }"
     />
 
   </div>
@@ -159,14 +174,14 @@ export default class MenuDrawer extends Vue {
       },
       separator: true
     },
-    // {
-    //   icon: 'phonelink_erase',
-    //   label: 'Clear Data',
-    //   onClick: () => {
-    //     this.stateModals.action_clearDataModalVisibility(true)
-    //   },
-    //   separator: true
-    // },
+    {
+      icon: 'phonelink_erase',
+      label: 'Clear Data',
+      onClick: () => {
+        this.stateModals.action_clearDataModalVisibility(true)
+      },
+      separator: true
+    },
   ]
 }
 </script>

@@ -118,6 +118,7 @@ export default class ScoreLimits extends Vue {
       // set new score limits and close modal
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })
       this.stateModals.action_scoreLimitModalVisibility(false)
+      this.$emit('close')
     } else {
       this.showError = true
     }
@@ -136,6 +137,7 @@ export default class ScoreLimits extends Vue {
   handleCancelBtn() {
     this.setDefaults()
     this.stateModals.action_scoreLimitModalVisibility(false)
+    this.$emit('close')
   }
 
   setDefaults() {
