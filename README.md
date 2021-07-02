@@ -42,10 +42,14 @@ Select the *Delete Players* button from the menu drawer. This will permanently d
 `Toggle Light/Dark Mode`<br>
 Select the *Toggle Theme* button from the menu drawer. Default is dark mode.
 
+`Clear All Saved Data`<br>
+Select the *Clear Data* button from the menu drawer. This will reset all app data saved in local storage.
+
 ### Technologies Used
 - Vue.js
 - Vuex
 - Quasar
+- LocalForage
 - Vue Test Utils
 - Jest
 - JavaScript
