@@ -4,8 +4,8 @@
 
     <q-header elevated :style="stateSettings.getDarkMode ? 'background-color: #000' : 'background-color: #FFF'">
       <q-toolbar>
-        <q-btn flat :color="stateSettings.getDarkMode ? 'white' : 'black'" @click="drawer = !drawer" round dense icon="menu"></q-btn>
-        <q-toolbar-title :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Score Keeper</q-toolbar-title>
+        <q-btn flat :style="stateSettings.getDarkModeText" @click="drawer = !drawer" round dense icon="menu"></q-btn>
+        <q-toolbar-title :style="stateSettings.getDarkModeText">Score Keeper</q-toolbar-title>
       </q-toolbar>
     </q-header>
 

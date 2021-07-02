@@ -5,7 +5,7 @@
 
       <q-card-section>
         <!-- header -->
-        <div class="text q-mb-lg" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">{{ text }}</div>
+        <div class="text q-mb-lg" :style="stateSettings.getDarkModeText">{{ text }}</div>
           
         <q-btn-group flat class="q-btn-group">
           <!-- yes button -->

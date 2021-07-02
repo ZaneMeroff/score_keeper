@@ -7,7 +7,7 @@
         <div class="q-mb-md">
 
           <!-- header -->
-          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Edit Name</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkModeText">Edit Name</div>
           <q-separator color="blue" class="q-mb-lg" inset></q-separator>
           
           <!-- text input -->

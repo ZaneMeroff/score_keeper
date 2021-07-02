@@ -7,7 +7,7 @@
 
         <q-card-section>
           <!-- header -->
-          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Score Limits</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkModeText">Score Limits</div>
 
           <q-separator color="blue" inset></q-separator>
 
@@ -62,11 +62,11 @@
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'"><q-icon color="red" name="error"></q-icon> Score Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkModeText"><q-icon color="red" name="error"></q-icon> Score Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-md" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Min Score must be -500 to 0</div>
-            <div class="text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Max Score must be 1 to 500</div>
+            <div class="text q-my-md" :style="stateSettings.getDarkModeText">Min Score must be -500 to 0</div>
+            <div class="text" :style="stateSettings.getDarkModeText">Max Score must be 1 to 500</div>
           </div>
           <!-- ok button -->
           <q-btn

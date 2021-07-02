@@ -14,6 +14,10 @@ export default class Settings extends VuexModule {
     return this.darkMode
   }
 
+  get getDarkModeText() {
+    return this.darkMode ? 'color: #FFF' : 'color: #000'
+  }
+
   get getMinScore() {
     return this.minScore
   }

@@ -7,7 +7,7 @@
         <q-card-section>
 
           <!-- header -->
-          <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Add Players</div>
+          <div class="text q-mb-sm" :style="stateSettings.getDarkModeText">Add Players</div>
           <q-separator color="blue" class="q-mb-xl" inset></q-separator>
           
           <!-- number of players input -->
@@ -51,10 +51,10 @@
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'"><q-icon color="red" name="error"></q-icon> Player Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkModeText"><q-icon color="red" name="error"></q-icon> Player Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-lg" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Total players cannot exceed 50</div>
+            <div class="text q-my-lg" :style="stateSettings.getDarkModeText">Total players cannot exceed 50</div>
           </div>
           <!-- ok button -->
           <q-btn
