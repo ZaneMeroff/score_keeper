@@ -59,7 +59,7 @@ export default class PlayerCard extends Vue {
 
   .q-card {
     height: auto;
-    margin: 12px 0px;
+    margin: 20px 0px;
     width: 100%;
   }
 

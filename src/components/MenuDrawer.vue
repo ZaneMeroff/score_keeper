@@ -129,7 +129,7 @@ export default class MenuDrawer extends Vue {
 
   async handleClearData() {
     await localforage.clear()
-      .then(() => stateModals.action_clearDataModalVisibility(false))
+      .then(() => location.reload())
       .catch(err => window.alert(`Whoops, an error occured: ${err}`))
   }
 
@@ -168,7 +168,7 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'dark_mode',
-      label: 'Toggle Theme',
+      label: 'Toggle Colors',
       onClick: () => {
         this.stateSettings.action_setDarkMode()
       },

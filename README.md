@@ -1,8 +1,8 @@
 # Score Keeper App 🎯
-an app to keep score for any game (project still under construction)
+an app to keep score for any game
 
 ### Link to Live Site
-http://zanemeroff.github.io/score_keeper (unavailable at this time)
+http://zanemeroff.github.io/score_keeper
 
 ### Introduction
 Welcome to Score Keeper, a mobile friendly single page web application created to keep track of scores for any kind of game. The app gives a user the ability to set score boundaries, customize player/team names, and toggle light/dark mode with a colorful and easy to use UI/UX. 
@@ -11,10 +11,10 @@ Welcome to Score Keeper, a mobile friendly single page web application created t
 This is the most recent project I’ve created to showcase the evolution of my programming skills. The app features clean, reusable, strictly typed code and components built with methods leveraging the single responsibility principle. The app uses a global Vuex store and the Quasar component library. Jest is used in conjunction with Vue Test Utils to create a robust and thorough unit testing suite.
 
 ### Screenshots
-`<screenshots will go here>`
+![screenshots](https://user-images.githubusercontent.com/53405028/124308856-1b1c9e80-db27-11eb-8eb6-8f49073d581c.png)
 
 ### Jest Testing Suite
-The project contains `____ unit tests` across all 8 components making unit testing coverage nearly 100%. I’ve written unit tests covering all elements of each Vue component with happy/sad paths as necessary for: data, methods, props, watch, computed, lifecycle hooks, events/user interactions, routes, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
+The testing suite is still a work in progress. After completion, the suite will have close to 100% testing covering across all elements of each Vue component with happy/sad paths as necessary for: data, methods, props, watch, computed, lifecycle hooks, events/user interactions, routes, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
 
 ### Directions for Use
 
@@ -40,7 +40,7 @@ Select the *Zero Scores* button from the menu drawer. This will permanently rese
 Select the *Delete Players* button from the menu drawer. This will permanently delete all players from the app.
 
 `Toggle Light/Dark Mode`<br>
-Select the *Toggle Theme* button from the menu drawer. Default is dark mode.
+Select the *Toggle Colors* button from the menu drawer. Default is dark mode.
 
 `Clear All Saved Data`<br>
 Select the *Clear Data* button from the menu drawer. This will reset all app data saved in local storage.

@@ -9,8 +9,8 @@
       />
     </div>
     <div v-else class="error-wrapper">
-      <p class="error-text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Players List is Empty</p>
-      <p class="error-text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Select 'Add Players' from the App Menu</p>
+      <p class="error-text" :style="stateSettings.getDarkModeText">Players List is Empty</p>
+      <p class="error-text" :style="stateSettings.getDarkModeText">Select 'Add Players' from the App Menu</p>
     </div>
   </section>
 
@@ -46,7 +46,7 @@ export default class Main extends Vue {
     flex-direction: column;
     height: 100vh;
     overflow-y: scroll;
-    padding: 60px 20px 10px 20px;
+    padding: 50px 20px 10px 20px;
     width: 100%;
   }
 
