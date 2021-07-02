@@ -91,6 +91,9 @@ import AddPlayers from './modals/AddPlayers.vue'
 import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
+// Types
+import { MenuItem } from '@/types/menu'
+
 // Utils
 import localforage from 'localforage'
 
@@ -107,7 +110,6 @@ export default class MenuDrawer extends Vue {
   statePlayers = statePlayers
   stateSettings = stateSettings
   
-
   drawer: boolean = false
 
   async handleClearData() {
@@ -116,8 +118,7 @@ export default class MenuDrawer extends Vue {
       .catch(err => window.alert(`Whoops, an error occured: ${err}`))
   }
 
-  // create typed for menuList item !!!
-  menuList = [
+  menuList: MenuItem[] = [
     {
       icon: 'group_add',
       label: 'Add Players',
@@ -158,14 +159,14 @@ export default class MenuDrawer extends Vue {
       },
       separator: true
     },
-    {
-      icon: 'phonelink_erase',
-      label: 'Clear Data',
-      onClick: () => {
-        this.stateModals.action_clearDataModalVisibility(true)
-      },
-      separator: true
-    },
+    // {
+    //   icon: 'phonelink_erase',
+    //   label: 'Clear Data',
+    //   onClick: () => {
+    //     this.stateModals.action_clearDataModalVisibility(true)
+    //   },
+    //   separator: true
+    // },
   ]
 }
 </script>
