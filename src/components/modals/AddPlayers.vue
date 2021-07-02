@@ -46,15 +46,15 @@
     </q-dialog>
 
     <!-- error dialog -->
-    <q-dialog :dark="true" v-model="showError" persistent>
-      <q-card class="q-card">
+    <q-dialog v-model="showError" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Player Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'"><q-icon color="red" name="error"></q-icon> Player Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-lg">Total players cannot exceed 50</div>
+            <div class="text q-my-lg" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Total players cannot exceed 50</div>
           </div>
           <!-- ok button -->
           <q-btn

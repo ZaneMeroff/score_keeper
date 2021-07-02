@@ -66,6 +66,14 @@
       :onNo="() => stateModals.action_deletePlayersModalVisibility(false)"
     />
 
+    <!-- clear data confirm modal -->
+    <confirm
+      :showModal="stateModals.getShowClearDataModal"
+      :text="'Clear all app data?'"
+      :onYes="() => handleClearData()"
+      :onNo="() => stateModals.action_clearDataModalVisibility(false)"
+    />
+
   </div>
 
 </template>
@@ -83,6 +91,9 @@ import AddPlayers from './modals/AddPlayers.vue'
 import Confirm from './modals/Confirm.vue'
 import ScoreLimits from './modals/ScoreLimits.vue'
 
+// Utils
+import localforage from 'localforage'
+
 @Component({
   components: {
     'add-players': AddPlayers,
@@ -95,8 +106,15 @@ export default class MenuDrawer extends Vue {
   stateModals = stateModals
   statePlayers = statePlayers
   stateSettings = stateSettings
+  
 
   drawer: boolean = false
+
+  async handleClearData() {
+    await localforage.clear()
+      .then(() => stateModals.action_clearDataModalVisibility(false))
+      .catch(err => window.alert(`Whoops, an error occured: ${err}`))
+  }
 
   // create typed for menuList item !!!
   menuList = [
@@ -118,7 +136,6 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'restart_alt',
-      // iconColor: 'secondary',
       label: 'Zero Scores',
       onClick: () => {
         this.stateModals.action_resetScoreModalVisibility(true)
@@ -127,7 +144,6 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'delete',
-      // iconColor: 'secondary',
       label: 'Delete Players',
       onClick: () => {
         this.stateModals.action_deletePlayersModalVisibility(true)
@@ -135,10 +151,19 @@ export default class MenuDrawer extends Vue {
       separator: true
     },
     {
-      icon: stateSettings.getDarkMode ? 'dark_mode' : 'light_mode',
-      // ^ not working!
+      icon: 'dark_mode',
       label: 'Toggle Theme',
-      onClick: () => this.stateSettings.action_setDarkMode(),
+      onClick: () => {
+        this.stateSettings.action_setDarkMode()
+      },
+      separator: true
+    },
+    {
+      icon: 'phonelink_erase',
+      label: 'Clear Data',
+      onClick: () => {
+        this.stateModals.action_clearDataModalVisibility(true)
+      },
       separator: true
     },
   ]

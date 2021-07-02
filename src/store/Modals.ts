@@ -5,12 +5,17 @@ import { Action, Module, Mutation, VuexModule } from 'vuex-class-modules'
 export default class Modals extends VuexModule {
 
   addPlayersModal: boolean = false
+  clearDataModal: boolean = false
   deletePlayersModal: boolean = false
   resetScoreModal: boolean = false
   scoreLimitsModal: boolean = false
 
   get getShowAddPlayersModal() {
     return this.addPlayersModal
+  }
+
+  get getShowClearDataModal() {
+    return this.clearDataModal
   }
 
   get getShowDeletePlayersModal() {
@@ -37,6 +42,20 @@ export default class Modals extends VuexModule {
   @Action
   action_addPlayersModalVisibility(show: boolean) {
     this.addPlayersModalVisibility(show)
+  }
+
+  // ------------------------------------------
+  //        clear data modal visibility
+  // ------------------------------------------
+  
+  @Mutation
+  clearDataModalVisibility(show: boolean) {
+    this.clearDataModal = show
+  }
+  
+  @Action
+  action_clearDataModalVisibility(show: boolean) {
+    this.clearDataModalVisibility(show)
   }
 
   // ------------------------------------------

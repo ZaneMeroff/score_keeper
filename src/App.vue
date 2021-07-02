@@ -31,9 +31,9 @@ export default class App extends Vue {
   statePlayers = statePlayers
   stateSettings = stateSettings
 
-  mounted() {
+  async mounted() {
     // check for stored localforage keys
-    localforage.length()
+    await localforage.length()
       .then(keys => {
         // if no keys exist, create 2 default players
         if (!keys) this.statePlayers.action_createPlayers(2)

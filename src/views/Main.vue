@@ -9,8 +9,8 @@
       />
     </div>
     <div v-else class="error-wrapper">
-      <p class="error-text">Players List is Empty</p>
-      <p class="error-text">Select 'Add Players' from the App Menu</p>
+      <p class="error-text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Players List is Empty</p>
+      <p class="error-text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Select 'Add Players' from the App Menu</p>
     </div>
   </section>
 

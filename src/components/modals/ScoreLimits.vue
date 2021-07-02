@@ -57,16 +57,16 @@
     </q-dialog>
 
     <!-- error dialog -->
-    <q-dialog :dark="true" v-model="showError" persistent>
-      <q-card class="q-card">
+    <q-dialog v-model="showError" persistent>
+      <q-card class="q-card" :dark="stateSettings.getDarkMode">
         <q-card-section>
           <div class="q-mb-md">
             <!-- header -->
-            <div class="text q-mb-sm"><q-icon color="red" name="error"></q-icon> Score Rules</div>
+            <div class="text q-mb-sm" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'"><q-icon color="red" name="error"></q-icon> Score Rules</div>
             <q-separator color="blue" inset></q-separator>
             <!-- rule text -->
-            <div class="text q-my-md">Min Score must be -500 to 0</div>
-            <div class="text">Max Score must be 1 to 500</div>
+            <div class="text q-my-md" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Min Score must be -500 to 0</div>
+            <div class="text" :style="stateSettings.getDarkMode ? 'color: #FFF' : 'color: #000'">Max Score must be 1 to 500</div>
           </div>
           <!-- ok button -->
           <q-btn

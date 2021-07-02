@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const vuexLocal = new VuexPersistence({
   storage: localforage as any,
   asyncStorage: true,
-  modules: [ 'Modals', 'Players', 'Settings' ],
+  modules: [ 'Players', 'Settings' ],
 });
 
 export const store: any = new Vuex.Store({
