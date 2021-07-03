@@ -40,7 +40,7 @@ Select the *Zero Scores* button from the menu drawer. This will permanently rese
 Select the *Delete Players* button from the menu drawer. This will permanently delete all players from the app.
 
 `Toggle Light/Dark Mode`<br>
-Select the *Toggle Colors* button from the menu drawer. Default is dark mode.
+Select the *Change Colors* button from the menu drawer. Default is dark mode.
 
 `Clear All Saved Data`<br>
 Select the *Clear Data* button from the menu drawer. This will reset all app data saved in local storage.
