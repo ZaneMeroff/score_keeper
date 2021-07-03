@@ -168,7 +168,7 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'dark_mode',
-      label: 'Toggle Colors',
+      label: 'Change Colors',
       onClick: () => {
         this.stateSettings.action_setDarkMode()
       },

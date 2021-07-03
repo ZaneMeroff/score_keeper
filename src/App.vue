@@ -35,11 +35,12 @@ export default class App extends Vue {
     // check for stored localforage keys
     await localforage.length()
       .then(keys => {
-        // if no keys exist, create 2 default players
-        if (!keys) this.statePlayers.action_createPlayers(2)
+        // if no keys exist, set defaults for players and min/max
+        if (!keys) {
+          this.statePlayers.action_createPlayers(2)
+          this.stateSettings.action_setScoreLimits({ min: 0, max: 10 })
+        }
       })
-    // create q-carousel slides for the default score limits (0-10)
-    this.stateSettings.action_setNumSelectorRangeSlides()
   }
 }
 </script>

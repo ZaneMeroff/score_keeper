@@ -8,7 +8,6 @@ export default class Settings extends VuexModule {
   minScore: number = 0
   maxScore: number = 10
   numSelectorRangeSlides: string[] = []
-  // showMenuDrawer: boolean = false
 
   get getDarkMode() {
     return this.darkMode
@@ -29,10 +28,6 @@ export default class Settings extends VuexModule {
   get getNumSelectorRangeSlides() {
     return this.numSelectorRangeSlides
   }
-
-  // get getShowMenuDrawer() {
-  //   return this.showMenuDrawer
-  // }
   
   // ------------------------------------------
   //             toggle dark mode
@@ -82,18 +77,4 @@ export default class Settings extends VuexModule {
   action_setNumSelectorRangeSlides() {
     this.setNumSelectorRangeSlides()
   }
-
-  // ------------------------------------------
-  //         menu drawer visibility
-  // ------------------------------------------
-  
-  // @Mutation
-  // setMenuDrawerlVisibility(show: boolean) {
-  //   this.showMenuDrawer = show
-  // }
-
-  // @Action
-  // action_setMenuDrawerlVisibility(show: boolean) {
-  //   this.setMenuDrawerlVisibility(show)
-  // }
 }

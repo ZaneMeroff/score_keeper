@@ -87,7 +87,7 @@
 <script lang="ts">
 
 // Decorators
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 
 // Vuex
 import { stateModals, statePlayers, stateSettings } from '@/store/index'
@@ -145,7 +145,8 @@ export default class ScoreLimits extends Vue {
     this.scoreMax = this.stateSettings.getMaxScore
   }
 
-  mounted() {
+  @Watch('showModal')
+  setScoreLimits() {
     this.setDefaults()
   }
 }
