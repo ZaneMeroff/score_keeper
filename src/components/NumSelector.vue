@@ -60,7 +60,7 @@ export default class NumSelector extends Vue {
 
   slideRange: string[] = []
 
-  get currentSlide() {
+  get currentSlide(): string {
     return statePlayers.getPlayerData[this.playerId].score.toString()
   }
 }

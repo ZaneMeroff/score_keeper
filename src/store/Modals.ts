@@ -10,23 +10,23 @@ export default class Modals extends VuexModule {
   resetScoreModal: boolean = false
   scoreLimitsModal: boolean = false
 
-  get getShowAddPlayersModal() {
+  get getShowAddPlayersModal(): boolean {
     return this.addPlayersModal
   }
 
-  get getShowClearDataModal() {
+  get getShowClearDataModal(): boolean {
     return this.clearDataModal
   }
 
-  get getShowDeletePlayersModal() {
+  get getShowDeletePlayersModal(): boolean {
     return this.deletePlayersModal
   }
 
-  get getShowResetScoreModal() {
+  get getShowResetScoreModal(): boolean {
     return this.resetScoreModal
   }
 
-  get getShowScoreLimitsModal() {
+  get getShowScoreLimitsModal(): boolean {
     return this.scoreLimitsModal
   }
 

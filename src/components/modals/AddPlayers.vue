@@ -109,7 +109,7 @@ export default class AddPlayers extends Vue {
     this.$emit('close')
   }
 
-  validateRules() {
+  validateRules(): boolean {
     if (Object.keys(this.statePlayers.getPlayerData).length + this.numOfPlayers > 50) return false
     else return true
   }

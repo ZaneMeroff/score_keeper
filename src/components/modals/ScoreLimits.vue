@@ -124,7 +124,7 @@ export default class ScoreLimits extends Vue {
     }
   }
 
-  validateRules() {
+  validateRules(): boolean {
     if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
     else return true
   }

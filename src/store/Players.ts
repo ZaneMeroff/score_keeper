@@ -23,7 +23,7 @@ export default class Players extends VuexModule {
       '#FFAE5F', // orange
     ]
 
-    get getPlayerData() {
+    get getPlayerData(): PlayerData {
       return this.playerData
     }
 

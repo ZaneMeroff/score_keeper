@@ -66,7 +66,7 @@ export default class NameInput extends Vue {
   showDeleteModal: boolean = false
   showNameModal: boolean = false
 
-  get getName() {
+  get getName(): string {
     return this.statePlayers.getPlayerData[this.playerId].name
   }
 }
