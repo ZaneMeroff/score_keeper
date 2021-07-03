@@ -25,7 +25,7 @@ export default class Players extends VuexModule {
 
     get getPlayerData(): PlayerData {
       return this.playerData
-    }
+    }   
 
     // ------------------------------------------
     //              create player

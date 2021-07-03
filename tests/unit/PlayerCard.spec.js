@@ -1,40 +1,31 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { statePlayers } from '@/store/index'
 import PlayerCard from '@/components/PlayerCard.vue'
 import Quasar, * as All from 'quasar'
+import uuid from 'uuid/v4'
+import Vuex from 'vuex'
 
-// ------------ Quasar setup ----------------
+// ------------ Quasar & Vuex setup ----------------
 
 const localVue = createLocalVue()
-localVue.use(Quasar, {components: All, directives: All, plugins: All})
+localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// ------------------------------------------
+// ----------------- Mocks -------------------------
+
+jest.mock('uuid/v4')
+uuid.mockImplementation(() => '12345')
+
+// -------------------------------------------------
 
 describe('PlayerCard', () => {
 
   describe("snapshots", () => {
 
     it("should render with default html", () => {
-      const propsData = { playerId: '321c2011-8db7-455d-adee-4ba1bd64ec69' }
+      statePlayers.action_createPlayers(1)
+      const propsData = { playerId: '12345' }
       const component = shallowMount(PlayerCard, { localVue, propsData })
 
-      component.setData({
-        statePlayers: {
-          getPlayerData: {
-            '321c2011-8db7-455d-adee-4ba1bd64ec69': {
-              id: '321c2011-8db7-455d-adee-4ba1bd64ec69',
-              name: 'Player 1',
-              score: 0,
-              color: '#AE7FF8',
-            }
-          }
-        }
-      })
-      // ************************************************
-      // ************************************************
-      // ***************  incomplete  *******************
-      // ************************************************
-      // ************************************************
-      // ************************************************
       expect(component.element).toMatchSnapshot()
     })
   })
@@ -43,15 +34,10 @@ describe('PlayerCard', () => {
 
     describe('playerId', () => {
       
-      it.only('should accept a function', () => {
-        const propsData = { playerId: '321c2011-8db7-455d-adee-4ba1bd64ec69' }
+      it('should accept a function', () => {
+        const propsData = { playerId: '12345' }
         const component = shallowMount(PlayerCard, { localVue, propsData })
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
-        // ************************************************
+
         expect(component.vm.$props.playerId).toEqual(propsData.playerId)
       })
     })
