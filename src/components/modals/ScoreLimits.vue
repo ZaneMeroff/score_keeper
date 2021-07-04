@@ -111,9 +111,9 @@ export default class ScoreLimits extends Vue {
     if (this.validateRules()) {
       // check in any players have a score outside of the new score limits
       // if so, reset all player scores to zero
-      for (const player in statePlayers.getPlayerData) {
-        let score = statePlayers.getPlayerData[player].score
-        if (score > this.scoreMax || score < this.scoreMin) statePlayers.zeroScores()
+      for (const player in this.statePlayers.getPlayerData) {
+        let score = this.statePlayers.getPlayerData[player].score
+        if (score > this.scoreMax || score < this.scoreMin) this.statePlayers.zeroScores()
       }
       // set new score limits and close modal
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })
@@ -124,9 +124,10 @@ export default class ScoreLimits extends Vue {
     }
   }
 
-  validateRules() {
-    if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
-    else return true
+  handleCancelBtn() {
+    this.setDefaults()
+    this.stateModals.action_scoreLimitModalVisibility(false)
+    this.$emit('close')
   }
 
   onInputChange() {
@@ -134,15 +135,14 @@ export default class ScoreLimits extends Vue {
     else this.disabled = false
   }
 
-  handleCancelBtn() {
-    this.setDefaults()
-    this.stateModals.action_scoreLimitModalVisibility(false)
-    this.$emit('close')
-  }
-
   setDefaults() {
     this.scoreMin = this.stateSettings.getMinScore
     this.scoreMax = this.stateSettings.getMaxScore
+  }
+
+  validateRules(): boolean {
+    if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
+    else return true
   }
 
   @Watch('showModal')

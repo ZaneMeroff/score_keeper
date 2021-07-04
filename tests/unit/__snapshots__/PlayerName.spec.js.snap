@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Confirm snapshots should render with default html 1`] = `
+exports[`PlayerName snapshots should render with default html 1`] = `
 <q-dialog-stub
   persistent="true"
   position="standard"
@@ -15,10 +15,29 @@ exports[`Confirm snapshots should render with default html 1`] = `
       tag="div"
     >
       <div
-        class="text q-mb-lg"
-        style="color: rgb(255, 255, 255);"
+        class="q-mb-md"
       >
-        sample text
+        <div
+          class="text q-mb-sm"
+          style="color: rgb(255, 255, 255);"
+        >
+          Edit Name
+        </div>
+         
+        <q-separator-stub
+          class="q-mb-lg"
+          color="blue"
+          inset="true"
+        />
+         
+        <q-input-stub
+          dark="true"
+          maxlength="20"
+          rules="[Function]"
+          style="font-size: 16px;"
+          type="text"
+          value=""
+        />
       </div>
        
       <q-btn-group-stub
@@ -30,7 +49,7 @@ exports[`Confirm snapshots should render with default html 1`] = `
           class="q-btn"
           color="green"
           flat="true"
-          label="yes"
+          label="save"
           ripple="true"
           size="md"
         />
@@ -40,7 +59,7 @@ exports[`Confirm snapshots should render with default html 1`] = `
           class="q-btn"
           color="red"
           flat="true"
-          label="no"
+          label="cancel"
           ripple="true"
           size="md"
         />

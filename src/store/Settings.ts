@@ -9,23 +9,23 @@ export default class Settings extends VuexModule {
   maxScore: number = 10
   numSelectorRangeSlides: string[] = []
 
-  get getDarkMode() {
+  get getDarkMode(): boolean {
     return this.darkMode
   }
 
-  get getDarkModeText() {
+  get getDarkModeText(): 'color: #FFF' | 'color: #000' {
     return this.darkMode ? 'color: #FFF' : 'color: #000'
   }
 
-  get getMinScore() {
+  get getMinScore(): number {
     return this.minScore
   }
 
-  get getMaxScore() {
+  get getMaxScore(): number {
     return this.maxScore
   }
 
-  get getNumSelectorRangeSlides() {
+  get getNumSelectorRangeSlides(): string[] {
     return this.numSelectorRangeSlides
   }
   

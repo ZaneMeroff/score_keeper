@@ -1,17 +1,21 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { stateModals } from '@/store/index'
 import AddPlayers from '@/components/modals/AddPlayers.vue'
-import Vuex from 'vuex'
 import Quasar, * as All from 'quasar'
+import uuid from 'uuid/v4'
+import Vuex from 'vuex'
 
-import { store } from '@/store/index'
-import Vue, { ComponentOptions, VueConstructor } from 'vue';
-
-// --------- Vuex & Quasar setup ------------
+// --------- Vuex & Quasar setup -------------
 
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// ------------------------------------------
+// ----------------- Mocks -------------------
+
+jest.mock('uuid/v4')
+uuid.mockImplementation(() => '12345')
+
+// -------------------------------------------
 
 describe('AddPlayers', () => {
 
@@ -104,22 +108,48 @@ describe('AddPlayers', () => {
   
     describe('handleSaveBtn', () => {
       
-      it('should call the correct functions if validateRules returns true', () => {
+      it.skip('should call statePlayers.action_createPlayers if validateRules returns true', () => {
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
-        // ************************************************
         // ************************************************
         // ************************************************
       })
 
-      it('should set showError to true if validateRules returns false', () => {
+      it('should call setDefault if validateRules returns true', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        const spy = jest.spyOn(component.vm, 'setDefault')
+
+        component.vm.handleSaveBtn()
+        expect(spy).toHaveBeenCalledTimes(1)
+      })
+
+      it.skip('should call stateModals.action_addPlayersModalVisibility if validateRules returns true', () => {
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
         // ************************************************
         // ************************************************
-        // ************************************************
+      })
+
+      it('should emit close event if validateRules returns true', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        
+        component.vm.handleSaveBtn()
+        const expected = { 'close': [[]] }
+        expect(component.emitted()).toEqual(expected)
+      })
+
+      it('should set showError=true if validateRules returns false', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        
+        component.setData({ numOfPlayers: 51 })
+        expect(component.vm.$data.showError).toEqual(false)
+        component.vm.handleSaveBtn()
+        expect(component.vm.$data.showError).toEqual(true)
       })
     })
 
@@ -131,20 +161,30 @@ describe('AddPlayers', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleCancelBtn()
-
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
-      it.only('should call action_addPlayersModalVisibility(false)', () => {
+      it.skip('should call action_addPlayersModalVisibility(false)', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
+
+        const spy = jest.spyOn(stateModals, 'action_addPlayersModalVisibility')
         component.vm.handleCancelBtn()
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
         // ************************************************
         // ************************************************
-        // ************************************************
+        expect(spy).toHaveBeenCalledWith(false)
+      })
+
+      it('should emit close event', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        
+        component.vm.handleCancelBtn()
+        const expected = { 'close': [[]] }
+        expect(component.emitted()).toEqual(expected)
       })
     })
 

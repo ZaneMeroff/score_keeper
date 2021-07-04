@@ -18,7 +18,7 @@
         transition-prev="slide-right"
         class="rounded-borders transparent q-carousel flex justify-center"
         height="auto"
-        v-model="currentSlide"
+        v-model="getCurrentSlide"
       >
         <q-carousel-slide 
           v-for="n in stateSettings.getNumSelectorRangeSlides" 
@@ -60,7 +60,7 @@ export default class NumSelector extends Vue {
 
   slideRange: string[] = []
 
-  get currentSlide() {
+  get getCurrentSlide(): string {
     return statePlayers.getPlayerData[this.playerId].score.toString()
   }
 }
