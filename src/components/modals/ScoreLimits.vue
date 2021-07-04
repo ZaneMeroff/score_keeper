@@ -124,9 +124,10 @@ export default class ScoreLimits extends Vue {
     }
   }
 
-  validateRules(): boolean {
-    if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
-    else return true
+  handleCancelBtn() {
+    this.setDefaults()
+    this.stateModals.action_scoreLimitModalVisibility(false)
+    this.$emit('close')
   }
 
   onInputChange() {
@@ -134,15 +135,14 @@ export default class ScoreLimits extends Vue {
     else this.disabled = false
   }
 
-  handleCancelBtn() {
-    this.setDefaults()
-    this.stateModals.action_scoreLimitModalVisibility(false)
-    this.$emit('close')
-  }
-
   setDefaults() {
     this.scoreMin = this.stateSettings.getMinScore
     this.scoreMax = this.stateSettings.getMaxScore
+  }
+
+  validateRules(): boolean {
+    if ((this.scoreMin > 0 || this.scoreMin < -500) || (this.scoreMax > 500 || this.scoreMax < 1)) return false
+    else return true
   }
 
   @Watch('showModal')
