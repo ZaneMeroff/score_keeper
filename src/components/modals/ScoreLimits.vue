@@ -111,9 +111,9 @@ export default class ScoreLimits extends Vue {
     if (this.validateRules()) {
       // check in any players have a score outside of the new score limits
       // if so, reset all player scores to zero
-      for (const player in statePlayers.getPlayerData) {
-        let score = statePlayers.getPlayerData[player].score
-        if (score > this.scoreMax || score < this.scoreMin) statePlayers.zeroScores()
+      for (const player in this.statePlayers.getPlayerData) {
+        let score = this.statePlayers.getPlayerData[player].score
+        if (score > this.scoreMax || score < this.scoreMin) this.statePlayers.zeroScores()
       }
       // set new score limits and close modal
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })

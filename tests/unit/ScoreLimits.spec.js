@@ -122,23 +122,49 @@ describe('ScoreLimits', () => {
 
     describe('handleSaveBtn', () => {
 
-      // it('should call setDefault', () => {
-      //   const propsData = { showModal: true }
-      //   const component = shallowMount(ScoreLimits, { localVue, propsData })
-      //   const spy = jest.spyOn(component.vm, 'setDefault')
+      it.skip('should call statePlayers.zeroScores if player has score outside of new limits', () => {
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+      })
 
-      //   component.vm.handleSaveBtn()
-      //   expect(spy).toHaveBeenCalledTimes(1)
-      // })
+      it.skip('should call stateSettings.action_setScoreLimits if validateRules returns true', () => {
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+      })
 
-      // it('should emit close event', () => {
-      //   const propsData = { showModal: true }
-      //   const component = shallowMount(ScoreLimits, { localVue, propsData })
+      it.skip('should call action_scoreLimitModalVisibility if validateRules returns true', () => {
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+      })
+
+      it('should emit close event if validateRules return true', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(ScoreLimits, { localVue, propsData })
         
-      //   component.vm.handleSaveBtn()
-      //   const expected = { 'close': [[]] }
-      //   expect(component.emitted()).toEqual(expected)
-      // })
+        component.setData({ scoreMin: 0 })
+        component.setData({ scoreMax: 10 })
+        component.vm.handleSaveBtn()
+        const expected = { 'close': [[]] }
+        expect(component.emitted()).toEqual(expected)
+      })
+
+      it('should set showError=true if validateRuels returns false', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(ScoreLimits, { localVue, propsData })
+        
+        component.vm.handleSaveBtn()
+        expect(component.vm.validateRules()).toEqual(false)
+        expect(component.vm.$data.showError).toEqual(true)
+      })
     })
 
     describe('handleCancelBtn', () => {
@@ -156,7 +182,6 @@ describe('ScoreLimits', () => {
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
-        // ************************************************
         // ************************************************
         // ************************************************
       })
@@ -272,7 +297,6 @@ describe('ScoreLimits', () => {
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
-        // ************************************************
         // ************************************************
         // ************************************************
         component.setProps({ showModal: false})
