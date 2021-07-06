@@ -44,7 +44,7 @@ describe('ScoreLimits', () => {
         const component = shallowMount(ScoreLimits, { localVue, propsData })
         
         const expected = 0
-        expect(component.vm.$data.scoreMin).toEqual(0)
+        expect(component.vm.$data.scoreMin).toEqual(expected)
       })
 
       it('should accept a number', () => {
@@ -64,7 +64,7 @@ describe('ScoreLimits', () => {
         const component = shallowMount(ScoreLimits, { localVue, propsData })
         
         const expected = 0
-        expect(component.vm.$data.scoreMax).toEqual(0)
+        expect(component.vm.$data.scoreMax).toEqual(expected)
       })
 
       it('should accept a number', () => {
@@ -92,7 +92,6 @@ describe('ScoreLimits', () => {
         const newValue = true
 
         component.setData({ showError: newValue })
-
         expect(component.vm.$data.showError).toEqual(newValue)
       })
     })
@@ -112,7 +111,6 @@ describe('ScoreLimits', () => {
         const newValue = true
 
         component.setData({ disabled: newValue })
-
         expect(component.vm.$data.disabled).toEqual(newValue)
       })
     })
@@ -292,7 +290,7 @@ describe('ScoreLimits', () => {
 
       it.skip('should call setDefaults if showModal changes', () => {
         const propsData = { showModal: true }
-        const component = shallowMount(ScoreLimits, { localVue })
+        const component = shallowMount(ScoreLimits, { localVue, propsData })
         const spy = jest.spyOn(component.vm, 'setDefaults')
         // ************************************************
         // ************************************************

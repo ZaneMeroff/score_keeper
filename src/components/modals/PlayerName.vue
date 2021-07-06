@@ -22,17 +22,18 @@
         </div>
 
         <q-btn-group flat class="q-btn-group">
-          <!-- button 1 (yes) -->
+          <!-- save button -->
           <q-btn
             flat
             class="q-btn"
             color="green"
+            id="save-btn"
             size="md"
             :disable="disabled"
             :label="'save'"
             @click="handleSaveBtn"
           />
-          <!-- button 2 (no) -->
+          <!-- cancel button -->
           <q-btn
             flat
             class="q-btn"

@@ -49,6 +49,7 @@ exports[`PlayerName snapshots should render with default html 1`] = `
           class="q-btn"
           color="green"
           flat="true"
+          id="save-btn"
           label="save"
           ripple="true"
           size="md"
