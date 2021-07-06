@@ -203,4 +203,24 @@ describe('PlayerName', () => {
       })
     })
   })
+
+  describe('user interactions', () => {
+
+    describe('events', () => {
+
+      it.skip('should call handeSaveBtn when save btn is clicked', async () => {
+        const propsData = { playerId: '12345', showModal: true }
+        const component = shallowMount(PlayerName, { localVue, propsData })
+        const spy = jest.spyOn(component.vm, 'handleSaveBtn')
+
+        await component.find('.q-btn').trigger('click')
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+        expect(spy).toHaveBeenCalledTimes(1)
+      })
+    })
+  })
 })
