@@ -17,9 +17,11 @@
         <q-slider
           v-model="statePlayers.getPlayerData[playerId].score"
           color="black"
+          ref="slider"
           :min="stateSettings.getMinScore"
           :max="stateSettings.getMaxScore"
           :step="1"
+          @change="updateScore"
         ></q-slider>
       </div>
 
@@ -39,6 +41,7 @@ import { statePlayers, stateSettings } from '@/store/index'
 // Components
 import NameInput from './NameInput.vue'
 import NumSelector from './NumSelector.vue'
+import { QSlider } from 'quasar'
 
 @Component({
   components: {
@@ -47,11 +50,17 @@ import NumSelector from './NumSelector.vue'
   }
 })
 export default class PlayerCard extends Vue {
-  
+
   @Prop(String) private playerId!: string
+
+  $refs!: { 'slider': QSlider }
 
   statePlayers = statePlayers
   stateSettings = stateSettings
+
+  updateScore() {
+    this.statePlayers.action_setPlayerScore({ id: this.playerId, score: this.$refs.slider.value! })
+  }
 }
 </script>
 

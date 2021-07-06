@@ -15,6 +15,10 @@ localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 jest.mock('uuid/v4')
 uuid.mockImplementation(() => '12345')
 
+// ----------------- Setup -------------------------
+
+statePlayers.action_createPlayers(1)
+
 // -------------------------------------------------
 
 describe('PlayerCard', () => {
@@ -39,6 +43,28 @@ describe('PlayerCard', () => {
         const component = shallowMount(PlayerCard, { localVue, propsData })
 
         expect(component.vm.$props.playerId).toEqual(propsData.playerId)
+      })
+    })
+  })
+
+  describe('methods', () => {
+
+    describe('updateScore', () => {
+      
+      it.skip('should update target player score', () => {
+        const propsData = { playerId: '12345' }
+        const component = shallowMount(PlayerCard, { localVue, propsData })
+
+        // need to update value of slider
+        console.log(statePlayers.getPlayerData[propsData.playerId].score)
+        const score = statePlayers.getPlayerData[propsData.playerId].score
+        // ************************************************
+        // ************************************************
+        // ***************  incomplete  *******************
+        // ************************************************
+        // ************************************************
+        const expected = 5
+        expect(score).toEqual(expected)
       })
     })
   })
