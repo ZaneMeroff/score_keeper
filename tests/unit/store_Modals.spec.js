@@ -30,7 +30,7 @@ describe('Modals class', () => {
 
     describe('action_addPlayersModalVisibility', () => {
 
-      it('updates state with new show value', () => {
+      it('should update state with new show value', () => {
         const newValue = true
         const oldValue = false
 
@@ -42,7 +42,7 @@ describe('Modals class', () => {
 
     describe('action_clearDataModalVisibility', () => {
 
-      it('updates state with new show value', () => {
+      it('should update state with new show value', () => {
         const newValue = true
         const oldValue = false
         
@@ -54,7 +54,7 @@ describe('Modals class', () => {
 
     describe('action_deletePlayersModalVisibility', () => {
 
-      it('updates state with new show value', () => {
+      it('should update state with new show value', () => {
         const newValue = true
         const oldValue = false
         
@@ -66,7 +66,7 @@ describe('Modals class', () => {
 
     describe('action_resetScoreModalVisibility', () => {
 
-      it('updates state with new show value', () => {
+      it('should update state with new show value', () => {
         const newValue = true
         const oldValue = false
         
@@ -78,7 +78,7 @@ describe('Modals class', () => {
 
     describe('action_scoreLimitModalVisibility', () => {
 
-      it('updates state with new show value', () => {
+      it('should update state with new show value', () => {
         const newValue = true
         const oldValue = false
         
