@@ -6,10 +6,7 @@ import Vuex from 'vuex'
 // -------------- mocks ------------------
 
 jest.mock('uuid/v4')
-uuid.mockImplementationOnce(() => '111')
-uuid.mockImplementationOnce(() => '222')
-uuid.mockImplementationOnce(() => '111')
-uuid.mockImplementationOnce(() => '222')
+uuid.mockImplementation(() => '12345')
 
 // -------------- setup ------------------
 
@@ -33,17 +30,10 @@ describe('Players class', () => {
     '#FFAE5F', // orange
   ]
 
-  const testPlayer1 = {
+  const testPlayer = {
     color: '#47EDA0', 
-    id: '111', 
+    id: '12345', 
     name: 'Player 1', 
-    score: 0,
-  }
-
-  const testPlayer2 = {
-    color: '#47EDA0', 
-    id: '222', 
-    name: 'Player 2', 
     score: 0,
   }
 
@@ -51,7 +41,6 @@ describe('Players class', () => {
     store = new Vuex.Store({})
     PlayersModule = new Players({ store, name: 'Players' })
   })
-
 
   describe('state', () => {
     
@@ -62,13 +51,23 @@ describe('Players class', () => {
     })
   })
 
+  describe('getters', () => {
+
+    describe('getPlayerData', () => {
+
+      it('should return playerData', () => {
+        expect(PlayersModule.getPlayerData).toMatchObject({})
+      })
+    })
+  })
+
   describe('actions', () => {
 
     describe('action_createPlayers', () => {
 
       it('should update state with player', () => {
         const oldValue = {}
-        const newValue = { '111': testPlayer1 }    
+        const newValue = { '12345': testPlayer }    
 
         expect(PlayersModule.playerData).toMatchObject(oldValue)
         PlayersModule.action_createPlayers(1)
@@ -78,19 +77,54 @@ describe('Players class', () => {
 
     describe('action_deletePlayer', () => {
 
-      it.skip('should delete target player', () => {
-        const oldValue = { '222': testPlayer2 }    
+      it('should delete target player', () => {
+        const oldValue = { '12345': testPlayer }    
         const newValue = {}
 
         PlayersModule.action_createPlayers(1)
         expect(PlayersModule.playerData).toMatchObject(oldValue)
-        PlayersModule.action_deletePlayer('222')
+        PlayersModule.action_deletePlayer('12345')
         expect(PlayersModule.playerData).toMatchObject(newValue)
-        // ************************************************
-        // ************************************************
-        // ***************  in progress  ******************
-        // ************************************************
-        // ************************************************
+      })
+    })
+
+    describe('action_setPlayerScore', () => {
+
+      it('should set score for target player', () => {
+        const oldValue = 0    
+        const newValue = 5
+
+        PlayersModule.action_createPlayers(1)
+        expect(PlayersModule.playerData['12345'].score).toEqual(oldValue)
+        PlayersModule.action_setPlayerScore({ id: '12345', score: newValue })
+        expect(PlayersModule.playerData['12345'].score).toEqual(newValue)
+      })
+    })
+
+    describe('action_setPlayerName', () => {
+
+      it('should set name for target player', () => {
+        const oldValue = 'Player 1'   
+        const newValue = 'Jorah Mormont'
+
+        PlayersModule.action_createPlayers(1)
+        expect(PlayersModule.playerData['12345'].name).toEqual(oldValue)
+        PlayersModule.action_setPlayerName({ id: '12345', name: newValue })
+        expect(PlayersModule.playerData['12345'].name).toEqual(newValue)
+      })
+    })
+
+    describe('action_zeroScores', () => {
+
+      it('should zero scores for all players', () => {
+        const oldValue = 5   
+        const newValue = 0
+
+        PlayersModule.action_createPlayers(1)
+        PlayersModule.action_setPlayerScore({ id: '12345', score: oldValue })
+        expect(PlayersModule.playerData['12345'].score).toEqual(oldValue)
+        PlayersModule.action_zeroScores()
+        expect(PlayersModule.playerData['12345'].score).toEqual(newValue)
       })
     })
   })
