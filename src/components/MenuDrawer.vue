@@ -80,7 +80,8 @@
     <confirm
       :showModal="stateModals.getShowClearDataModal"
       :text="'Clear all app data?'"
-      :onYes="() => {handleClearData()
+      :onYes="() => {
+        handleClearData()
         drawer = false
       }"
       :onNo="() => {
@@ -168,7 +169,7 @@ export default class MenuDrawer extends Vue {
     },
     {
       icon: 'dark_mode',
-      label: 'Change Colors',
+      label: 'Toggle Colors',
       onClick: () => {
         this.stateSettings.action_setDarkMode()
       },
