@@ -22,6 +22,6 @@ export const store: any = new Vuex.Store({
   plugins: [ vuexLocal.plugin ],
 })
 
-export const stateModals= new Modals({ store, name: 'Modals' })
-export const statePlayers= new Players({ store, name: 'Players' })
+export const stateModals = new Modals({ store, name: 'Modals' })
+export const statePlayers = new Players({ store, name: 'Players' })
 export const stateSettings = new Settings({ store, name: 'Settings' })

@@ -1,5 +1,6 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import { stateModals } from '@/store/index'
+import { stateModals, statePlayers } from '@/store/index'
+// import Players from '@/store/Players'
 import AddPlayers from '@/components/modals/AddPlayers.vue'
 import Quasar, * as All from 'quasar'
 import uuid from 'uuid/v4'
@@ -18,6 +19,14 @@ uuid.mockImplementation(() => '12345')
 // -------------------------------------------
 
 describe('AddPlayers', () => {
+
+  // let store
+  // let statePlayers
+
+  beforeEach(() => {
+    // store = new Vuex.Store({})
+    // statePlayers = new Players({ store, name: 'Players' })
+  })
 
   describe('snapshots', () => {
 
@@ -108,7 +117,20 @@ describe('AddPlayers', () => {
   
     describe('handleSaveBtn', () => {
       
-      it.skip('should call statePlayers.action_createPlayers if validateRules returns true', () => {
+      it('should call statePlayers.action_createPlayers if validateRules returns true', async () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+
+        console.log('before: ', statePlayers.playerData)
+
+        // expect(Object.keys(statePlayers.playerData).length).toEqual(0)
+
+        await component.vm.handleSaveBtn()
+
+        // expect(Object.keys(statePlayers.playerData).length).toEqual(1)
+
+        console.log('after: ', statePlayers.playerData)
+
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
