@@ -55,7 +55,7 @@ describe('Players class', () => {
 
     describe('getPlayerData', () => {
 
-      it('should return playerData', () => {
+      it('should return playerData value', () => {
         expect(PlayersModule.getPlayerData).toMatchObject({})
       })
     })
