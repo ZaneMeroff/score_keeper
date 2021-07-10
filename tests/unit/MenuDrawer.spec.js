@@ -56,16 +56,13 @@ describe('MenuDrawer', () => {
 
     describe('handleClearData', () => {
 
-      it.skip('should call localforage.clear()', async () => {
+      it('should call localforage.clear()', () => {
         const component = shallowMount(MenuDrawer, { localVue })
-        component.vm.localforage = jest.fn()
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
-        await component.vm.handleClearData()
-        expect(component.vm.localforage).toHaveBeenCalledTimes(1)
+        const spy = jest.spyOn(localforage, 'clear').mockImplementation(() => {})
+
+        component.vm.handleClearData()
+        
+        expect(spy).toHaveBeenCalledTimes(1)
       })
     })
   })

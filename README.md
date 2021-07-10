@@ -14,7 +14,7 @@ This is the most recent project I’ve created to showcase my solo programming s
 ![screenshots](https://user-images.githubusercontent.com/53405028/124308856-1b1c9e80-db27-11eb-8eb6-8f49073d581c.png)
 
 ### Jest Testing Suite
-The testing suite is almost finished (~108 unit tests so far). After completion, the suite will have close to 100% testing coverage. Tests cover each Vuex module as well as each Vue component with happy/sad paths as necessary for: data, methods, props, watchers, getters, lifecycle hooks, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
+The testing suite is almost finished (~118 unit tests so far). After completion, the suite will have close to 100% testing coverage. Tests cover each Vuex module as well as each Vue component with happy/sad paths as necessary for: data, methods, props, watchers, getters, lifecycle hooks, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
 
 ### Directions for Use
 

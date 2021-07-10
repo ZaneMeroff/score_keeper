@@ -135,6 +135,7 @@ describe('AddPlayers', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleSaveBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
@@ -156,6 +157,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
         
         component.vm.handleSaveBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -167,6 +169,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: 51 })
         expect(component.vm.$data.showError).toEqual(false)
         component.vm.handleSaveBtn()
+
         expect(component.vm.$data.showError).toEqual(true)
       })
     })
@@ -179,6 +182,7 @@ describe('AddPlayers', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleCancelBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
@@ -200,6 +204,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
         
         component.vm.handleCancelBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -212,6 +217,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
 
         component.setData({ numOfPlayers: 51 })
+
         expect(component.vm.$data.numOfPlayers).toEqual(51)
         expect(component.vm.validateRules()).toEqual(false)
       })
@@ -221,6 +227,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
 
         component.setData({ numOfPlayers: 49 })
+
         expect(component.vm.$data.numOfPlayers).toEqual(49)
         expect(component.vm.validateRules()).toEqual(true)
       })
@@ -234,6 +241,7 @@ describe('AddPlayers', () => {
 
         expect(component.vm.$data.numOfPlayers).toEqual(1)
         component.vm.setDefault()
+
         expect(component.vm.$data.disabled).toEqual(false)
       })
 
@@ -244,6 +252,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: -1 })
         expect(component.vm.$data.numOfPlayers).toEqual(-1)
         component.vm.onInputChange()
+
         expect(component.vm.$data.disabled).toEqual(true)
       })
     })
@@ -257,6 +266,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: 5 })
         expect(component.vm.$data.numOfPlayers).toEqual(5)
         component.vm.setDefault()
+        
         expect(component.vm.$data.numOfPlayers).toEqual(1)
       })
     })

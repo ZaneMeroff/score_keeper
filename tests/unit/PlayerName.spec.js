@@ -103,12 +103,20 @@ describe('PlayerName', () => {
 
     describe('handleSaveBtn', () => {
       
-      it.skip('should call statePlayers.action_setPlayerName', () => {
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
+      it('should set player name', () => {
+        const propsData = { playerId: '12345', showModal: true }
+        const component = shallowMount(PlayerName, { localVue, propsData })
+        const expected = 'Khal Drogo'
+
+        expect(statePlayers.getPlayerData['12345'].name).toEqual('Player 1')
+        
+        component.setData({ name: expected })
+        component.vm.handleSaveBtn()
+
+        expect(statePlayers.getPlayerData['12345'].name).toEqual(expected)
+
+        // teardown
+        statePlayers.action_setPlayerName({ id: '12345', name: 'Player 1' })
       })
 
       it('should call setDefault', () => {
@@ -190,15 +198,11 @@ describe('PlayerName', () => {
 
     describe('mounted', () => {
 
-      it.skip('should call setDefault on mount', () => {
+      it('should call setDefault on mount', () => {
         const propsData = { playerId: '12345', showModal: true }
+        const spy = jest.spyOn(PlayerName.options.methods, 'setDefault')
         const component = shallowMount(PlayerName, { localVue, propsData })
-        const spy = jest.spyOn(component.vm, 'setDefault')
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
     })
@@ -208,12 +212,12 @@ describe('PlayerName', () => {
 
     describe('events', () => {
 
-      it.skip('should call handeSaveBtn when save btn is clicked', async () => {
+      it.skip('should call handeSaveBtn when save btn is clicked', () => {
         const propsData = { playerId: '12345', showModal: true }
+        const spy = jest.spyOn(PlayerName.options.methods, 'handleSaveBtn')
         const component = shallowMount(PlayerName, { localVue, propsData })
-        const spy = jest.spyOn(component.vm, 'handleSaveBtn')
 
-        await component.find('.q-btn').trigger('click')
+        component.find('.q-btn').trigger('click')
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
