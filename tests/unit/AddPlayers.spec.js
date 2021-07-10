@@ -1,6 +1,5 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { stateModals, statePlayers } from '@/store/index'
-// import Players from '@/store/Players'
 import AddPlayers from '@/components/modals/AddPlayers.vue'
 import Quasar, * as All from 'quasar'
 import uuid from 'uuid/v4'
@@ -19,14 +18,6 @@ uuid.mockImplementation(() => '12345')
 // -------------------------------------------
 
 describe('AddPlayers', () => {
-
-  // let store
-  // let statePlayers
-
-  beforeEach(() => {
-    // store = new Vuex.Store({})
-    // statePlayers = new Players({ store, name: 'Players' })
-  })
 
   describe('snapshots', () => {
 
@@ -117,25 +108,25 @@ describe('AddPlayers', () => {
   
     describe('handleSaveBtn', () => {
       
-      it('should call statePlayers.action_createPlayers if validateRules returns true', async () => {
+      it('should create a player if validateRules returns true', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
+        const testPlayer = {
+          color: '#47EDA0', 
+          id: '12345', 
+          name: 'Player 1', 
+          score: 0,
+        }
 
-        console.log('before: ', statePlayers.playerData)
+        expect(statePlayers.getPlayerData).toMatchObject({})
 
-        // expect(Object.keys(statePlayers.playerData).length).toEqual(0)
+        component.vm.handleSaveBtn()
 
-        await component.vm.handleSaveBtn()
+        const expected = { '12345': testPlayer }
+        expect(statePlayers.getPlayerData).toMatchObject(expected)
 
-        // expect(Object.keys(statePlayers.playerData).length).toEqual(1)
-
-        console.log('after: ', statePlayers.playerData)
-
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
+        // teardown
+        statePlayers.action_deletePlayer('12345')
       })
 
       it('should call setDefault if validateRules returns true', () => {
@@ -144,15 +135,21 @@ describe('AddPlayers', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleSaveBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
-      it.skip('should call stateModals.action_addPlayersModalVisibility if validateRules returns true', () => {
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
+      it('should set addPlayersModal to false if validateRules returns true', () => {
+        const propsData = { showModal: true }
+        const component = shallowMount(AddPlayers, { localVue, propsData })
+        
+        stateModals.action_addPlayersModalVisibility(true)
+        expect(stateModals.getShowAddPlayersModal).toEqual(true)
+
+        component.vm.handleSaveBtn()
+
+        const expected = false
+        expect(stateModals.getShowAddPlayersModal).toEqual(expected)
       })
 
       it('should emit close event if validateRules returns true', () => {
@@ -160,6 +157,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
         
         component.vm.handleSaveBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -171,6 +169,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: 51 })
         expect(component.vm.$data.showError).toEqual(false)
         component.vm.handleSaveBtn()
+
         expect(component.vm.$data.showError).toEqual(true)
       })
     })
@@ -183,21 +182,21 @@ describe('AddPlayers', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleCancelBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
-      it.skip('should call action_addPlayersModalVisibility(false)', () => {
+      it('should set addPlayersModal to false', () => {
         const propsData = { showModal: true }
         const component = shallowMount(AddPlayers, { localVue, propsData })
 
-        const spy = jest.spyOn(stateModals, 'action_addPlayersModalVisibility')
+        stateModals.action_addPlayersModalVisibility(true)
+        expect(stateModals.getShowAddPlayersModal).toEqual(true)
+
         component.vm.handleCancelBtn()
-        // ************************************************
-        // ************************************************
-        // ***************  incomplete  *******************
-        // ************************************************
-        // ************************************************
-        expect(spy).toHaveBeenCalledWith(false)
+
+        const expected = false
+        expect(stateModals.getShowAddPlayersModal).toEqual(expected)
       })
 
       it('should emit close event', () => {
@@ -205,6 +204,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
         
         component.vm.handleCancelBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -217,6 +217,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
 
         component.setData({ numOfPlayers: 51 })
+
         expect(component.vm.$data.numOfPlayers).toEqual(51)
         expect(component.vm.validateRules()).toEqual(false)
       })
@@ -226,6 +227,7 @@ describe('AddPlayers', () => {
         const component = shallowMount(AddPlayers, { localVue, propsData })
 
         component.setData({ numOfPlayers: 49 })
+
         expect(component.vm.$data.numOfPlayers).toEqual(49)
         expect(component.vm.validateRules()).toEqual(true)
       })
@@ -239,6 +241,7 @@ describe('AddPlayers', () => {
 
         expect(component.vm.$data.numOfPlayers).toEqual(1)
         component.vm.setDefault()
+
         expect(component.vm.$data.disabled).toEqual(false)
       })
 
@@ -249,6 +252,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: -1 })
         expect(component.vm.$data.numOfPlayers).toEqual(-1)
         component.vm.onInputChange()
+
         expect(component.vm.$data.disabled).toEqual(true)
       })
     })
@@ -262,6 +266,7 @@ describe('AddPlayers', () => {
         component.setData({ numOfPlayers: 5 })
         expect(component.vm.$data.numOfPlayers).toEqual(5)
         component.vm.setDefault()
+        
         expect(component.vm.$data.numOfPlayers).toEqual(1)
       })
     })
