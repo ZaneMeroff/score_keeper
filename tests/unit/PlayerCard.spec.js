@@ -55,16 +55,24 @@ describe('PlayerCard', () => {
         const propsData = { playerId: '12345' }
         const component = shallowMount(PlayerCard, { localVue, propsData })
 
-        // need to update value of slider
-        console.log(statePlayers.getPlayerData[propsData.playerId].score)
-        const score = statePlayers.getPlayerData[propsData.playerId].score
+        console.log('before: ', statePlayers.getPlayerData[propsData.playerId].score)
+
+        statePlayers.action_setPlayerScore({ id: '12345', score: 8 })
+        expect(statePlayers.getPlayerData[propsData.playerId].score).toEqual(8)
+
+        // need to set new score value from slider's value
+
+        component.vm.updateScore()
+
+        console.log('after: ', statePlayers.getPlayerData[propsData.playerId].score)
+
         // ************************************************
         // ************************************************
         // ***************  incomplete  *******************
         // ************************************************
         // ************************************************
-        const expected = 5
-        expect(score).toEqual(expected)
+
+        // expect player's score to update in the store
       })
     })
   })
