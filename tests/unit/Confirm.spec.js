@@ -7,6 +7,15 @@ import Quasar, * as All from 'quasar'
 const localVue = createLocalVue()
 localVue.use(Quasar, {components: All, directives: All, plugins: All})
 
+// ------------ props data ------------------
+
+const propsData = {
+  onYes: jest.fn(),
+  onNo: jest.fn(),
+  showModal: true,
+  text: 'sample text'
+}
+
 // ------------------------------------------
 
 describe('Confirm', () => {
@@ -14,12 +23,6 @@ describe('Confirm', () => {
   describe("snapshots", () => {
 
     it("should render with default html", () => {
-      const propsData = {
-        onYes: jest.fn(),
-        onNo: jest.fn(),
-        showModal: true,
-        text: 'sample text'
-      }
       const component = shallowMount(Confirm, { localVue, propsData })
 
       expect(component.element).toMatchSnapshot()
@@ -31,12 +34,6 @@ describe('Confirm', () => {
     describe('onYes', () => {
       
       it('should accept a function', () => {
-        const propsData = {
-          onYes: jest.fn(),
-          onNo: jest.fn(),
-          showModal: true,
-          text: 'sample text'
-        }
         const component = shallowMount(Confirm, { localVue, propsData })
   
         expect(component.vm.$props.onYes).toEqual(propsData.onYes)
@@ -46,12 +43,6 @@ describe('Confirm', () => {
     describe('onNo', () => {
       
       it('should accept a function', () => {
-        const propsData = {
-          onYes: jest.fn(),
-          onNo: jest.fn(),
-          showModal: true,
-          text: 'sample text'
-        }
         const component = shallowMount(Confirm, { localVue, propsData })
   
         expect(component.vm.$props.onNo).toEqual(propsData.onNo)
@@ -61,12 +52,6 @@ describe('Confirm', () => {
     describe('showModal', () => {
       
       it('should accept a boolean', () => {
-        const propsData = {
-          onYes: jest.fn(),
-          onNo: jest.fn(),
-          showModal: true,
-          text: 'sample text'
-        }
         const component = shallowMount(Confirm, { localVue, propsData })
   
         expect(component.vm.$props.showModal).toEqual(propsData.showModal)
@@ -76,12 +61,6 @@ describe('Confirm', () => {
     describe('text', () => {
       
       it('should accept a string', () => {
-        const propsData = {
-          onYes: jest.fn(),
-          onNo: jest.fn(),
-          showModal: true,
-          text: 'sample text'
-        }
         const component = shallowMount(Confirm, { localVue, propsData })
   
         expect(component.vm.$props.text).toEqual(propsData.text)

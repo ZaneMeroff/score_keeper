@@ -5,21 +5,21 @@ import Quasar, * as All from 'quasar'
 import uuid from 'uuid/v4'
 import Vuex from 'vuex'
 
-// ------------ Quasar & Vuex setup ----------------
+// --------- Vuex & Quasar setup -------------
 
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// ----------------- Mocks -------------------------
+// ---------------- mocks --------------------
 
 jest.mock('uuid/v4')
 uuid.mockImplementation(() => '12345')
 
-// ----------------- Setup -------------------------
+// ------------ create player ----------------
 
 statePlayers.action_createPlayers(1)
 
-// -------------------------------------------------
+// -------------------------------------------
 
 describe('PlayerCard', () => {
 

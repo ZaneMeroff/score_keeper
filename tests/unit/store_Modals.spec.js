@@ -2,8 +2,12 @@ import { createLocalVue } from '@vue/test-utils'
 import Modals from '@/store/Modals'
 import Vuex from 'vuex'
 
+// -------------- Vuex setup -----------------
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
+
+// -------------------------------------------
 
 describe('Modals class', () => {
 

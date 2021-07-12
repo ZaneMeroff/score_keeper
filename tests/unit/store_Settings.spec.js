@@ -2,8 +2,12 @@ import { createLocalVue } from '@vue/test-utils'
 import Settings from '@/store/Settings'
 import Vuex from 'vuex'
 
+// -------------- Vuex setup -----------------
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
+
+// -------------------------------------------
 
 describe('Settings class', () => {
 

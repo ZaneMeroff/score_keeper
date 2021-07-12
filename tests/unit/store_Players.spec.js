@@ -3,17 +3,17 @@ import Players from '@/store/Players'
 import uuid from 'uuid/v4'
 import Vuex from 'vuex'
 
-// -------------- mocks ------------------
-
-jest.mock('uuid/v4')
-uuid.mockImplementation(() => '12345')
-
-// -------------- setup ------------------
+// -------------- Vuex setup -----------------
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-// ---------------------------------------
+// -------------- mocks ----------------------
+
+jest.mock('uuid/v4')
+uuid.mockImplementation(() => '12345')
+
+// -------------------------------------------
 
 describe('Players class', () => {
 

@@ -10,7 +10,7 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// ----------------- Mocks -------------------
+// ----------------- mocks -------------------
 
 jest.mock('uuid/v4')
 uuid.mockImplementation(() => '12345')

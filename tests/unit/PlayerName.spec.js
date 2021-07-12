@@ -10,12 +10,12 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// --------------- Mocks ---------------------
+// ---------------- mocks --------------------
 
 jest.mock('uuid/v4')
 uuid.mockImplementation(() => '12345')
 
-// --------------- Setup ---------------------
+// ------------ create player ----------------
 
 statePlayers.action_createPlayers(1)
 
@@ -74,6 +74,7 @@ describe('PlayerName', () => {
         const newValue = 'New Name'
 
         component.setData({ name: newValue })
+
         expect(component.vm.$data.name).toEqual(newValue)
       })
     })
@@ -125,6 +126,7 @@ describe('PlayerName', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleSaveBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
@@ -133,6 +135,7 @@ describe('PlayerName', () => {
         const component = shallowMount(PlayerName, { localVue, propsData })
         
         component.vm.handleSaveBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -146,6 +149,7 @@ describe('PlayerName', () => {
         const spy = jest.spyOn(component.vm, 'setDefault')
 
         component.vm.handleCancelBtn()
+
         expect(spy).toHaveBeenCalledTimes(1)
       })
 
@@ -154,6 +158,7 @@ describe('PlayerName', () => {
         const component = shallowMount(PlayerName, { localVue, propsData })
         
         component.vm.handleCancelBtn()
+
         const expected = { 'close': [[]] }
         expect(component.emitted()).toEqual(expected)
       })
@@ -167,6 +172,7 @@ describe('PlayerName', () => {
 
         component.setData({ name: '' })
         component.vm.onInputChange()
+
         expect(component.vm.$data.disabled).toEqual(true)
       })
 
@@ -177,6 +183,7 @@ describe('PlayerName', () => {
 
         component.setData({ name: newValue })
         component.vm.onInputChange()
+
         expect(component.vm.$data.disabled).toEqual(false)
       })
     })
@@ -188,6 +195,7 @@ describe('PlayerName', () => {
         const component = shallowMount(PlayerName, { localVue, propsData })
         
         component.vm.setDefault()
+
         const expected = 'Player 1'
         expect(component.vm.$data.name).toEqual(expected)
       })
@@ -212,7 +220,7 @@ describe('PlayerName', () => {
 
     describe('events', () => {
 
-      it('should call handeSaveBtn when save btn is clicked',() => {
+      it.skip('should call handeSaveBtn when save btn is clicked',() => {
         const propsData = { playerId: '12345', showModal: true }
         const component = shallowMount(PlayerName, { localVue, propsData })
         const spy = jest.spyOn(component.vm, 'handleSaveBtn')

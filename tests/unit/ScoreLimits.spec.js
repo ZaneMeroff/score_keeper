@@ -10,12 +10,12 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex, Quasar, {components: All, directives: All, plugins: All})
 
-// --------------- Mocks ---------------------
+// ---------------- mocks --------------------
 
 jest.mock('uuid/v4')
 uuid.mockImplementation(() => '12345')
 
-// --------------- Setup ---------------------
+// ------------ create player ----------------
 
 statePlayers.action_createPlayers(1)
 
@@ -264,7 +264,7 @@ describe('ScoreLimits', () => {
         const component = shallowMount(ScoreLimits, { localVue, propsData })
 
         component.setData({ scoreMin: -100 })
-        component.setData({ scoreMin: 100 })
+        component.setData({ scoreMax: 100 })
         component.vm.onInputChange()
 
         expect(component.vm.$data.disabled).toEqual(false)
