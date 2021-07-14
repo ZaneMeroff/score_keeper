@@ -56,6 +56,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 // Vuex
 import { statePlayers, stateSettings } from '@/store/index'
+import Players from '@/store/Players'
+import Settings from '@/store/Settings'
 
 @Component
 export default class PlayerName extends Vue {
@@ -63,14 +65,14 @@ export default class PlayerName extends Vue {
   @Prop(Boolean) private showModal!: boolean
   @Prop(String) private playerId!: string
 
-  statePlayers = statePlayers
-  stateSettings = stateSettings
+  statePlayers: Players = statePlayers
+  stateSettings: Settings = stateSettings
 
   name: string = ''
   disabled: boolean = false
 
   handleSaveBtn() {
-    statePlayers.action_setPlayerName({ id: this.playerId, name: this.name })
+    this.statePlayers.action_setPlayerName({ id: this.playerId, name: this.name })
     this.setDefault()
     this.$emit('close')
   }
@@ -86,7 +88,9 @@ export default class PlayerName extends Vue {
   }
 
   setDefault() {
-    this.name = statePlayers.getPlayerData[this.playerId].name
+    if (this.statePlayers.getPlayerData[this.playerId]) {
+      this.name = this.statePlayers.getPlayerData[this.playerId].name
+    }
   }
 
   mounted() {
