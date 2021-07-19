@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerName snapshots should render with default html 1`] = `
+<q-dialog
+  persistent=""
+>
+  <q-card
+    class="q-card"
+    dark="true"
+  >
+    <q-card-section>
+      <div
+        class="q-mb-md"
+      >
+        <div
+          class="text q-mb-sm"
+          style="color: rgb(255, 255, 255);"
+        >
+          Edit Name
+        </div>
+         
+        <q-separator
+          class="q-mb-lg"
+          color="blue"
+          inset=""
+        />
+         
+        <q-input
+          dark="true"
+          maxlength="20"
+          rules="function (val) { return !!val || '* Required'; }"
+          style="font-size: 16px;"
+        />
+      </div>
+       
+      <q-btn-group
+        class="q-btn-group"
+        flat=""
+      >
+        <q-btn
+          class="q-btn"
+          color="green"
+          flat=""
+          id="save-btn"
+          label="save"
+          size="md"
+        />
+         
+        <q-btn
+          class="q-btn"
+          color="red"
+          flat=""
+          label="cancel"
+          size="md"
+        />
+      </q-btn-group>
+    </q-card-section>
+  </q-card>
+</q-dialog>
+`;

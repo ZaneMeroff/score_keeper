@@ -30,7 +30,10 @@ describe('PlayerName', () => {
   beforeEach(() => {
     store = new Vuex.Store({})
     PlayersModule = new Players({ store, name: 'Players' })
-    PlayersModule.action_createPlayers(1)
+    // PlayersModule.action_createPlayers(1)
+
+    // find out why players exist here but not before tests
+    // try connecting PlayerModule to localVue
   })
 
   describe('snapshots', () => {
@@ -71,9 +74,15 @@ describe('PlayerName', () => {
     describe('name', () => {
 
       it('should have a default value of empty string', () => {
+
+        // console.log(PlayersModule.getPlayerData['12345'])
+        // PlayersModule.action_createPlayers(1)
+
         const propsData = { playerId: '12345', showModal: true }
         const component = shallowMount(PlayerName, { localVue, propsData })
         
+        console.log('name: ', component.vm.$data.name)
+
         const expected = 'Player 1'
         expect(component.vm.$data.name).toEqual(expected)
       })
