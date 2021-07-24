@@ -33,8 +33,9 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
-, "tests/unit/Confirm.spec.js"  ],
+    "tests/**/*.tsx", 
+    "tests/unit/PlayerName.spec.ts"  
+  ],
   "exclude": [
     "node_modules"
   ]

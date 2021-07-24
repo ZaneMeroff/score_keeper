@@ -153,7 +153,7 @@ describe('PlayerName', () => {
         const propsData = { playerId: '12345', showModal: true }
         const component = shallowMount(PlayerName, { localVue, propsData })
         
-        // @ts-ignore
+
         component.vm.handleSaveBtn()
 
         const expected = { 'close': [[]] }
