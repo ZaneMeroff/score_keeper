@@ -75,7 +75,10 @@
             size="md"
             style="width: 100%"
             :label="'ok'"
-            @click="showError = false"
+            @click="() => {
+              showError = false
+              this.stateModals.action_scoreLimitModalVisibility(true)
+            }"
           />
         </q-card-section>
       </q-card>
@@ -119,9 +122,9 @@ export default class ScoreLimits extends Vue {
       this.stateSettings.action_setScoreLimits({ min: this.scoreMin, max: this.scoreMax })
       this.$emit('close')
     } else {
-      this.stateModals.action_scoreLimitModalVisibility(false)
       this.showError = true
     }
+    this.stateModals.action_scoreLimitModalVisibility(false)
   }
 
   handleCancelBtn() {
