@@ -37,7 +37,7 @@ export default class App extends Vue {
       .then(keys => {
         // if no keys exist, set defaults for players and min/max
         if (!keys) {
-          this.statePlayers.action_createPlayers(2)
+          this.statePlayers.action_createPlayers(4)
           this.stateSettings.action_setScoreLimits({ min: 0, max: 10 })
         }
       })
