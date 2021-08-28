@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumSelector snapshots should render with default html 1`] = `
+<q-item-section-stub
+  class="component-perimeter"
+>
+  <q-item-stub
+    class="q-item"
+    tag="div"
+  >
+    <q-btn-stub
+      align="center"
+      class="q-mr-sm"
+      flat="true"
+      ripple="true"
+    >
+      <q-icon-stub
+        name="remove_circle_outline"
+        tag="i"
+      />
+    </q-btn-stub>
+     
+    <q-carousel-stub
+      animated="true"
+      class="rounded-borders transparent q-carousel flex justify-center"
+      controltype="flat"
+      height="auto"
+      padding="true"
+      swipeable="true"
+      transitionnext="slide-left"
+      transitionprev="slide-right"
+      value="0"
+    />
+     
+    <q-btn-stub
+      align="center"
+      class="q-ml-sm"
+      flat="true"
+      ripple="true"
+    >
+      <q-icon-stub
+        name="add_circle_outline"
+        tag="i"
+      />
+    </q-btn-stub>
+  </q-item-stub>
+</q-item-section-stub>
+`;

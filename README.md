@@ -14,7 +14,7 @@ This is the most recent project I’ve created to showcase my solo programming s
 ![screenshots](https://user-images.githubusercontent.com/53405028/124308856-1b1c9e80-db27-11eb-8eb6-8f49073d581c.png)
 
 ### Jest Testing Suite
-The testing suite is almost finished (~118 unit tests so far). I’m currently working on user event/interaction tests. After completion, the suite will have near 100% testing coverage. Coverage includes all Vuex modules as well as each Vue component with happy/sad paths as necessary for: data, methods, props, watchers, getters, lifecycle hooks, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
+The testing suite is almost finished (~118 unit tests so far). The last thing I have left to test is events/user interactions. After completion, the suite will have near 100% testing coverage. Coverage includes all Vuex modules as well as each Vue component with happy/sad paths as necessary for: data, methods, props, watchers, getters, lifecycle hooks, and snapshot renders. To run the testing suite and view test coverage, see instructions in "How to run the Jest testing suite with NPM" below.
 
 ### Directions for Use
 
@@ -69,7 +69,8 @@ Select the *Clear Data* button from the menu drawer. This will reset all app dat
 
 ### How to run the Jest testing suite with NPM
 1. after the project has been cloned down and `npm install` has been ran, `cd` into the root directory
-2. run `npm run test:unit` to view test results
+2. run `npm run test:unit` to run testings suite for all specs
+3. if you wish to just run tests for a specific file, run `npm run test:unit <file_name>` (you don't need to include file path)
 
 ### This project was created by:
 Zachary Nemeroff https://github.com/ZaneMeroff

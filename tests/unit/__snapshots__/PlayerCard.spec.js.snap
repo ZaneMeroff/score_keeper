@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerCard snapshots should render with default html 1`] = `
+<transition-stub
+  appear="true"
+  enteractiveclass="animated animate__slideInLeft"
+  leaveactiveclass="animated animate__slideOutRight"
+>
+  <q-card-stub
+    class="q-card"
+    style="background-color: rgb(174, 127, 248);"
+    tag="div"
+  >
+    <name-input-stub
+      playerid="12345"
+    />
+     
+    <num-selector-stub
+      playerid="12345"
+    />
+     
+    <div
+      class="q-px-lg"
+    >
+      <q-slider-stub
+        color="black"
+        max="10"
+        min="0"
+        step="1"
+        thumbpath="M 4, 10 a 6,6 0 1,0 12,0 a 6,6 0 1,0 -12,0"
+        value="0"
+      />
+    </div>
+  </q-card-stub>
+</transition-stub>
+`;

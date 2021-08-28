@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NameInput snapshots should render with default html 1`] = `
+<div>
+  <q-item-section-stub
+    class="q-item-section"
+  >
+    <div
+      class="flex"
+    >
+      <q-btn-stub
+        align="center"
+        flat="true"
+        ripple="true"
+      >
+        <q-icon-stub
+          name="edit"
+          tag="i"
+        />
+      </q-btn-stub>
+       
+      <p
+        class="player-name"
+      >
+        Player 1
+      </p>
+    </div>
+     
+    <q-btn-stub
+      align="center"
+      flat="true"
+      ripple="true"
+    >
+      <q-icon-stub
+        name="delete"
+        tag="i"
+      />
+    </q-btn-stub>
+  </q-item-section-stub>
+   
+  <player-name-stub
+    playerid="12345"
+  />
+   
+  <confirm-stub
+    onno="[Function]"
+    onyes="[Function]"
+    text="Delete Player 1?"
+  />
+</div>
+`;
