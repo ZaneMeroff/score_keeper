@@ -21,7 +21,7 @@
           :min="stateSettings.getMinScore"
           :max="stateSettings.getMaxScore"
           :step="1"
-          @change="updateScore"
+          @change="(val) => updateScore(val)"
         ></q-slider>
       </div>
 
@@ -58,8 +58,8 @@ export default class PlayerCard extends Vue {
   statePlayers = statePlayers
   stateSettings = stateSettings
 
-  updateScore() {
-    this.statePlayers.action_setPlayerScore({ id: this.playerId, score: this.$refs.slider.value! })
+  updateScore(val: string) {
+    this.statePlayers.action_setPlayerScore({ id: this.playerId, score: parseInt(val) })
   }
 }
 </script>
