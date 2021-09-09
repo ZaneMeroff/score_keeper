@@ -14,15 +14,16 @@
         animated
         padding
         swipeable
-        transition-next="slide-left"
-        transition-prev="slide-right"
         class="rounded-borders transparent q-carousel flex justify-center"
         height="auto"
+        transition-next="slide-left"
+        transition-prev="slide-right"
         v-model="getCurrentSlide"
       >
         <q-carousel-slide 
           v-for="n in stateSettings.getNumSelectorRangeSlides" 
           class="q-carousel-slide" 
+          style="overflow: hidden"
           :key="n" 
           :name="n"
         ><q-item class="score-display">{{ n }}</q-item>                                   
